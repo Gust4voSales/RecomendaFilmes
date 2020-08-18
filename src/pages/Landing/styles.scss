@@ -1,0 +1,82 @@
+#landing {
+    height: 100vh;
+    background: url('../../assets/background-joker.png') no-repeat right;
+    background-color: #030200;
+    
+    padding-left: 5%;
+    padding-top: 1.5rem;
+}
+
+#landing .header {
+    display: flex;
+    align-items: center;
+    height: 10vh;
+    // background-color: red;
+}
+
+#landing .header img {
+    height: 100px;
+    margin-right: 2rem;
+}
+
+#landing .header h1 {
+    margin-top: 20px;
+    font-size: 4rem;
+    text-transform: uppercase;
+    background: linear-gradient(
+        to right, 
+        var(--red-theme) 22%, 
+        var(--purple-theme)
+    );
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+#landing .header h1 span {
+    margin-left: .3rem;
+    font-size: 2.5rem;
+}
+
+#landing .content p {
+    margin-top: 20vh;
+    width: 45vw;
+    color: #f2f2f2;
+    font-size: 1.8rem;
+    text-align: justify;
+    line-height: 2.2rem;
+}
+
+#landing .content .buttonsContainer {
+    margin-top: 20vh;
+    display: flex;
+    flex-direction: column;
+}
+
+#landing .content .buttonsContainer a {
+    display: flex;
+    width: 35rem;
+    height: 8rem;
+    background: linear-gradient(
+        to right, 
+        var(--red-theme) 22%,
+        var(--purple-theme),
+    );
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 5rem;
+    text-decoration: none;
+    color: #fff;
+    border-radius: .6rem;
+    font-weight: 500;
+    font-size: 2.5rem;
+}
+
+#landing .content .buttonsContainer a div {
+    display: flex;
+    width: 98.5%;
+    height: 94%;
+    justify-content: center;
+    align-items: center;
+    background: #030200;
+    border-radius: .4rem;
+}

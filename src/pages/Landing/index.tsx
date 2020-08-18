@@ -13,12 +13,12 @@ const Landing = () => {
             <div className="content">
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. 
                     Laboriosam maiores necessitatibus fugiat vero ab commodi, 
-                    
                 </p>
 
                 <div className="buttonsContainer">
                     <a href="#">Me recomende algo</a>
-                    <a href="#"><div>Ver categorias</div></a>
+                 
+                    <a href="#">Ver categorias</a>
                 </div>
             </div>
         </div>

@@ -1,4 +1,44 @@
-h1 {
-    color: red;
-    background-color: black;
+:root {
+    --background-color: #2E2E2E;
+    --red-theme: #FF304F;
+    --purple-theme: #775ADA;
+    --light-blue-theme: #28C7FA;
+    --dark-blue-theme: #002651;
+
+    font-size: 62.5%;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body, #root {
+    height: 100vh;
+}
+    
+body {
+    background: var(--background-color);
+    -webkit-font-smoothing: antialiased;
+    color: #fff;
+}
+
+body,
+input,
+button,
+textarea {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.6rem;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Crimson Text', serif;
+}
+
+
+@media(max-width: 700px) {
+    :root {
+        font-size: 56%;
+    }
 }

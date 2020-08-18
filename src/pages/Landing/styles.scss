@@ -1,5 +1,7 @@
 #landing {
-    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
     background: url('../../assets/background-joker.png') no-repeat right;
     background-color: #030200;
     
@@ -43,7 +45,7 @@
     color: #f2f2f2;
     font-size: 1.8rem;
     text-align: justify;
-    line-height: 2.2rem;
+    line-height: 3.2rem;
 }
 
 #landing .content .buttonsContainer {
@@ -66,17 +68,62 @@
     margin-bottom: 5rem;
     text-decoration: none;
     color: #fff;
-    border-radius: .6rem;
     font-weight: 500;
     font-size: 2.5rem;
+    // border-radius: .6rem;
 }
 
-#landing .content .buttonsContainer a div {
-    display: flex;
-    width: 98.5%;
-    height: 94%;
-    justify-content: center;
-    align-items: center;
-    background: #030200;
-    border-radius: .4rem;
+#landing .content .buttonsContainer a:last-child {  
+    background: transparent;
+    border: 2px solid;
+    border-image-source: linear-gradient(
+        to right, 
+        var(--red-theme) 22%,
+        var(--purple-theme),
+    );
+    border-image-slice: 1;
+}
+
+
+
+
+@media(max-width: 860px) {
+    #landing {
+        padding-left: 0;
+        align-items: center;
+        background-position: -700px;
+    }
+    
+    #landing .content p {
+        color: #fff;
+        width: 60vw;
+    }
+
+    #landing .content .buttonsContainer {
+        align-items: center;
+    }
+}
+
+@media(max-width: 464px) {
+    #landing {
+        // background: none;
+        padding: 0;
+    }
+
+    #landing .header {
+        flex-direction: column;
+    }
+
+    #landing .header h1{
+        order: -1;
+    }
+
+    #landing .content p {
+        margin: 30vh auto 0 auto;
+        width: 80%;
+    }
+
+    #landing .content .buttonsContainer a {
+        width: 80%;
+    }
 }

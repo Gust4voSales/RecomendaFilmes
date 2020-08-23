@@ -16,7 +16,7 @@ const Landing = () => {
                 </p>
 
                 <div className="buttonsContainer">
-                    <a href="#">Me recomende algo</a>
+                    <a href="#" className="primaryButton">Me recomende algo</a>
                  
                     <a href="#">Ver categorias</a>
                 </div>

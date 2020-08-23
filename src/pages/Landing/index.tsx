@@ -1,6 +1,7 @@
 import React from 'react';
 import icon from '../../assets/icon.png';
 import './styles.scss';
+import { Link } from 'react-router-dom';
 
 const Landing = () => {
     return(
@@ -16,9 +17,9 @@ const Landing = () => {
                 </p>
 
                 <div className="buttonsContainer">
-                    <a href="#" className="primaryButton">Me recomende algo</a>
+                    <Link to="/recomendar" className="primaryButton">Me recomende algo</Link>
                  
-                    <a href="#">Ver categorias</a>
+                    <Link to="/">Ver categorias</Link>
                 </div>
             </div>
         </div>

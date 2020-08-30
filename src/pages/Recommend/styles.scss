@@ -1,0 +1,59 @@
+#recommend {
+    display: flex;
+    flex-direction: column;
+    padding: 4rem 5% 0 5%;
+    min-height: 100vh;
+}
+
+#recommend header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    // background-color: red;
+}
+
+#recommend header .logo {
+    display: flex;
+    align-items: center;
+}
+
+#recommend header .logo img {
+    height: 100px;
+    margin-right: 2rem;
+    margin-top: -20px;
+}
+
+#recommend header .logo h1 {
+    font-size: 4rem;
+    text-transform: uppercase;
+    background: linear-gradient(
+        to right, 
+        var(--red-theme) 22%, 
+        var(--purple-theme)
+    );
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+#recommend header .logo h1 span {
+    margin-left: .3rem;
+    font-size: 2.5rem;
+}
+
+#recommend header .back {
+    color: #fff;
+    transition: opacity .3s;
+}
+
+#recommend header .back:hover {
+    opacity: .6;
+}
+
+
+
+
+@media (max-width: 600px) {
+    #recommend header .logo h1 {
+        display: none;
+    }
+}

@@ -6,10 +6,10 @@ import { Link } from 'react-router-dom';
 const Landing = () => {
     return(
         <div id="landing">
-            <div className="header">
+            <header className="header">
                 <img src={icon} alt="Ícone"/>
                 <h1>Recomenda<span>Filmes</span></h1>
-            </div>
+            </header>
 
             <div className="content">
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. 

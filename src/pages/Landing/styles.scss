@@ -6,22 +6,22 @@
     background-color: #030200;
     
     padding-left: 5%;
-    padding-top: 1.5rem;
+    padding-top: 2rem;
 }
 
-#landing .header {
+#landing header {
     display: flex;
     align-items: center;
     height: 10vh;
     // background-color: red;
 }
 
-#landing .header img {
+#landing header img {
     height: 100px;
     margin-right: 2rem;
 }
 
-#landing .header h1 {
+#landing header h1 {
     margin-top: 20px;
     font-size: 4rem;
     text-transform: uppercase;
@@ -34,7 +34,7 @@
     -webkit-text-fill-color: transparent;
 }
 
-#landing .header h1 span {
+#landing header h1 span {
     margin-left: .3rem;
     font-size: 2.5rem;
 }
@@ -152,11 +152,11 @@
         padding: 0;
     }
 
-    #landing .header {
+    #landing header {
         flex-direction: column;
     }
 
-    #landing .header h1{
+    #landing header h1{
         order: -1;
     }
 

@@ -56,7 +56,6 @@
     min-height: 30rem;
     justify-content: space-evenly;
     margin-top: 1rem;
-    // background-color: gray;
 }
 
 #recommend .description-container span {
@@ -66,7 +65,7 @@
 }
 
 #recommend .description-container .top {
-    display: inline-flex;
+    display: flex;
     justify-content: space-between;
 }
 
@@ -90,7 +89,7 @@
 #recommend .description-container .input .search-icon {
     position: absolute;
     margin-top: .5rem;
-    margin-left: .5rem;
+    margin-left: 1rem;
 }
 
 #recommend .description-container .input input {
@@ -105,7 +104,7 @@
     border: none;
     color: white;
     font-size: 2.4rem;
-    padding-left: 5rem;
+    padding-left: 6rem;
 }
 
 #recommend .description-container .input input::placeholder {
@@ -125,5 +124,23 @@
 @media (max-width: 600px) {
     #recommend header .logo h1 {
         display: none;
+    }
+}
+
+@media (max-width: 920px) {
+    #recommend .description-container {
+        min-height: 40rem;
+    }
+
+    #recommend .description-container .top {
+        flex-direction: column;
+    }
+    #recommend .description-container .top .radio-container {
+        align-self: center;
+        order: 1;
+        margin-bottom: 3rem;
+    }
+    #recommend .description-container .top span {
+        order: 2;
     }
 }

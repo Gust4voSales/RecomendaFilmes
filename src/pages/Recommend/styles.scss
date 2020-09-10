@@ -65,6 +65,28 @@
     line-height: 4rem;
 }
 
+#recommend .description-container .top {
+    display: inline-flex;
+    justify-content: space-between;
+}
+
+#recommend .description-container .top button {
+    width: 15rem;
+    height: 4rem;
+    color: white;
+    border-top-left-radius: 1rem;
+    border-bottom-left-radius: 1rem;
+    border-color: #28C7FA;
+}
+
+#recommend .description-container .top button:last-child {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    border-top-right-radius: 1rem;
+    border-bottom-right-radius: 1rem;
+    margin-left: -0.2rem;
+}
+
 #recommend .description-container .input .search-icon {
     position: absolute;
     margin-top: .5rem;

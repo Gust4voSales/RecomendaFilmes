@@ -1,10 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
 import icon from '../../assets/icon.png';
 import { MdArrowBack, MdSearch } from "react-icons/md";
 import './styles.scss';
 import { Link } from 'react-router-dom';
 
 const Recommend = () => {
+    const [selectedOptionResults, setSelectedOptionResults] = useState('movies');
+
+    function handleOptionResultsSelection(option: string) {
+        setSelectedOptionResults(option)
+    }
+
     return(
         <div id="recommend">   
             <header>
@@ -18,10 +24,39 @@ const Recommend = () => {
             </header>
 
             <div className="description-container">
-                <span>Pesquise por um filme</span>
+                <div className="top">
+                    <span>Pesquise por um{selectedOptionResults==='movies' ? ' filme' : 'a série'}</span>
+                    <div className="radio-container">
+                        <button 
+                            style={
+                                selectedOptionResults==='movies' 
+                                ? { backgroundColor: '#28C7FA' } 
+                                : {backgroundColor: 'transparent' } 
+                            }
+                            onClick={() => handleOptionResultsSelection('movies')}
+                        >
+                            Filmes
+                        </button>
+                        <button
+                            style={
+                                selectedOptionResults==='tv' 
+                                ? { backgroundColor: '#28C7FA' } 
+                                : { backgroundColor: 'transparent' } 
+                            }
+                            onClick={() => handleOptionResultsSelection('tv')}
+                        >
+                            Séries
+                        </button>
+                    </div>
+                </div>
                 <div className="input">
                     <MdSearch size={'4rem'} className="search-icon"/>
-                    <input type="search" name="search" id="search" placeholder="Nome do filme"/>
+                    <input 
+                        type="search" 
+                        name="search" 
+                        id="search" 
+                        placeholder={"Nome d"+(selectedOptionResults==='movies'? 'o filme' : 'a série')}
+                    />
                 </div>
                 <span>Ou utilize quantos filtros quiser e com certeza irá encontrar algo que lhe agrade</span>
             </div>

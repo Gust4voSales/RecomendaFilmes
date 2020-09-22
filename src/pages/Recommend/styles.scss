@@ -48,7 +48,7 @@
 #recommend header .back:hover {
     opacity: .6;
 }
-
+// End header
 
 #recommend .description-container {
     display: flex;
@@ -75,7 +75,7 @@
     color: white;
     border-top-left-radius: 1rem;
     border-bottom-left-radius: 1rem;
-    border-color: #28C7FA;
+    // border-color: #575757;
 }
 
 #recommend .description-container .top button:last-child {
@@ -106,21 +106,26 @@
     font-size: 2.4rem;
     padding-left: 6rem;
 }
-
 #recommend .description-container .input input::placeholder {
     color: #CCCCCC;
 }
-
 #recommend .description-container input:focus {
     outline: none;
-
 }
-
 .description-container .input input::-webkit-search-cancel-button {
     -webkit-appearance: none;
 }
 
+#recommend .filters-container .filters-block {
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    border: .2rem solid #fff;
+    border-radius: .4rem;
+    padding: .8rem 1rem;
+}
 
+// Media Queries
 @media (max-width: 600px) {
     #recommend header .logo h1 {
         display: none;

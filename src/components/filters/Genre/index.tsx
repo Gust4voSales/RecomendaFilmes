@@ -1,14 +1,28 @@
 import React, { useEffect, useState } from 'react';
 import { MdCancel } from 'react-icons/md';
 import Modal from 'react-modal';
+import tmdbAPI from '../../../services/api';
 
 import './styles.scss';
 
+interface genreResponse {
+  id: number;
+  name: string;
+}
+
 const Genre: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [movieGenres, setMovieGenres] = useState<genreResponse[]>([]);
+  // const [tvGenres, setTvGenres] = useState<genreResponse[]>([]);
 
   useEffect(() => {
-    
+    async function fetchGenres() {
+      const { data } = await tmdbAPI.get('/genre/movie/list');
+      console.log(data);
+      setMovieGenres(data.genres);
+    }
+
+    fetchGenres();
   }, []);
 
   Modal.setAppElement('#root');
@@ -31,12 +45,11 @@ const Genre: React.FC = () => {
         </button>
         <div className="genres-container">
           <ul>
-            <li>Ação</li>
-            <li>Ação</li>
-            <li>Ação</li>
-            <li>Ação</li>
-            <li>Ação</li>
-            <li>Ação</li>
+            {
+              movieGenres.map(genre => (
+                <li key={genre.id}>{genre.name}</li>
+              ))
+            }
           </ul>
         </div>
         <div className="genres-container">

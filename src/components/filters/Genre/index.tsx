@@ -11,22 +11,67 @@ interface genreResponse {
   name: string;
 }
 
+interface selectedGenre {
+  id: number;
+  name: string;
+  include: boolean;
+}
+
+// interface checkDisableSelectFunction {
+//   checkDisableSelect: (genreId: number, include: boolean) => boolean;
+// }
+
 const Genre: React.FC = () => {
-  const filterContext = useFilter();
+  const { filter } = useFilter();
   
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [movieGenres, setMovieGenres] = useState<genreResponse[]>([]);
   // const [tvGenres, setTvGenres] = useState<genreResponse[]>([]);
+  const [selectedGenres, setSelectedGenres] = useState<selectedGenre[]>([]);
 
   useEffect(() => {
     async function fetchGenres() {
       const { data } = await tmdbAPI.get('/genre/movie/list');
-      // console.log(data, filterContext.filter);'
+      // console.log(data, filter);
       setMovieGenres(data.genres);
     }
 
     fetchGenres();
-  }, []);
+  }, [filter]);
+
+  useEffect(() => {
+    console.log(selectedGenres);
+    
+  }, [selectedGenres]);
+
+  function handleGenreSelection(genreId: number, name: string, include: boolean) {
+    for(let selectedGenre of selectedGenres) {
+      // If it was already on the list, than the user unchecked, should remove from list
+      if (selectedGenre.id === genreId) {
+        setSelectedGenres(selectedGenres.filter(genre => genre.id !== genreId));
+        return;
+      }
+    }
+    setSelectedGenres([ ...selectedGenres, {id: genreId, name, include,} ]);
+  }
+
+  function checkSelected(genreId: number, include: boolean) {
+    for(let selectedGenre of selectedGenres) {
+      if(selectedGenre.id === genreId && selectedGenre.include === include) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  function checkDisableSelect(genreId: number, include: boolean) {
+    for(let selectedGenre of selectedGenres) {
+      if(selectedGenre.id === genreId && selectedGenre.include !== include) {
+        return true;
+      }
+    }
+    return false;
+  }
 
   Modal.setAppElement('#root');
   return (
@@ -47,22 +92,51 @@ const Genre: React.FC = () => {
           <MdCancel size={'4.5rem'} />
         </button>
         <div className="genres-container">
+          <strong>Incluir</strong>
           <ul>
             {
               movieGenres.map(genre => (
-                <li key={genre.id}>{genre.name}</li>
+                <li key={genre.id}>
+                  <span>{genre.name}</span>
+                  <input 
+                    type="checkbox" 
+                    name="genre-selection" 
+                    id="genre-selection"
+                    checked={checkSelected(genre.id, true)}
+                    disabled={checkDisableSelect(genre.id, true)}
+                    title={checkDisableSelect(genre.id, true) 
+                      ? 'Desmarque da outra lista para marcar' 
+                      : 'Selecionar'
+                    }
+                    onChange={() => handleGenreSelection(genre.id, genre.name, true)}
+                  />
+                </li>
               ))
             }
           </ul>
         </div>
-        <div className="genres-container">
+        <div className="genres-container not-include">
+          <strong>Não incluir</strong>
           <ul>
-            <li>Romance</li>
-            <li>Romance</li>
-            <li>Romance</li>
-            <li>Romance</li>
-            <li>Romance</li>
-            <li>Romance</li>
+            {
+              movieGenres.map(genre => (
+                <li key={genre.id}>
+                  <span>{genre.name}</span>
+                  <input 
+                    type="checkbox" 
+                    name="genre-selection" 
+                    id="genre-selection"
+                    checked={checkSelected(genre.id, false)}
+                    disabled={checkDisableSelect(genre.id, false)}
+                    title={checkDisableSelect(genre.id, false) 
+                      ? 'Desmarque da outra lista para marcar' 
+                      : 'Selecionar'
+                    }
+                    onChange={() => handleGenreSelection(genre.id, genre.name, false)}
+                  />
+                </li>
+              ))
+            }
           </ul>
         </div>
       </Modal>

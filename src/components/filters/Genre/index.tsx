@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { MdCancel } from 'react-icons/md';
 import Modal from 'react-modal';
+import { useFilter } from '../../../contexts/filtersContexts';
 import tmdbAPI from '../../../services/api';
 
 import './styles.scss';
@@ -11,6 +12,8 @@ interface genreResponse {
 }
 
 const Genre: React.FC = () => {
+  const filterContext = useFilter();
+  
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [movieGenres, setMovieGenres] = useState<genreResponse[]>([]);
   // const [tvGenres, setTvGenres] = useState<genreResponse[]>([]);
@@ -18,7 +21,7 @@ const Genre: React.FC = () => {
   useEffect(() => {
     async function fetchGenres() {
       const { data } = await tmdbAPI.get('/genre/movie/list');
-      console.log(data);
+      // console.log(data, filterContext.filter);'
       setMovieGenres(data.genres);
     }
 

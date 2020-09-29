@@ -19,6 +19,17 @@
   color: #B9B9B9;
 }
 
+#container button {
+  height: 3rem;
+  border-radius: .4rem;
+  background-color: var(--secondary-purple-theme);
+  color: #fff;
+  transition: opacity .3s;
+  &:hover {
+    opacity: 80%;
+  }
+}
+
 // MODAL styling
 .modal {
   position: absolute;

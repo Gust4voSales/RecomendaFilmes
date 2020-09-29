@@ -4,6 +4,8 @@
     --purple-theme: #775ADA;
     --light-blue-theme: #28C7FA;
     --dark-blue-theme: #002651;
+    
+    --secondary-purple-theme: #5e42b8;
 
     font-size: 62.5%;
 }
@@ -38,9 +40,11 @@ h1, h2, h3, h4, h5, h6 {
 
 button {
     cursor: pointer;
+    border: 0;
+    user-select: none;
 }
 button:focus {
-    outline:0;
+    outline: 0;
 }
 
 

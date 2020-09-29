@@ -28,7 +28,7 @@ const Genre: React.FC = () => {
   useEffect(() => {
     async function fetchGenres() {
       const { data } = await tmdbAPI.get('/genre/movie/list');
-      // console.log(data, filter);
+      console.log('Fetch genres');
       setMovieGenres(data.genres);
     }
 
@@ -36,7 +36,7 @@ const Genre: React.FC = () => {
   }, [filter]);
 
   useEffect(() => {
-    console.log(selectedGenres);
+    // console.log(selectedGenres);
     
   }, [selectedGenres]);
 

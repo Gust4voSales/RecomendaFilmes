@@ -69,10 +69,16 @@
     justify-content: space-between;
 }
 
+#recommend .description-container .top .radio-container {
+    border: 0.24rem solid #575757;
+    border-radius: 1.3rem;
+}
+
 #recommend .description-container .top button {
     width: 15rem;
     height: 4rem;
     color: white;
+    border: 0;
     border-top-left-radius: 1rem;
     border-bottom-left-radius: 1rem;
     // border-color: #575757;

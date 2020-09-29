@@ -30,7 +30,8 @@
   flex-wrap: wrap;
   justify-content: space-around;
   align-items: center;
-  background-color: #777;
+  border-radius: .4rem;
+  background-color: #333;
 }
 .overlay {
   position: fixed;
@@ -38,8 +39,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  // background-color: rebeccapurple;
-  background-color: #555;
+  background-color: rgba(71, 71, 71, 0.75); 
 }
 .modal button {
   position: absolute;
@@ -54,21 +54,18 @@
 }
 
 .modal .genres-container {
-  // display: flex;
-  // height: 20rem;
   width: 30rem;
-  // background-color: black;
-  border-radius: .4rem;
   margin: 0 1.5rem;
 }
 
 .modal .genres-container strong {
   font-size: 2rem;
-  color: black;
+  color: #eee;
 }
 
 .modal .genres-container ul {
-  border: 2.5px solid black;
+  border: 2.5px solid #aaa;
+  border-radius: .4rem;
   height: 20rem;
   overflow-y: auto;
   padding: 1rem 1rem;

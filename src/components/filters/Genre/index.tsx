@@ -17,10 +17,6 @@ interface selectedGenre {
   include: boolean;
 }
 
-// interface checkDisableSelectFunction {
-//   checkDisableSelect: (genreId: number, include: boolean) => boolean;
-// }
-
 const Genre: React.FC = () => {
   const { filter } = useFilter();
   
@@ -97,7 +93,9 @@ const Genre: React.FC = () => {
             {
               movieGenres.map(genre => (
                 <li key={genre.id}>
-                  <span>{genre.name}</span>
+                  <span style={checkDisableSelect(genre.id, true) ? { color: '#B7B7B7' } : {}}>
+                    {genre.name}
+                  </span>
                   <input 
                     type="checkbox" 
                     name="genre-selection" 
@@ -121,7 +119,9 @@ const Genre: React.FC = () => {
             {
               movieGenres.map(genre => (
                 <li key={genre.id}>
-                  <span>{genre.name}</span>
+                  <span style={checkDisableSelect(genre.id, false) ? { color: '#B7B7B7' } : {}}>
+                    {genre.name}
+                  </span>
                   <input 
                     type="checkbox" 
                     name="genre-selection" 

@@ -61,12 +61,7 @@ const Genre: React.FC = () => {
   }
 
   function checkDisableSelect(genreId: number, include: boolean) {
-    for(let selectedGenre of selectedGenres) {
-      if(selectedGenre.id === genreId && selectedGenre.include !== include) {
-        return true;
-      }
-    }
-    return false;
+    return checkSelected(genreId, !include);
   }
 
   Modal.setAppElement('#root');

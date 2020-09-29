@@ -53,6 +53,7 @@
   background-color: rgba(71, 71, 71, 0.75); 
 }
 .modal button {
+  color: #ccc;
   position: absolute;
   top: 2.5rem;
   right: 2.5rem;
@@ -101,8 +102,10 @@
 }
 
 // MODAL MEDIA QUERIES
-@media(max-width: 960px) {
+@media(max-width: 1200px) {
   .modal {
+    top: 16%;
+    bottom: 16%;
     left: 10%;
     right: 10%;
   }

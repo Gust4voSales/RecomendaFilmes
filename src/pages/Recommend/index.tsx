@@ -4,13 +4,17 @@ import { MdArrowBack, MdSearch } from "react-icons/md";
 import './styles.scss';
 import { Link } from 'react-router-dom';
 import Genre from '../../components/filters/Genre';
-import { FilterProvider } from '../../contexts/filtersContexts';
+import { useFilter } from '../../contexts/filtersContexts';
 
 const Recommend = () => {
+	const { filter, changeFilter } = useFilter();
+
 	const [selectedOptionResults, setSelectedOptionResults] = useState('movies');
 
 	function handleOptionResultsSelection(option: string) {
-		setSelectedOptionResults(option)
+		setSelectedOptionResults(option);
+		// console.log();
+		changeFilter({ ...filter, option });
 	}
 
 	return(
@@ -23,9 +27,8 @@ const Recommend = () => {
 				<Link to="/">
 					<MdArrowBack size={'6rem'} className="back"/>
 				</Link>
-			</header>
-			
-			<FilterProvider>
+			</header>			
+				
 				<section className="filters">
 					<div className="description-container">
 						<div className="top">
@@ -75,7 +78,6 @@ const Recommend = () => {
 				</section>
 				
 				<section className="results"></section>
-			</FilterProvider>
 		</div>
 	);
 }

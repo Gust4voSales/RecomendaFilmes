@@ -1,10 +1,28 @@
-import React, { createContext, useContext } from 'react';
+import React, { createContext, useContext, useState } from 'react';
 
-const FilterContext = createContext({ filter: {} });
+interface Filter {
+  option: string;
+}
+
+interface FilterContextData {
+  filter: Filter;
+  changeFilter(filter: Filter): void;
+}
+
+const FilterContext = createContext<FilterContextData>({} as FilterContextData);
 
 export const FilterProvider: React.FC = ({children}) => {
+  const [filter, setFilter] = useState<Filter>({
+    option: 'movies'
+  });
+
+  function changeFilter(filter: Filter) {
+    console.log(filter);
+    setFilter(filter);
+  }
+
   return (
-    <FilterContext.Provider value={{ filter: {} }}>
+    <FilterContext.Provider value={{filter, changeFilter}}>
       {children}
     </FilterContext.Provider>
   );

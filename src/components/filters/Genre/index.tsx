@@ -18,7 +18,7 @@ interface selectedGenre {
 }
 
 const Genre: React.FC = () => {
-  const { filter } = useFilter();
+  const { filter, changeFilter } = useFilter();
   
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [movieGenres, setMovieGenres] = useState<genreResponse[]>([]);
@@ -71,7 +71,7 @@ const Genre: React.FC = () => {
       <span>
         Selecione seus gêneros favoritos e/ou os que nao deseja serem incluídos nos resultados
       </span>
-      <button onClick={() => setIsModalOpen(true)}>Selecionar gênero</button>
+      <button onClick={() => setIsModalOpen(true)} >Selecionar gênero</button>
       <Modal
           isOpen={isModalOpen}
           className="modal"

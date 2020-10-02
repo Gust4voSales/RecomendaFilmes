@@ -2,6 +2,8 @@ import React, { createContext, useContext, useState } from 'react';
 
 interface Filter {
   option: string;
+  with_genres: string;
+  without_genres: string;
 }
 
 interface FilterContextData {
@@ -13,7 +15,9 @@ const FilterContext = createContext<FilterContextData>({} as FilterContextData);
 
 export const FilterProvider: React.FC = ({children}) => {
   const [filter, setFilter] = useState<Filter>({
-    option: 'movie'
+    option: 'movie',
+    with_genres: '',
+    without_genres: '',
   });
 
   function changeFilter(filter: Filter) {

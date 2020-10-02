@@ -28,7 +28,7 @@ const Genre: React.FC = () => {
 
   useEffect(() => {
     setSelectedGenres([]);
-    
+
     if (filter.option === 'movie') {
       setGenres([...movieGenres]);
     } else {
@@ -36,26 +36,22 @@ const Genre: React.FC = () => {
     }
   }, [filter.option, tvGenres, movieGenres]);
 
+  // Fetch movie and tv genres only once.
   const fetchGenresCallback = useCallback(() => {
     async function fetchGenres() {
-      const movieResponse = await tmdbAPI.get('/genre/movie/list');
       console.log('Fetch genres');
+      const movieResponse = await tmdbAPI.get('/genre/movie/list');
       setMovieGenres(movieResponse.data.genres);
+
       const tvResponse = await tmdbAPI.get('/genre/tv/list');
       setTvGenres(tvResponse.data.genres);
     }
     
     fetchGenres();
   }, []);
-
   useEffect(() => {
     fetchGenresCallback();
   }, [fetchGenresCallback]);
-
-  useEffect(() => {
-    // console.log(selectedGenres);
-    
-  }, [selectedGenres]);
 
   function handleGenreSelection(genreId: number, name: string, include: boolean) {
     for(let selectedGenre of selectedGenres) {
@@ -66,7 +62,6 @@ const Genre: React.FC = () => {
       }
     }
     setSelectedGenres([ ...selectedGenres, {id: genreId, name, include,} ]);
-    changeFilter(filter );
   }
 
   function checkSelected(genreId: number, include: boolean) {
@@ -82,6 +77,24 @@ const Genre: React.FC = () => {
     return checkSelected(genreId, !include);
   }
 
+  // Only changes the filter when the user has closed the modal 
+  function onModalClose() {
+    setIsModalOpen(false);
+    // with_genres and without_genres are strings with the genres' ids separeted by commas
+    let with_genres = '';
+    let without_genres = '';
+
+    for (let selectedGenre of selectedGenres) {
+      if(selectedGenre.include) {
+        with_genres += String(selectedGenre.id) + ',';
+      } else {
+        without_genres += String(selectedGenre.id) + ',';
+      }
+    }
+      
+    changeFilter({ ...filter, with_genres, without_genres })
+  }
+
   Modal.setAppElement('#root');
   return (
     <div id="container">
@@ -94,10 +107,10 @@ const Genre: React.FC = () => {
           isOpen={isModalOpen}
           className="modal"
           overlayClassName="overlay"
-          onRequestClose={() => setIsModalOpen(false)}
+          onRequestClose={onModalClose}
           contentLabel="Selecionar Gêneros"
       >
-        <button className="exit" onClick={() => setIsModalOpen(false)}> 
+        <button className="exit" onClick={onModalClose}> 
           <MdCancel size={'4.5rem'} />
         </button>
         <div className="genres-container">

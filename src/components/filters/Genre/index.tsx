@@ -77,7 +77,7 @@ const Genre: React.FC = () => {
     return checkSelected(genreId, !include);
   }
 
-  function handleRemoveGenre(genreId: number) {
+  function handleRemoveGenre(genreId: number) {    
     setSelectedGenres(selectedGenres.filter(genre => genre.id!==genreId));
   }
 
@@ -174,10 +174,11 @@ const Genre: React.FC = () => {
         {
           selectedGenres.map(selectedGenre => (
             <li 
-              style={selectedGenre.include ? {} : { color: '#B7B7B7', textDecoration: 'line-through' } }
               key={selectedGenre.id}
             >
-              {selectedGenre.name}
+              <span style={selectedGenre.include ? {} : { color: '#B7B7B7', textDecoration: 'line-through' } }>
+                {selectedGenre.name}
+              </span>
               <MdClear 
                 onClick={() => handleRemoveGenre(selectedGenre.id)}
                 className="remove-genre-icon"

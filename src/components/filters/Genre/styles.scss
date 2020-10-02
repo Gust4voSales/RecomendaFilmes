@@ -152,17 +152,21 @@
 // END Selected-genres-list scrollbar styling
 
 #container .selected-genres-list li {
-  // color: #333;
   display: flex;
   justify-content: space-between;
   align-items: center;
   list-style: none;
   background-color: var(--secondary-purple-theme);
   margin-right: 1.5rem;
-  margin-bottom: .5rem;
+  margin-bottom: .3rem;
   padding: .25rem .6rem .25rem .8rem;
   font-size: 1.5rem;
   border-radius: .8rem;
+}
+
+#container .selected-genres-list li span {
+  color:white;
+  width: max-content;
 }
 
 #container .selected-genres-list li .remove-genre-icon {
@@ -180,7 +184,7 @@
 
 
 // MEDIA QUERIES 
-@media (max-width: 720px) {
+@media (max-width: 640px) {
   #container .selected-genres-list::-webkit-scrollbar {
     height: .5rem;
   }

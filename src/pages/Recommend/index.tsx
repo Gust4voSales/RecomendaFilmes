@@ -9,7 +9,7 @@ import { useFilter } from '../../contexts/filtersContexts';
 const Recommend = () => {
 	const { filter, changeFilter } = useFilter();
 
-	const [selectedOptionResults, setSelectedOptionResults] = useState('movies');
+	const [selectedOptionResults, setSelectedOptionResults] = useState('movie');
 
 	function handleOptionResultsSelection(option: string) {
 		setSelectedOptionResults(option);
@@ -32,15 +32,15 @@ const Recommend = () => {
 				<section className="filters">
 					<div className="description-container">
 						<div className="top">
-							<span>Pesquise por um{selectedOptionResults==='movies' ? ' filme' : 'a série'}</span>
+							<span>Pesquise por um{selectedOptionResults==='movie' ? ' filme' : 'a série'}</span>
 							<div className="radio-container">
 								<button 
 									style={
-											selectedOptionResults==='movies' 
+											selectedOptionResults==='movie' 
 											? { backgroundColor: '#575757' } 
 											: {backgroundColor: 'transparent' } 
 									}
-									onClick={() => handleOptionResultsSelection('movies')}
+									onClick={() => handleOptionResultsSelection('movie')}
 								>
 									Filmes
 								</button>
@@ -62,7 +62,7 @@ const Recommend = () => {
 								type="search" 
 								name="search" 
 								id="search" 
-								placeholder={"Nome d"+(selectedOptionResults==='movies'? 'o filme' : 'a série')}
+								placeholder={"Nome d"+(selectedOptionResults==='movie'? 'o filme' : 'a série')}
 							/>
 						</div>
 						<span>Ou utilize quantos filtros quiser e com certeza irá encontrar algo que lhe agrade</span>

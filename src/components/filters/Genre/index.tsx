@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { MdCancel } from 'react-icons/md';
 import Modal from 'react-modal';
 import { useFilter } from '../../../contexts/filtersContexts';
@@ -22,18 +22,35 @@ const Genre: React.FC = () => {
   
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [movieGenres, setMovieGenres] = useState<genreResponse[]>([]);
-  // const [tvGenres, setTvGenres] = useState<genreResponse[]>([]);
+  const [tvGenres, setTvGenres] = useState<genreResponse[]>([]);
+  const [genres, setGenres] = useState<genreResponse[]>([]);
   const [selectedGenres, setSelectedGenres] = useState<selectedGenre[]>([]);
 
   useEffect(() => {
-    async function fetchGenres() {
-      const { data } = await tmdbAPI.get('/genre/movie/list');
-      console.log('Fetch genres');
-      setMovieGenres(data.genres);
+    setSelectedGenres([]);
+    
+    if (filter.option === 'movie') {
+      setGenres([...movieGenres]);
+    } else {
+      setGenres([...tvGenres]);
     }
+  }, [filter.option, tvGenres, movieGenres]);
 
+  const fetchGenresCallback = useCallback(() => {
+    async function fetchGenres() {
+      const movieResponse = await tmdbAPI.get('/genre/movie/list');
+      console.log('Fetch genres');
+      setMovieGenres(movieResponse.data.genres);
+      const tvResponse = await tmdbAPI.get('/genre/tv/list');
+      setTvGenres(tvResponse.data.genres);
+    }
+    
     fetchGenres();
-  }, [filter]);
+  }, []);
+
+  useEffect(() => {
+    fetchGenresCallback();
+  }, [fetchGenresCallback]);
 
   useEffect(() => {
     // console.log(selectedGenres);
@@ -49,6 +66,7 @@ const Genre: React.FC = () => {
       }
     }
     setSelectedGenres([ ...selectedGenres, {id: genreId, name, include,} ]);
+    changeFilter(filter );
   }
 
   function checkSelected(genreId: number, include: boolean) {
@@ -86,7 +104,7 @@ const Genre: React.FC = () => {
           <strong>Incluir</strong>
           <ul>
             {
-              movieGenres.map(genre => (
+              genres.map(genre => (
                 <li key={genre.id}>
                   <span style={checkDisableSelect(genre.id, true) ? { color: '#B7B7B7' } : {}}>
                     {genre.name}
@@ -112,7 +130,7 @@ const Genre: React.FC = () => {
           <strong>Não incluir</strong>
           <ul>
             {
-              movieGenres.map(genre => (
+              genres.map(genre => (
                 <li key={genre.id}>
                   <span style={checkDisableSelect(genre.id, false) ? { color: '#B7B7B7' } : {}}>
                     {genre.name}

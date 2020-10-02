@@ -13,7 +13,7 @@ const FilterContext = createContext<FilterContextData>({} as FilterContextData);
 
 export const FilterProvider: React.FC = ({children}) => {
   const [filter, setFilter] = useState<Filter>({
-    option: 'movies'
+    option: 'movie'
   });
 
   function changeFilter(filter: Filter) {

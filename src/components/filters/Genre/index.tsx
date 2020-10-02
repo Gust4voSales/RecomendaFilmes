@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { MdCancel } from 'react-icons/md';
+import { MdCancel, MdClear } from 'react-icons/md';
 import Modal from 'react-modal';
 import { useFilter } from '../../../contexts/filtersContexts';
 import tmdbAPI from '../../../services/api';
@@ -75,6 +75,10 @@ const Genre: React.FC = () => {
 
   function checkDisableSelect(genreId: number, include: boolean) {
     return checkSelected(genreId, !include);
+  }
+
+  function handleRemoveGenre(genreId: number) {
+    setSelectedGenres(selectedGenres.filter(genre => genre.id!==genreId));
   }
 
   // Only changes the filter when the user has closed the modal 
@@ -166,6 +170,22 @@ const Genre: React.FC = () => {
           </ul>
         </div>
       </Modal>
+      <ul className="selected-genres-list">
+        {
+          selectedGenres.map(selectedGenre => (
+            <li 
+              style={selectedGenre.include ? {} : { color: '#B7B7B7', textDecoration: 'line-through' } }
+              key={selectedGenre.id}
+            >
+              {selectedGenre.name}
+              <MdClear 
+                onClick={() => handleRemoveGenre(selectedGenre.id)}
+                className="remove-genre-icon"
+              />
+            </li>
+          ))
+        }
+      </ul>
     </div>
   );
 }

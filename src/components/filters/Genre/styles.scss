@@ -1,4 +1,5 @@
 #container {
+  position: relative;
   height: 20rem;
   width: 35rem;
   background-color: var(--purple-theme);
@@ -6,16 +7,19 @@
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
-  padding: 0 1rem;
+  padding: 0 1.4rem;
   border-radius: .4rem;
 }
 
 #container strong {
+  position: absolute;
   font-size: 2.4rem;
   font-weight: 500;
+  top: 1rem;
 }
 
-#container span {
+#container > span {
+  margin-top: 3rem;
   color: #B9B9B9;
 }
 

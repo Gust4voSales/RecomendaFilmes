@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import Genre from '../../components/filters/Genre';
 import { useFilter } from '../../contexts/filtersContexts';
 import tmdbAPI from '../../services/api';
+import People from '../../components/filters/People';
 
 
 interface recommendationsResponse {
@@ -25,6 +26,8 @@ const Recommend = () => {
 	useEffect(() => {
 		// Call function in the api to make request with the filter
 		fetchRecommendations();
+		
+		//eslint-disable-next-line
 	}, [filter]);
 
 	async function fetchRecommendations() {
@@ -101,8 +104,7 @@ const Recommend = () => {
 					<div className="filters-container">
 						<div className="filters-block">
 							<Genre />
-							<Genre />
-							<Genre />
+							<People />
 						</div>
 					</div>
 				</section>

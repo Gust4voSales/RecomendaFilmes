@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import icon from '../../assets/icon.png';
 import { MdArrowBack, MdSearch } from "react-icons/md";
 import './styles.scss';
@@ -6,10 +6,24 @@ import { Link } from 'react-router-dom';
 import Genre from '../../components/filters/Genre';
 import { useFilter } from '../../contexts/filtersContexts';
 
+
+interface recommendationsResponse {
+	poster_path: string | null;
+	// adult: boolean;
+	overview: string;
+	id: number;
+	title: string;
+}
+
 const Recommend = () => {
 	const { filter, changeFilter } = useFilter();
 
 	const [selectedOptionResults, setSelectedOptionResults] = useState('movie');
+	const [recommendations, setRecommendations] = useState<recommendationsResponse[]>([]);
+
+	useEffect(() => {
+		// Call function in the api to make request with the filter
+	}, [filter]);
 
 	function handleOptionResultsSelection(option: string) {
 		setSelectedOptionResults(option);

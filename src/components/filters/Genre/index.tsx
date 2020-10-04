@@ -77,13 +77,7 @@ const Genre: React.FC = () => {
     return checkSelected(genreId, !include);
   }
 
-  function handleRemoveGenre(genreId: number) {    
-    setSelectedGenres(selectedGenres.filter(genre => genre.id!==genreId));
-  }
-
-  // Only changes the filter when the user has closed the modal 
-  function onModalClose() {
-    setIsModalOpen(false);
+  function updateFilter(selectedGenres: selectedGenre[]) {
     // with_genres and without_genres are strings with the genres' ids separeted by commas
     let with_genres = '';
     let without_genres = '';
@@ -96,7 +90,20 @@ const Genre: React.FC = () => {
       }
     }
       
-    changeFilter({ ...filter, with_genres, without_genres })
+    changeFilter({ ...filter, with_genres, without_genres });
+  }
+
+  function handleRemoveGenre(genreId: number) {    
+    let updatedSelectedGenres = selectedGenres.filter(genre => genre.id!==genreId);
+    setSelectedGenres(updatedSelectedGenres);
+
+    updateFilter(updatedSelectedGenres);
+  }
+
+  // Only changes the filter when the user has closed the modal 
+  function onModalClose() {
+    setIsModalOpen(false);
+    updateFilter(selectedGenres);
   }
 
   Modal.setAppElement('#root');

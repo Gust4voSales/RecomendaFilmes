@@ -5,6 +5,7 @@ import './styles.scss';
 import { Link } from 'react-router-dom';
 import Genre from '../../components/filters/Genre';
 import { useFilter } from '../../contexts/filtersContexts';
+import tmdbAPI from '../../services/api';
 
 
 interface recommendationsResponse {
@@ -19,11 +20,26 @@ const Recommend = () => {
 	const { filter, changeFilter } = useFilter();
 
 	const [selectedOptionResults, setSelectedOptionResults] = useState('movie');
-	const [recommendations, setRecommendations] = useState<recommendationsResponse[]>([]);
+	// const [recommendations, setRecommendations] = useState<recommendationsResponse[]>([]);
 
 	useEffect(() => {
 		// Call function in the api to make request with the filter
+		fetchRecommendations();
 	}, [filter]);
+
+	async function fetchRecommendations() {
+		const { with_genres, without_genres } = filter;
+
+
+		const { data } = await tmdbAPI.get(`/discover/${selectedOptionResults}`, {
+			params: {
+				with_genres,
+				without_genres,
+			}
+		});
+		console.log(data.results[0]);
+		
+	}
 
 	function handleOptionResultsSelection(option: string) {
 		setSelectedOptionResults(option);

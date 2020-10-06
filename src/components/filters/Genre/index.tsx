@@ -39,7 +39,6 @@ const Genre: React.FC = () => {
   // Fetch movie and tv genres only once.
   const fetchGenresCallback = useCallback(() => {
     async function fetchGenres() {
-      console.log('Fetch genres');
       const movieResponse = await tmdbAPI.get('/genre/movie/list');
       setMovieGenres(movieResponse.data.genres);
 
@@ -114,6 +113,24 @@ const Genre: React.FC = () => {
         Selecione seus gêneros favoritos e/ou os que nao deseja serem incluídos nos resultados
       </span>
       <button onClick={() => setIsModalOpen(true)} >Selecionar gênero</button>
+      <ul className="selected-genres-list">
+        {
+          selectedGenres.map(selectedGenre => (
+            <li 
+              key={selectedGenre.id}
+            >
+              <span style={selectedGenre.include ? {} : { color: '#B7B7B7', textDecoration: 'line-through' } }>
+                {selectedGenre.name}
+              </span>
+              <MdClear 
+                onClick={() => handleRemoveGenre(selectedGenre.id)}
+                className="remove-genre-icon"
+              />
+            </li>
+          ))
+        }
+      </ul>
+
       <Modal
           isOpen={isModalOpen}
           className="modal"
@@ -176,24 +193,7 @@ const Genre: React.FC = () => {
             }
           </ul>
         </div>
-      </Modal>
-      <ul className="selected-genres-list">
-        {
-          selectedGenres.map(selectedGenre => (
-            <li 
-              key={selectedGenre.id}
-            >
-              <span style={selectedGenre.include ? {} : { color: '#B7B7B7', textDecoration: 'line-through' } }>
-                {selectedGenre.name}
-              </span>
-              <MdClear 
-                onClick={() => handleRemoveGenre(selectedGenre.id)}
-                className="remove-genre-icon"
-              />
-            </li>
-          ))
-        }
-      </ul>
+      </Modal>      
     </div>
   );
 }

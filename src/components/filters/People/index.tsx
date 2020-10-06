@@ -97,7 +97,7 @@ const People: React.FC = () => {
     <div id="container">
       <strong>Elenco / equipe</strong>
       <span>
-        Adicione atores, diretores, etc, favoritos.
+        Adicione atores, diretores, escritores, compositores, etc, favoritos.
       </span>
       <AsyncSelect
           isMulti

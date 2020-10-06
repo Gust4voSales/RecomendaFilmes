@@ -36,9 +36,8 @@ const Recommend = () => {
 
 	async function fetchRecommendations() {
 		if (cancel!==undefined) {
-      cancel();
-		}
-		
+			cancel();
+    }
 		const params = { ...filter, option: null };
 		
 		const { data } = await tmdbAPI.get(`/discover/${selectedOptionResults}`, {

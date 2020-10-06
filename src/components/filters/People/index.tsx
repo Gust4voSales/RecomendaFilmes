@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { MdClear } from 'react-icons/md';
 import AsyncSelect from 'react-select/async';
 import tmdbAPI from '../../../services/api';
-// import { useFilter } from '../../../contexts/filtersContexts';
+import { useFilter } from '../../../contexts/filtersContexts';
 import './styles.scss';
 
 
@@ -19,14 +19,21 @@ interface peopleData {
 }
 
 const People: React.FC = () => {
-  // const { filter, changeFilter } = useFilter();
+  const { filter, changeFilter } = useFilter();
   const [people, setPeople] = useState<peopleData[]>([]);
 
-  // useEffect(() => {
-  //   if (people.length) {
-  //     // changeFilter({ ...filter, people });
-  //   }
-  // }, [people]);
+  useEffect(() => {
+    if (people.length) {
+      let with_people: string = '';
+
+      for (let person of people) {
+        with_people += String(person.value) + ',';
+      }
+      
+      changeFilter({ ...filter, with_people, });
+    }
+    // eslint-disable-next-line
+  }, [people,]);
 
   async function fetchPeople(inputValue: string, callback: CallableFunction) {
     const { data } = await tmdbAPI.get(`/search/person`, {

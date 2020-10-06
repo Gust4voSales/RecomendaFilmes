@@ -31,14 +31,10 @@ const Recommend = () => {
 	}, [filter]);
 
 	async function fetchRecommendations() {
-		const { with_genres, without_genres } = filter;
-
-
+		const params = { ...filter, option: null };
+		
 		const { data } = await tmdbAPI.get(`/discover/${selectedOptionResults}`, {
-			params: {
-				with_genres,
-				without_genres,
-			}
+			params,
 		});
 		console.log(data.results[0]);
 		

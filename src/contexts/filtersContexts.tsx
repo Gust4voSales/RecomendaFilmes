@@ -4,6 +4,7 @@ interface Filter {
   option: string;
   with_genres: string;
   without_genres: string;
+  with_people: string;
 }
 
 interface FilterContextData {
@@ -18,6 +19,7 @@ export const FilterProvider: React.FC = ({children}) => {
     option: 'movie',
     with_genres: '',
     without_genres: '',
+    with_people: '',
   });
 
   function changeFilter(filter: Filter) {

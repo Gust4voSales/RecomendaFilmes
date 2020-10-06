@@ -24,9 +24,11 @@ export const FilterProvider: React.FC = ({children}) => {
     with_companies: '',
   });
 
-  function changeFilter(filter: Filter) {
-    console.log(filter);
-    setFilter(filter);
+  function changeFilter(newFilter: Filter) {
+    if (JSON.stringify(filter)!==JSON.stringify(newFilter)) {
+      console.log(newFilter);
+      setFilter(newFilter);
+    }
   }
 
   return (

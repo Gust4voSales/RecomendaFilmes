@@ -46,7 +46,7 @@ const People: React.FC = () => {
     let limitedSortedPeople = 
       data.results
         .sort((a: peopleResponse, b: peopleResponse) => (a.popularity > b.popularity ? -1 : 1))
-        .slice(0, 6);
+        // .slice(0, );
 
     callback(limitedSortedPeople.map((person: peopleResponse) => {
       return ({ label: person.name, value: person.id, });

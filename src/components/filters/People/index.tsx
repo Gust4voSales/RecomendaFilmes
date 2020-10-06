@@ -108,6 +108,7 @@ const People: React.FC = () => {
           placeholder={'Pesquisar'}
           loadOptions={fetchPeople}
           isClearable={false}
+          backspaceRemovesValue={false}
           loadingMessage={(inputValue) => ("Buscando...")}
           noOptionsMessage={({inputValue}) => {
             return (inputValue.length ? "Nenhum resultado encontrado para "+inputValue : "Nenhum resultado");

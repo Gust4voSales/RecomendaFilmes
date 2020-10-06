@@ -3,7 +3,11 @@ import { MdClear } from 'react-icons/md';
 import AsyncSelect from 'react-select/async';
 import tmdbAPI from '../../../services/api';
 import { useFilter } from '../../../contexts/filtersContexts';
+import axios from 'axios';
 import './styles.scss';
+
+const CancelToken = axios.CancelToken;
+let cancel: any = undefined;
 
 
 interface peopleResponse {
@@ -36,7 +40,15 @@ const People: React.FC = () => {
   }, [people,]);
 
   async function fetchPeople(inputValue: string, callback: CallableFunction) {
-    const { data } = await tmdbAPI.get(`/search/person`, {
+    if (cancel!==undefined) {
+      cancel();
+    }
+    
+    const { data } = await tmdbAPI.get(`/search/person`, 
+    {
+      cancelToken: new CancelToken(function executor(c) {
+        cancel = c;
+      }),
       params: {
         query: inputValue,
         page: 1,
@@ -69,10 +81,11 @@ const People: React.FC = () => {
   function handleSelectPerson(selectedPeople: peopleData[]) {
     // Label is an html with the person's image, so to remove the image from this list and display only the person's 
     // name, I overwrite the label.
-    selectedPeople.forEach(person => {
-      person.label = person.name;
-    });
-
+    if (selectedPeople) {
+      selectedPeople.forEach(person => {
+        person.label = person.name;
+      });
+    }
     setPeople(selectedPeople || []);
   }
 

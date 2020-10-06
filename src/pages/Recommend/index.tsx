@@ -7,6 +7,10 @@ import Genre from '../../components/filters/Genre';
 import { useFilter } from '../../contexts/filtersContexts';
 import tmdbAPI from '../../services/api';
 import People from '../../components/filters/People';
+import Axios from 'axios';
+
+const CancelToken = Axios.CancelToken;
+let cancel: any = undefined;
 
 
 interface recommendationsResponse {
@@ -31,9 +35,16 @@ const Recommend = () => {
 	}, [filter]);
 
 	async function fetchRecommendations() {
+		if (cancel!==undefined) {
+      cancel();
+		}
+		
 		const params = { ...filter, option: null };
 		
 		const { data } = await tmdbAPI.get(`/discover/${selectedOptionResults}`, {
+			cancelToken: new CancelToken(function executor(c) {
+        cancel = c;
+      }),
 			params,
 		});
 		console.log(data.results[0]);

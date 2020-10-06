@@ -1,9 +1,10 @@
 #container .react-select__control {
-  // height: 3.5rem;
+  height: 3.5rem;
+  min-height: 3.5rem;
   background-color: var(--secondary-purple-theme);
   border: none;
   box-shadow: none;
-  
+  cursor: text;
   &--is-focused {
     border: 1px solid white;
     &:hover {
@@ -25,6 +26,7 @@
   stroke: white;
   color: white;
   transition: opacity .3s;
+  cursor: default;
   &:hover {
     opacity: .6;
   }

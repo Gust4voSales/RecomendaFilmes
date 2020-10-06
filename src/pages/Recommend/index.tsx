@@ -8,6 +8,7 @@ import { useFilter } from '../../contexts/filtersContexts';
 import tmdbAPI from '../../services/api';
 import People from '../../components/filters/People';
 import Axios from 'axios';
+import Year from '../../components/filters/Year';
 
 const CancelToken = Axios.CancelToken;
 let cancel: any = undefined;
@@ -40,14 +41,18 @@ const Recommend = () => {
     }
 		const params = { ...filter, option: null };
 		
-		const { data } = await tmdbAPI.get(`/discover/${selectedOptionResults}`, {
-			cancelToken: new CancelToken(function executor(c) {
-        cancel = c;
-      }),
-			params,
-		});
-		console.log(data.results[0]);
-		
+		try {
+			const { data } = await tmdbAPI.get(`/discover/${selectedOptionResults}`, {
+				cancelToken: new CancelToken(function executor(c) {
+					cancel = c;
+				}),
+				params,
+			});
+			
+			console.log(data.results[0]);
+		} catch (err) {
+			return;
+		}
 	}
 
 	function handleOptionResultsSelection(option: string) {
@@ -111,6 +116,7 @@ const Recommend = () => {
 						<div className="filters-block">
 							<Genre />
 							<People />
+							<Year />
 						</div>
 					</div>
 				</section>

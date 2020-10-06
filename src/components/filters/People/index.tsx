@@ -44,38 +44,42 @@ const People: React.FC = () => {
       cancel();
     }
     
-    const { data } = await tmdbAPI.get(`/search/person`, 
-    {
-      cancelToken: new CancelToken(function executor(c) {
-        cancel = c;
-      }),
-      params: {
-        query: inputValue,
-        page: 1,
-      }
-    });
-
-    let limitedSortedPeople = 
-      data.results
-        .sort((a: peopleResponse, b: peopleResponse) => 
-          (a.popularity > b.popularity ? -1 : 1));
-
-    // Instead of giving a text to the label, I'm passing an html with the person's image
-    callback(limitedSortedPeople.map((person: peopleResponse) => {
-      return ({ 
-        label: (
-          <article>
-            {person.profile_path 
-              ? <img src={`https://image.tmdb.org/t/p/w45/${person.profile_path}`} alt={person.name}/>
-              : <div className="dummy-img" />
-            }
-            {person.name} 
-          </article>
-        ), 
-        name: person.name,
-        value: person.id, 
+    try {
+      const { data } = await tmdbAPI.get(`/search/person`, {
+        cancelToken: new CancelToken(function executor(c) {
+          cancel = c;
+        }),
+        params: {
+          query: inputValue,
+          page: 1,
+        }
       });
-    }));
+  
+      let limitedSortedPeople = 
+        data.results
+          .sort((a: peopleResponse, b: peopleResponse) => 
+            (a.popularity > b.popularity ? -1 : 1));
+  
+      // Instead of giving a text to the label, I'm passing an html with the person's image
+      callback(limitedSortedPeople.map((person: peopleResponse) => {
+        return ({ 
+          label: (
+            <article>
+              {person.profile_path 
+                ? <img src={`https://image.tmdb.org/t/p/w45/${person.profile_path}`} alt={person.name}/>
+                : <div className="dummy-img" />
+              }
+              {person.name} 
+            </article>
+          ), 
+          name: person.name,
+          value: person.id, 
+        });
+      }));
+    } catch (err) {
+      return ;
+    }
+    
   }
 
   function handleSelectPerson(selectedPeople: peopleData[]) {
@@ -97,7 +101,7 @@ const People: React.FC = () => {
     <div id="container">
       <strong>Elenco / equipe</strong>
       <span>
-        Adicione atores, diretores, escritores, compositores, etc, favoritos.
+        Adicione os seus atores, diretores, escritores, compositores, entre outros, favoritos.
       </span>
       <AsyncSelect
           isMulti

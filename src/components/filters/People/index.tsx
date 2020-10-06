@@ -1,6 +1,8 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { MdClear } from 'react-icons/md';
 import AsyncSelect from 'react-select/async';
 import tmdbAPI from '../../../services/api';
+// import { useFilter } from '../../../contexts/filtersContexts';
 import './styles.scss';
 
 
@@ -17,7 +19,14 @@ interface peopleData {
 }
 
 const People: React.FC = () => {
+  // const { filter, changeFilter } = useFilter();
   const [people, setPeople] = useState<peopleData[]>([]);
+
+  // useEffect(() => {
+  //   if (people.length) {
+  //     // changeFilter({ ...filter, people });
+  //   }
+  // }, [people]);
 
   async function fetchPeople(inputValue: string, callback: CallableFunction) {
     const { data } = await tmdbAPI.get(`/search/person`, {
@@ -41,6 +50,10 @@ const People: React.FC = () => {
     setPeople(selectedPeople || []);
   }
 
+  function handleRemovePerson(value: number) {
+    setPeople(people.filter(person => person.value!==value));
+  }
+
   return (
     <div id="container">
       <strong>Elenco / equipe</strong>
@@ -62,7 +75,23 @@ const People: React.FC = () => {
           }}
           cacheOptions
         />
-      
+        <ul className="selected-genres-list">
+          {
+            people.map(person => (
+              <li 
+                key={person.value}
+              >
+                <span>
+                  {person.label}
+                </span>
+                <MdClear 
+                  onClick={() => handleRemovePerson(person.value)}
+                  className="remove-genre-icon"
+                />
+              </li>
+            ))
+          }
+        </ul>
     </div>
   );
 }

@@ -42,3 +42,23 @@
   color: rgb(100, 100, 100);
   font-weight: 500;
 }
+
+#container article {
+  display: flex;
+  height: 3rem;
+  align-items: center;
+}
+
+#container article img, .dummy-img {
+  width: 4rem;
+  height: 3.8rem;
+  border-radius: .4rem;
+  margin-right: 1rem;
+  background-color: white;
+}
+// #container article .dummy-img {
+//   width: 4rem;
+//   height: 4rem;
+//   border-radius: .4rem;
+//   background-color: white;
+// }

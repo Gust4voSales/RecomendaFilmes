@@ -10,12 +10,13 @@ interface peopleResponse {
   id: number;
   name: string;
   popularity: number;
-  // profile_path: string | null;
+  profile_path: string | null;
 }
 
 interface peopleData {
   value: number;
   label: string;
+  name: string;
 }
 
 const People: React.FC = () => {
@@ -23,15 +24,14 @@ const People: React.FC = () => {
   const [people, setPeople] = useState<peopleData[]>([]);
 
   useEffect(() => {
-    if (people.length) {
-      let with_people: string = '';
+    let with_people: string = '';
 
-      for (let person of people) {
-        with_people += String(person.value) + ',';
-      }
-      
-      changeFilter({ ...filter, with_people, });
+    for (let person of people) {
+      with_people += String(person.value) + ',';
     }
+    
+    changeFilter({ ...filter, with_people, });
+    
     // eslint-disable-next-line
   }, [people,]);
 
@@ -45,15 +45,34 @@ const People: React.FC = () => {
 
     let limitedSortedPeople = 
       data.results
-        .sort((a: peopleResponse, b: peopleResponse) => (a.popularity > b.popularity ? -1 : 1))
-        // .slice(0, );
+        .sort((a: peopleResponse, b: peopleResponse) => 
+          (a.popularity > b.popularity ? -1 : 1));
 
+    // Instead of giving a text to the label, I'm passing an html with the person's image
     callback(limitedSortedPeople.map((person: peopleResponse) => {
-      return ({ label: person.name, value: person.id, });
+      return ({ 
+        label: (
+          <article>
+            {person.profile_path 
+              ? <img src={`https://image.tmdb.org/t/p/w45/${person.profile_path}`} alt={person.name}/>
+              : <div className="dummy-img" />
+            }
+            {person.name} 
+          </article>
+        ), 
+        name: person.name,
+        value: person.id, 
+      });
     }));
   }
 
   function handleSelectPerson(selectedPeople: peopleData[]) {
+    // Label is an html with the person's image, so to remove the image from this list and display only the person's 
+    // name, I overwrite the label.
+    selectedPeople.forEach(person => {
+      person.label = person.name;
+    });
+
     setPeople(selectedPeople || []);
   }
 
@@ -80,14 +99,11 @@ const People: React.FC = () => {
           noOptionsMessage={({inputValue}) => {
             return (inputValue.length ? "Nenhum resultado encontrado para "+inputValue : "Nenhum resultado");
           }}
-          cacheOptions
         />
         <ul className="selected-genres-list">
           {
             people.map(person => (
-              <li 
-                key={person.value}
-              >
+              <li key={person.value}>
                 <span>
                   {person.label}
                 </span>

@@ -1,4 +1,11 @@
-#container input[type=number] {
+#container .input {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-self: center;
+}
+
+#container .input input[type=number] {
   height: 3.5rem;
   width: 10rem;
   align-self: center;
@@ -15,5 +22,15 @@
   &::placeholder {
     color: #CCC;
     font-size: 1.4rem;
+  }
+}
+
+#container .input .clear-text {
+  width: 2rem;
+  height: 2rem;
+  cursor: pointer;
+  transition: opacity .3s;
+  &:hover {
+    opacity: .6;
   }
 }

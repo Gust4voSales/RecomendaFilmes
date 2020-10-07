@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { MdClear } from 'react-icons/md';
 import { useFilter } from '../../../contexts/filtersContexts';
 import './styles.scss';
 
@@ -39,17 +40,22 @@ const Year: React.FC = () => {
       <span>
         Limite os resultados apenas à títulos  lançados no ano selecionado
       </span>
-      <input 
-        name="year" 
-        type="number"
-        placeholder={String(currentYear)}
-        onChange={e => setYear(e.target.value)} 
-        min={1900} 
-        value={year}
-        max={currentYear+10}  
-        step={1} 
-        onBlur={checkYear}
-      />
+      <div className="input">
+        <input 
+          name="year" 
+          type="number"
+          placeholder={String(currentYear)}
+          onChange={e => setYear(e.target.value)} 
+          min={1900} 
+          value={year}
+          max={currentYear+10}  
+          step={1} 
+          onBlur={checkYear}
+        />
+        {
+          year.length>0 && <MdClear onClick={() => setYear('')} className="clear-text"/>
+        } 
+      </div>
       <div />
     </div>
   );

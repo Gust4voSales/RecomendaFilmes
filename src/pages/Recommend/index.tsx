@@ -7,10 +7,10 @@ import Genre from '../../components/filters/Genre';
 import { useFilter } from '../../contexts/filtersContexts';
 import tmdbAPI from '../../services/api';
 import People from '../../components/filters/People';
-import Axios from 'axios';
+import axios from 'axios';
 import Year from '../../components/filters/Year';
 
-const CancelToken = Axios.CancelToken;
+const CancelToken = axios.CancelToken;
 let cancel: any = undefined;
 
 
@@ -35,24 +35,23 @@ const Recommend = () => {
 		//eslint-disable-next-line
 	}, [filter]);
 
-	async function fetchRecommendations() {
+	function fetchRecommendations() {
 		if (cancel!==undefined) {
 			cancel();
     }
 		const params = { ...filter, option: null };
 		
-		try {
-			const { data } = await tmdbAPI.get(`/discover/${selectedOptionResults}`, {
-				cancelToken: new CancelToken(function executor(c) {
-					cancel = c;
-				}),
-				params,
-			});
-			
-			console.log(data.results[0]);
-		} catch (err) {
-			return;
-		}
+		tmdbAPI.get(`/discover/${selectedOptionResults}`, {
+			cancelToken: new CancelToken(function executor(c) {
+				cancel = c;
+			}),
+			params,
+		})
+			.then(res => {
+				console.log(res.data.results[0]);
+			})
+			.catch(err => {return;});
+
 	}
 
 	function handleOptionResultsSelection(option: string) {

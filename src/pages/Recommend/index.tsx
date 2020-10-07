@@ -40,7 +40,12 @@ const Recommend = () => {
 		if (cancel!==undefined) {
 			cancel();
     }
-		const params = { ...filter, option: null };
+		const params = { 
+			...filter, 
+			"certification.lte": filter.certification_lte,
+			certification_lte: null,
+			option: null, 
+		};
 		
 		tmdbAPI.get(`/discover/${selectedOptionResults}`, {
 			cancelToken: new CancelToken(function executor(c) {

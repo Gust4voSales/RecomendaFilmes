@@ -8,6 +8,7 @@ const tmdbAPI = axios.create({
 tmdbAPI.defaults.headers.common['Authorization'] = 'Bearer ' + config.tmdbApiToken;
 tmdbAPI.defaults.params = {
   language: 'pt-BR',
+  certification_country: 'BR',
 }
 
 export default tmdbAPI;

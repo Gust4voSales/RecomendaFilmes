@@ -1,6 +1,6 @@
 import React, { useEffect, useState,} from 'react';
 import { FaEquals, FaLessThanEqual, FaGreaterThanEqual } from 'react-icons/fa';
-// import { useFilter } from '../../../contexts/filtersContexts';
+import { useFilter } from '../../../contexts/filtersContexts';
 import './styles.scss';
 
 
@@ -14,17 +14,29 @@ const certifications = [
 ];
 
 const Year: React.FC = () => {
-  // const { filter, changeFilter } = useFilter();
-  const [certification, setCertification] = useState('');
+  const { filter, changeFilter } = useFilter();
+  const [certificationValue, setCertification] = useState('');
   const [option, setOption] = useState('equal');
 
   useEffect(() => {
-    console.log('c '+ certification);
+    if (!certificationValue.length) {
+      changeFilter({ ...filter, 
+        certification_lte: '', 
+        certification: '', 
+      });
+      return;
+    }
     
-  }, [certification]);
+    if (option==='equal') 
+      changeFilter({ ...filter, certification_lte: '', certification: certificationValue, });
+    else 
+      changeFilter({ ...filter, certification: '', certification_lte: certificationValue, });
+
+    // eslint-disable-next-line
+  }, [certificationValue, option]);
 
   function handleCertificationSelection(newCertification: string) {
-    if (certification===newCertification) {
+    if (certificationValue===newCertification) {
       setCertification('');
     } else {
       setCertification(newCertification);
@@ -40,8 +52,8 @@ const Year: React.FC = () => {
 
   function translateOption() {
     if (option==='equal') return 'igual';
-    else if (option==='less') return 'menor ou igual';
-    return 'maior ou igual';
+    
+    return 'menor ou igual';
   }
   
   return (
@@ -57,16 +69,13 @@ const Year: React.FC = () => {
         <button onClick={() => handleSelectLessEqualGreater('equal')} className={option==='equal' ? 'selected' : ''}>
           <FaEquals />
         </button>
-        <button onClick={() => handleSelectLessEqualGreater('greater')} className={option==='greater' ? 'selected' : ''}>
-          <FaGreaterThanEqual />
-        </button>
       </div>
       <div className="certifications-container">
         {
           certifications.map(certificationObj => (
             <div 
               onClick={() => handleCertificationSelection(certificationObj.value)}
-              className={certificationObj.value===certification ? 'selected' : 'not-selected'}
+              className={certificationObj.value===certificationValue ? 'selected' : 'not-selected'}
               style={{ backgroundColor: certificationObj.color, }} 
             >
               {certificationObj.value}

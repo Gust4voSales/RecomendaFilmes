@@ -7,6 +7,8 @@ interface Filter {
   with_people: string;
   with_companies: string;
   primary_release_year: number | null;
+  certification: string;
+  certification_lte: string;
 }
 
 interface FilterContextData {
@@ -24,6 +26,8 @@ export const FilterProvider: React.FC = ({children}) => {
     with_people: '',
     with_companies: '',
     primary_release_year: null,
+    certification: '',
+    certification_lte: '',
   });
 
   function changeFilter(newFilter: Filter) {

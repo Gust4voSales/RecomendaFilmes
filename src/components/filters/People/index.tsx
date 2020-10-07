@@ -5,6 +5,7 @@ import tmdbAPI from '../../../services/api';
 import { useFilter } from '../../../contexts/filtersContexts';
 import axios from 'axios';
 import './styles.scss';
+import { Props } from '../props';
 
 const CancelToken = axios.CancelToken;
 let cancel: any = undefined;
@@ -23,9 +24,14 @@ interface peopleData {
   name: string;
 }
 
-const People: React.FC = () => {
+const People: React.FC<Props> = ({ shouldReload }) => {
   const { filter, changeFilter } = useFilter();
   const [people, setPeople] = useState<peopleData[]>([]);
+
+  // When shouldReload changes then clear the filter 
+  useEffect(() => {
+    setPeople([]);
+  }, [shouldReload]);
 
   useEffect(() => {
     let with_people: string = '';

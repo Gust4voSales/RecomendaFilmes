@@ -4,7 +4,7 @@ import { MdArrowBack, MdKeyboardArrowDown, MdKeyboardArrowUp, MdSearch } from "r
 import './styles.scss';
 import { Link } from 'react-router-dom';
 import Genre from '../../components/filters/Genre';
-import { useFilter } from '../../contexts/filtersContexts';
+import { filterInitialState, useFilter } from '../../contexts/filtersContexts';
 import tmdbAPI from '../../services/api';
 import People from '../../components/filters/People';
 import Certification from '../../components/filters/Certification';
@@ -29,6 +29,7 @@ const Recommend = () => {
 	const filtersBlockRef = useRef<HTMLDivElement>(null);
 	const [selectedOptionResults, setSelectedOptionResults] = useState('movie');
 	const [showFilters, setShowFilters] = useState(true);
+	const [refresherState, setRefresherState] = useState(0);
 	// const [recommendations, setRecommendations] = useState<recommendationsResponse[]>([]);
 
 	useEffect(() => {
@@ -81,6 +82,13 @@ const Recommend = () => {
 			setShowFilters(!showFilters);
 			filtersBlockRef.current?.classList.remove('remove-filters-block');
 		}
+	}
+
+	function handleClearFilters() {
+		setRefresherState(refresherState+1);
+		setTimeout(() => {
+			changeFilter(filterInitialState);
+		}, 600);
 	}
 
 	return(
@@ -140,15 +148,15 @@ const Recommend = () => {
 								Filtros 
 								{ showFilters ? <MdKeyboardArrowUp className="arrow" /> : <MdKeyboardArrowDown className="arrow" /> }
 							</div>
-							<div className="clear-filters-btn">Limpar todos os filtros</div>
+							<div onClick={handleClearFilters} className="clear-filters-btn">Limpar todos os filtros</div>
 						</div>
 
 						{ showFilters 
 							? <div className="filters-block" ref={filtersBlockRef}>
-								<Genre />
-								<People />
-								<Certification />
-								<Year />
+								<Genre shouldReload={refresherState}/>
+								<People shouldReload={refresherState}/>
+								<Certification shouldReload={refresherState}/>
+								<Year shouldReload={refresherState}/>
 							</div>
 							: <div style={{ width: '99%', height: '.2rem', backgroundColor: 'white', alignSelf: 'center' }}/>
 						}

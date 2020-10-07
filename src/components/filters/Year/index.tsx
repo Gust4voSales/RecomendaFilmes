@@ -1,14 +1,20 @@
 import React, { useEffect, useState } from 'react';
 import { MdClear } from 'react-icons/md';
 import { useFilter } from '../../../contexts/filtersContexts';
+import { Props } from '../props';
 import './styles.scss';
 
 const currentYear =  new Date().getFullYear();
-const Year: React.FC = () => {
+const Year: React.FC<Props> = ({ shouldReload }) => {
   const [year, setYear] = useState('');
   
   const { filter, changeFilter } = useFilter();
   
+  // When shouldReload changes then clear the filter 
+  useEffect(() => {
+    setYear('');
+  }, [shouldReload]);
+
   useEffect(() => {
     // console.log(year);
     if (isYearValid()) {

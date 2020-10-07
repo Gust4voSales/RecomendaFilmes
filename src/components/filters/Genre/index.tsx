@@ -3,8 +3,9 @@ import { MdCancel, MdClear } from 'react-icons/md';
 import Modal from 'react-modal';
 import { useFilter } from '../../../contexts/filtersContexts';
 import tmdbAPI from '../../../services/api';
-
+import { Props } from '../props';
 import './styles.scss';
+
 
 interface genreResponse {
   id: number;
@@ -17,7 +18,7 @@ interface selectedGenre {
   include: boolean;
 }
 
-const Genre: React.FC = () => {
+const Genre: React.FC<Props> = ({ shouldReload }) => {
   const { filter, changeFilter } = useFilter();
   
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -25,6 +26,14 @@ const Genre: React.FC = () => {
   const [tvGenres, setTvGenres] = useState<genreResponse[]>([]);
   const [genres, setGenres] = useState<genreResponse[]>([]);
   const [selectedGenres, setSelectedGenres] = useState<selectedGenre[]>([]);
+
+  // When shouldReload changes then clear the filter 
+  useEffect(() => {
+    setSelectedGenres([]);
+    updateFilter([]);
+
+    // eslint-disable-next-line
+  }, [shouldReload]);
 
   useEffect(() => {
     setSelectedGenres([]);

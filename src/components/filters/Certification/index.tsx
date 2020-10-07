@@ -1,6 +1,7 @@
 import React, { useEffect, useState,} from 'react';
 import { FaEquals, FaLessThanEqual, } from 'react-icons/fa';
 import { useFilter } from '../../../contexts/filtersContexts';
+import { Props } from '../props';
 import './styles.scss';
 
 
@@ -13,10 +14,16 @@ const certifications = [
   {color: '#1D1815', value: '18' },
 ];
 
-const Year: React.FC = () => {
+const Year: React.FC<Props> = ({ shouldReload }) => {
   const { filter, changeFilter } = useFilter();
   const [certificationValue, setCertification] = useState('');
   const [option, setOption] = useState('equal');
+
+  // When shouldReload changes then clear the filter 
+  useEffect(() => {
+    setCertification('');
+    setOption('equal');
+  }, [shouldReload]);
 
   useEffect(() => {
     if (!certificationValue.length) {

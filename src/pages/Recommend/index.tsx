@@ -147,8 +147,8 @@ const Recommend = () => {
 							? <div className="filters-block" ref={filtersBlockRef}>
 								<Genre />
 								<People />
-								<Year />
 								<Certification />
+								<Year />
 							</div>
 							: <div style={{ width: '99%', height: '.2rem', backgroundColor: 'white', alignSelf: 'center' }}/>
 						}

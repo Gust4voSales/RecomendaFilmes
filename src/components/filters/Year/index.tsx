@@ -35,7 +35,7 @@ const Year: React.FC = () => {
   }
 
   return (
-    <div id="container">
+    <div id="container" className="year-container">
       <strong>Ano de lançamento</strong>
       <span>
         Limite os resultados apenas à títulos  lançados no ano selecionado

@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import icon from '../../assets/icon.png';
-import { MdArrowBack, MdSearch } from "react-icons/md";
+import { MdArrowBack, MdKeyboardArrowDown, MdKeyboardArrowUp, MdSearch } from "react-icons/md";
 import './styles.scss';
 import { Link } from 'react-router-dom';
 import Genre from '../../components/filters/Genre';
@@ -26,7 +26,9 @@ interface recommendationsResponse {
 const Recommend = () => {
 	const { filter, changeFilter } = useFilter();
 
+	const filtersBlockRef = useRef<HTMLDivElement>(null);
 	const [selectedOptionResults, setSelectedOptionResults] = useState('movie');
+	const [showFilters, setShowFilters] = useState(true);
 	// const [recommendations, setRecommendations] = useState<recommendationsResponse[]>([]);
 
 	useEffect(() => {
@@ -64,6 +66,21 @@ const Recommend = () => {
 		setSelectedOptionResults(option);
 		// console.log();
 		changeFilter({ ...filter, option });
+	}
+
+	function handleToggleShowFilter() {
+		// If showFilters = true, then the user is trying to close it, so we should set a timer to do that meanwhile adding 
+		// the remove animation
+		if (showFilters) {
+			setTimeout(() => {
+				setShowFilters(!showFilters);
+			}, 250);
+
+			filtersBlockRef.current?.classList.add('remove-filters-block');
+		} else {
+			setShowFilters(!showFilters);
+			filtersBlockRef.current?.classList.remove('remove-filters-block');
+		}
 	}
 
 	return(
@@ -118,12 +135,23 @@ const Recommend = () => {
 					</div>
 				
 					<div className="filters-container">
-						<div className="filters-block">
-							<Genre />
-							<People />
-							<Year />
-							<Certification />
+						<div className="filters-block-header">
+							<div onClick={handleToggleShowFilter}>
+								Filtros 
+								{ showFilters ? <MdKeyboardArrowUp className="arrow" /> : <MdKeyboardArrowDown className="arrow" /> }
+							</div>
+							<div className="clear-filters-btn">Limpar todos os filtros</div>
 						</div>
+
+						{ showFilters 
+							? <div className="filters-block" ref={filtersBlockRef}>
+								<Genre />
+								<People />
+								<Year />
+								<Certification />
+							</div>
+							: <div style={{ width: '99%', height: '.2rem', backgroundColor: 'white', alignSelf: 'center' }}/>
+						}
 					</div>
 				</section>
 				

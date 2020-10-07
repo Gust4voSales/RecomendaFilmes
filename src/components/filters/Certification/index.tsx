@@ -1,5 +1,5 @@
 import React, { useEffect, useState,} from 'react';
-import { FaEquals, FaLessThanEqual, FaGreaterThanEqual } from 'react-icons/fa';
+import { FaEquals, FaLessThanEqual, } from 'react-icons/fa';
 import { useFilter } from '../../../contexts/filtersContexts';
 import './styles.scss';
 

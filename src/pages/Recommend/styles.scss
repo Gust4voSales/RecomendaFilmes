@@ -2,7 +2,7 @@
     display: flex;
     flex-direction: column;
     padding: 4rem 5% 0 5%;
-    min-height: 100vh;
+    min-height: 105vh;
 }
 
 #recommend header {
@@ -122,13 +122,65 @@
     -webkit-appearance: none;
 }
 
+#recommend .filters-container .filters-block-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding: 0 4rem;
+}
+
+#recommend .filters-container .filters-block-header div:first-child {
+    position: relative;
+    cursor: pointer;
+    // background-color: gray;
+    padding: 1rem 4rem 0 1rem;
+    font-size: 2.4rem;
+    font-weight: 500;
+    transition: opacity .3s;
+    &:hover {
+        opacity: .7;
+    }
+}
+
+.filters-container .filters-block-header div .arrow {
+    position: absolute;
+    width: 3rem;
+    height: 3rem;
+    margin-left: .4rem;
+}
+
+.filters-container .filters-block-header .clear-filters-btn {
+    display: flex;
+    height: 3rem;
+    align-items: center;
+    justify-content: center;
+    background-color: #FFF2F2;
+    color: #FF3150;
+    border-radius: .4rem;
+    margin-bottom: .3rem;
+    padding: 0 1rem;
+    font-size: 1.3rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: opacity .3s;
+    &:hover {
+        opacity: .7;
+    }
+}
+
 #recommend .filters-container .filters-block {
     display: flex;
     justify-content: space-evenly;
     flex-wrap: wrap;
     border: .2rem solid #fff;
     border-radius: .4rem;
+    // border-top: none;
     padding: .8rem 1rem;
+    animation: swing-show 0.5s cubic-bezier(0.175, 0.885, 0.320, 1.275) both;
+}
+
+#recommend .filters-container .remove-filters-block {
+    animation: swing-fade 0.5s cubic-bezier(0.175, 0.885, 0.320, 1.275) both;
 }
 
 // Media Queries
@@ -155,3 +207,32 @@
         order: 2;
     }
 }
+
+
+// animations 
+@keyframes swing-show {
+    0% {
+        transform: rotateX(-100deg);
+        transform-origin: top;
+        opacity: 0;
+    }
+    100% {
+        transform: rotateX(0deg);
+        transform-origin: top;
+        opacity: 1;
+    }
+}
+@keyframes swing-fade {
+    0% {
+        transform: rotateX(-70deg);
+        transform-origin: bottom;
+        opacity: 1;
+    }
+    100% {
+        transform: rotateX(0);
+        transform-origin: bottom;
+        opacity: 0;
+    }
+  }
+  
+  

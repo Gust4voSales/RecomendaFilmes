@@ -13,10 +13,13 @@
   }
 }
 
+#container .react-select__value-container {
+  margin-top: -0.3rem;
+  padding-top: 0;
+}
+
 #container .react-select__input {
   color: #fff;
-  
- 
 }
 #container .react-select__placeholder {
   color: #CCC;
@@ -24,19 +27,24 @@
 }
 
 #container .react-select__indicator {
+  margin-top: -.2rem;
   fill: white;
   stroke: white;
   color: white;
   transition: opacity .3s;
-  cursor: text;
+  cursor: pointer;
   &:hover {
     opacity: .6;
   }
   &--is-focused {
     opacity: .6;
   }
-
 }
+#container .react-select__indicator-separator {
+  margin-top: 7px;
+  height: 2rem;  
+}
+
 
 #container .react-select__menu {
   font-size: 1.4rem;

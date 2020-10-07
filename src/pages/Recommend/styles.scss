@@ -137,6 +137,7 @@
     font-size: 2.4rem;
     font-weight: 500;
     transition: opacity .3s;
+    user-select: none;
     &:hover {
         opacity: .7;
     }
@@ -177,11 +178,12 @@
     border-radius: .4rem;
     // border-top: none;
     padding: .8rem 1rem;
-    animation: swing-show 0.5s cubic-bezier(0.175, 0.885, 0.320, 1.275) both;
+    // animation: swing-show 0.5s cubic-bezier(0.175, 0.885, 0.320, 1.275) both;
+    animation: swing-show 0.5s both;
 }
 
 #recommend .filters-container .remove-filters-block {
-    animation: swing-fade 0.5s cubic-bezier(0.175, 0.885, 0.320, 1.275) both;
+    animation: swing-fade 0.5s both;
 }
 
 // Media Queries

@@ -1,0 +1,20 @@
+#container input[type=number] {
+  height: 3.5rem;
+  width: 10rem;
+  // align-self: center;
+  background-color: var(--secondary-purple-theme);
+  border: none;
+  border-radius: .4rem;
+  outline: none;
+  color: white;
+  padding: 0 .4rem 0 .7rem;
+  // padding: 0 2.4rem 0 .7rem;
+  &:focus {
+    border: 1px solid white;
+  }
+}
+
+#container .input {
+  position: relative;
+  margin: 0 auto;
+}

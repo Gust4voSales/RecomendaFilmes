@@ -6,6 +6,7 @@ interface Filter {
   without_genres: string;
   with_people: string;
   with_companies: string;
+  primary_release_year: number | null;
 }
 
 interface FilterContextData {
@@ -22,6 +23,7 @@ export const FilterProvider: React.FC = ({children}) => {
     without_genres: '',
     with_people: '',
     with_companies: '',
+    primary_release_year: null,
   });
 
   function changeFilter(newFilter: Filter) {

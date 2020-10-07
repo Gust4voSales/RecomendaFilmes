@@ -1,4 +1,5 @@
 import React, { useEffect, useState,} from 'react';
+import { FaEquals, FaLessThanEqual, FaGreaterThanEqual } from 'react-icons/fa';
 // import { useFilter } from '../../../contexts/filtersContexts';
 import './styles.scss';
 
@@ -15,6 +16,7 @@ const certifications = [
 const Year: React.FC = () => {
   // const { filter, changeFilter } = useFilter();
   const [certification, setCertification] = useState('');
+  const [option, setOption] = useState('equal');
 
   useEffect(() => {
     console.log('c '+ certification);
@@ -28,13 +30,37 @@ const Year: React.FC = () => {
       setCertification(newCertification);
     }
   }
+
+  function handleSelectLessEqualGreater(optionSelected: string) {
+    if (option === optionSelected) 
+      return;
+
+    setOption(optionSelected);
+  }
+
+  function translateOption() {
+    if (option==='equal') return 'igual';
+    else if (option==='less') return 'menor ou igual';
+    return 'maior ou igual';
+  }
   
   return (
     <div id="container">
       <strong>Classificação indicativa</strong>
       <span>
-      Limite os resultados apenas à títulos  com classificação indicativa igual à selecionada
+      Limite os resultados apenas à títulos  com classificação indicativa <span>{translateOption()}</span> à selecionada
       </span>
+      <div className="radio-buttons" >
+        <button onClick={() => handleSelectLessEqualGreater('less')} className={option==='less' ? 'selected' : ''}>
+          <FaLessThanEqual />
+        </button>
+        <button onClick={() => handleSelectLessEqualGreater('equal')} className={option==='equal' ? 'selected' : ''}>
+          <FaEquals />
+        </button>
+        <button onClick={() => handleSelectLessEqualGreater('greater')} className={option==='greater' ? 'selected' : ''}>
+          <FaGreaterThanEqual />
+        </button>
+      </div>
       <div className="certifications-container">
         {
           certifications.map(certificationObj => (
@@ -48,8 +74,6 @@ const Year: React.FC = () => {
           ))
         }
       </div>
-
-      <div />
     </div>
   );
 }

@@ -1,14 +1,47 @@
+#container span span {
+  border-bottom: .2rem solid white;
+  padding-bottom: 0.2rem;
+  padding-left: .3rem;
+  padding-right: .3rem;
+}
+
+#container .radio-buttons {
+  align-self: center;
+  display: flex;
+  width: 50%;
+  justify-content: space-around;
+  // background-color: red;
+}
+
+#container .radio-buttons button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 4.5rem;
+  border: .2rem solid var(--light-blue-theme);;
+  background: none;
+}
+
+#container .radio-buttons .selected {
+  background-color: var(--light-blue-theme);
+  &:hover {
+    opacity: 1;
+  }
+}
+
+
 #container .certifications-container {
   display: flex;
   justify-content: space-between;
   font-size: 3.5rem;
   font-weight: 600;
+  margin-bottom: 1rem;
 }
 
 #container .certifications-container div {
   border-radius: .4rem;
   border: .2rem solid transparent;
-  width: 4.5rem;
+  width: 4.7rem;
   display: flex;
   justify-content: center;
   align-items: center;

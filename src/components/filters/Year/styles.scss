@@ -1,7 +1,7 @@
 #container input[type=number] {
   height: 3.5rem;
   width: 10rem;
-  // align-self: center;
+  align-self: center;
   background-color: var(--secondary-purple-theme);
   border: none;
   border-radius: .4rem;
@@ -12,9 +12,8 @@
   &:focus {
     border: 1px solid white;
   }
-}
-
-#container .input {
-  position: relative;
-  margin: 0 auto;
+  &::placeholder {
+    color: #CCC;
+    font-size: 1.4rem;
+  }
 }

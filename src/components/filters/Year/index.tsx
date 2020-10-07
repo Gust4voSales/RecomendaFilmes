@@ -39,18 +39,17 @@ const Year: React.FC = () => {
       <span>
         Limite os resultados apenas à títulos  lançados no ano selecionado
       </span>
-      <div className="input">
-        <input 
-          name="year" 
-          type="number"
-          onChange={e => setYear(e.target.value)} 
-          min={1900} 
-          value={year}
-          max={currentYear+10}  
-          step={1} 
-          onBlur={checkYear}
-        />
-      </div>
+      <input 
+        name="year" 
+        type="number"
+        placeholder={String(currentYear)}
+        onChange={e => setYear(e.target.value)} 
+        min={1900} 
+        value={year}
+        max={currentYear+10}  
+        step={1} 
+        onBlur={checkYear}
+      />
       <div />
     </div>
   );

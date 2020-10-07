@@ -1,0 +1,33 @@
+#container .certifications-container {
+  display: flex;
+  justify-content: space-between;
+  font-size: 3.5rem;
+  font-weight: 600;
+}
+
+#container .certifications-container div {
+  border-radius: .4rem;
+  border: .2rem solid transparent;
+  width: 4.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  user-select: none;
+  opacity: .6;
+  transition: opacity .3s;
+  filter: grayscale(70%);
+}
+#container .certifications-container .not-selected {
+  &:hover {
+    opacity: .8;
+    filter: grayscale(20%);
+    }
+}
+
+#container .certifications-container .selected {
+  opacity: 1;
+  filter: grayscale(0);
+  border-color: white;
+  
+}

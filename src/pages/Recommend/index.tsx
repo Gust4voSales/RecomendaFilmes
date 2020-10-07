@@ -7,6 +7,7 @@ import Genre from '../../components/filters/Genre';
 import { useFilter } from '../../contexts/filtersContexts';
 import tmdbAPI from '../../services/api';
 import People from '../../components/filters/People';
+import Certification from '../../components/filters/Certification';
 import axios from 'axios';
 import Year from '../../components/filters/Year';
 
@@ -116,6 +117,7 @@ const Recommend = () => {
 							<Genre />
 							<People />
 							<Year />
+							<Certification />
 						</div>
 					</div>
 				</section>

@@ -40,9 +40,9 @@
   top: 0;
   border-radius: .4rem;
   background-color: black;
-  filter: blur(1.5px) grayscale(30%);
-  opacity: .4;
-  z-index: -1;
+  filter: blur(1.5px) grayscale(30%) opacity(40%);
+  // opacity: .4;
+  z-index: 1;
 }
 
 .results ul li .poster-img {
@@ -53,21 +53,22 @@
   margin: 0 2rem;
   border-radius: .4rem;
   background-color: #ccc;
+  opacity: 1;
   // border: .2rem solid white;
 
   font-size: 1rem;
+  z-index: 2;
 } 
 
 .results ul li .info {
   flex: 3;
+  opacity: 1;
   // background-color: blue;
+  z-index: 3;
 }
 
 .results ul li .info h1 {
   font-family: 'Montserrat', sans-serif;
   font-size: 2rem;
   font-weight: 500;
-  // text-overflow: ;
-  word-break: break-all;
-  // line-break: ;
 }

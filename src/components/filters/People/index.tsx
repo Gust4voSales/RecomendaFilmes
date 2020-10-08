@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { MdClear } from 'react-icons/md';
 import AsyncSelect from 'react-select/async';
-import tmdbAPI from '../../../services/api';
+import tmdbAPI, { baseImgURL } from '../../../services/api';
 import { useFilter } from '../../../contexts/filtersContexts';
 import axios from 'axios';
 import './styles.scss';
@@ -71,7 +71,7 @@ const People: React.FC<Props> = ({ shouldReload }) => {
         label: (
           <article>
             {person.profile_path 
-              ? <img src={`https://image.tmdb.org/t/p/w45/${person.profile_path}`} alt="img"/>
+              ? <img src={`${baseImgURL}w45/${person.profile_path}`} alt="img"/>
               : <div className="dummy-img" />
             }
             {person.name} 

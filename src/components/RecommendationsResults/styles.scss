@@ -1,0 +1,61 @@
+.results {
+  margin-top: 2rem;
+  font-size: 4rem;
+  font-weight: 500;
+}
+
+.results ul {
+  display: flex;
+  // flex-direction: column;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 2rem;
+}
+
+.results ul li {
+  position: relative;
+  // original background img height is 28rem 
+  height: 24rem;
+  width: 100%;
+  max-width: 50rem;
+  margin-bottom: 2rem;
+  border-radius: .4rem;
+  display: flex;
+  // justify-content: center;
+  // align-items: stretch;
+  overflow: hidden;
+  list-style: none;
+  // background-color: red;
+}
+
+.results ul li .background-img { 
+  image-rendering: optimizeSpeed;
+  height: 24rem;
+  max-height: 24rem;
+  width: 100%;
+  max-width: 50rem;
+  position: absolute;
+  top: 0;
+  border-radius: .4rem;
+  background-color: black;
+  filter: blur(1.5px) grayscale(30%);
+  opacity: .4;
+  z-index: -1;
+}
+
+.results ul li .poster-img {
+  height: 20rem;
+  align-self: center;
+  margin: 0 2rem;
+  border-radius: .4rem;
+  // border: .2rem solid white;
+} 
+
+
+
+.results ul li h1 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 3rem;
+  font-weight: 500;
+}

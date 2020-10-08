@@ -11,4 +11,8 @@ tmdbAPI.defaults.params = {
   certification_country: 'BR',
 }
 
+const baseImgURL = 'https://image.tmdb.org/t/p/';
+
+export { baseImgURL };
+
 export default tmdbAPI;

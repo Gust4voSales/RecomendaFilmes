@@ -1,27 +1,15 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 import icon from '../../assets/icon.png';
 import { MdArrowBack, MdKeyboardArrowDown, MdKeyboardArrowUp, MdSearch } from "react-icons/md";
 import './styles.scss';
 import { Link } from 'react-router-dom';
 import Genre from '../../components/filters/Genre';
 import { filterInitialState, useFilter } from '../../contexts/filtersContexts';
-import tmdbAPI from '../../services/api';
 import People from '../../components/filters/People';
 import Certification from '../../components/filters/Certification';
-import axios from 'axios';
 import Year from '../../components/filters/Year';
+import RecommendationsResults from '../../components/RecommendationsResults';
 
-const CancelToken = axios.CancelToken;
-let cancel: any = undefined;
-
-
-interface recommendationsResponse {
-	poster_path: string | null;
-	// adult: boolean;
-	overview: string;
-	id: number;
-	title: string;
-}
 
 const Recommend = () => {
 	const { filter, changeFilter } = useFilter();
@@ -30,38 +18,6 @@ const Recommend = () => {
 	const [selectedOptionResults, setSelectedOptionResults] = useState('movie');
 	const [showFilters, setShowFilters] = useState(true);
 	const [refresherState, setRefresherState] = useState(0);
-	// const [recommendations, setRecommendations] = useState<recommendationsResponse[]>([]);
-
-	useEffect(() => {
-		// Call function in the api to make request with the filter
-		fetchRecommendations();
-		
-		//eslint-disable-next-line
-	}, [filter]);
-
-	function fetchRecommendations() {
-		if (cancel!==undefined) {
-			cancel();
-    }
-		const params = { 
-			...filter, 
-			"certification.lte": filter.certification_lte,
-			certification_lte: null,
-			option: null, 
-		};
-		
-		tmdbAPI.get(`/discover/${selectedOptionResults}`, {
-			cancelToken: new CancelToken(function executor(c) {
-				cancel = c;
-			}),
-			params,
-		})
-			.then(res => {
-				console.log(res.data.results[0]);
-			})
-			.catch(err => {return;});
-
-	}
 
 	function handleOptionResultsSelection(option: string) {
 		setSelectedOptionResults(option);
@@ -168,7 +124,9 @@ const Recommend = () => {
 					</div>
 				</section>
 				
-				<section className="results"></section>
+				<section className="results">
+					<RecommendationsResults />
+				</section>
 		</div>
 	);
 }

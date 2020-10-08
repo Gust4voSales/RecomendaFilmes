@@ -151,13 +151,18 @@ const Recommend = () => {
 							<div onClick={handleClearFilters} className="clear-filters-btn">Limpar todos os filtros</div>
 						</div>
 
+						<div
+						  className="filters-block"
+							style={showFilters ? {} : { display: 'none' }}
+							ref={filtersBlockRef}
+						>
+							<Genre shouldReload={refresherState}/>
+							<People shouldReload={refresherState}/>
+							<Certification shouldReload={refresherState}/>
+							<Year shouldReload={refresherState}/>
+						</div>
 						{ showFilters 
-							? <div className="filters-block" ref={filtersBlockRef}>
-								<Genre shouldReload={refresherState}/>
-								<People shouldReload={refresherState}/>
-								<Certification shouldReload={refresherState}/>
-								<Year shouldReload={refresherState}/>
-							</div>
+							? null
 							: <div style={{ width: '99%', height: '.2rem', backgroundColor: 'white', alignSelf: 'center' }}/>
 						}
 					</div>

@@ -5,7 +5,7 @@ interface Filter {
   with_genres: string;
   without_genres: string;
   with_people: string;
-  primary_release_year: number | null;
+  primary_release_year: number;
   certification: string;
   certification_lte: string;
 }
@@ -20,7 +20,7 @@ const filterInitialState = {
   with_genres: '',
   without_genres: '',
   with_people: '',
-  primary_release_year: null,
+  primary_release_year: 0,
   certification: '',
   certification_lte: '',
 }

@@ -71,16 +71,18 @@ const RecommendationsResults: React.FC = () => {
                   />
               }
 
-              <img 
-                src={recommendation.poster_path 
-                  ? `${baseImgURL}w154${recommendation.poster_path}`
-                  : ''
-                } 
-                alt={recommendation.title}
-                className="poster-img"  
-              />
+              { recommendation.poster_path 
+                ? <img 
+                    src={`${baseImgURL}w154${recommendation.poster_path}`} 
+                    alt={recommendation.title}
+                    className="poster-img"  
+                  />
+                : <div className="poster-img" />
+              }
+              <div className="info">
+                <h1>{recommendation.title}</h1>
 
-              <h1>{recommendation.title}</h1>
+              </div>
             </li>
           ))
         }

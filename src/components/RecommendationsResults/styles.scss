@@ -22,11 +22,12 @@
   margin-bottom: 2rem;
   border-radius: .4rem;
   display: flex;
+  // flex-wrap: wrap;
   // justify-content: center;
   // align-items: stretch;
   overflow: hidden;
   list-style: none;
-  // background-color: red;
+  background-color: rgb(34, 34, 34);
 }
 
 .results ul li .background-img { 
@@ -46,16 +47,27 @@
 
 .results ul li .poster-img {
   height: 20rem;
+  width: 13.3rem;
+  max-width: 154px;
   align-self: center;
   margin: 0 2rem;
   border-radius: .4rem;
+  background-color: #ccc;
   // border: .2rem solid white;
+
+  font-size: 1rem;
 } 
 
+.results ul li .info {
+  flex: 3;
+  // background-color: blue;
+}
 
-
-.results ul li h1 {
+.results ul li .info h1 {
   font-family: 'Montserrat', sans-serif;
-  font-size: 3rem;
+  font-size: 2rem;
   font-weight: 500;
+  // text-overflow: ;
+  word-break: break-all;
+  // line-break: ;
 }

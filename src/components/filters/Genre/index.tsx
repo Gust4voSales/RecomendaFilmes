@@ -36,13 +36,14 @@ const Genre: React.FC<Props> = ({ shouldReload }) => {
   }, [shouldReload]);
 
   useEffect(() => {
-    setSelectedGenres([]);
+    setCompatibleGenresWhenOptionChanges();
 
     if (filter.option === 'movie') {
       setGenres([...movieGenres]);
     } else {
       setGenres([...tvGenres]);
     }
+    // eslint-disable-next-line
   }, [filter.option, tvGenres, movieGenres]);
 
   // Fetch movie and tv genres only once.
@@ -112,6 +113,29 @@ const Genre: React.FC<Props> = ({ shouldReload }) => {
   function onModalClose() {
     setIsModalOpen(false);
     updateFilter(selectedGenres);
+  }
+
+  // When the user switches between "Filmes" e "Séries" some genres are not available in the other, so this function
+  // checks those genres and set only the one's that are "universal"
+  function setCompatibleGenresWhenOptionChanges() {
+    let allowedGenres = [];
+
+    if (filter.option==='movie') {
+      for (let genre of selectedGenres) {
+        if (movieGenres.some(movieGenre => movieGenre.id===genre.id)) {
+          allowedGenres.push(genre);
+        }
+      }
+    } else if (filter.option==='tv') {
+      for (let genre of selectedGenres) {
+        if (tvGenres.some(tvGenre => tvGenre.id===genre.id)) {
+          allowedGenres.push(genre);
+        }
+      }
+    }
+
+    setSelectedGenres(allowedGenres);
+    updateFilter(allowedGenres);
   }
 
   Modal.setAppElement('#root');

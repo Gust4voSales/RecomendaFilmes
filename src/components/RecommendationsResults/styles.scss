@@ -56,13 +56,13 @@
   border-radius: .4rem;
   background-color: #ccc;
   font-size: 1rem;
-  z-index: 2;
+  z-index: 1;
 } 
 
 .results ul li .info {
   flex: 3;
   // background-color: blue;
-  z-index: 3;
+  z-index: 1;
 }
 
 .results ul li .info h1 {

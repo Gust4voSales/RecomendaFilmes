@@ -9,7 +9,7 @@
   // flex-direction: column;
   flex-wrap: wrap;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-evenly;
   padding-top: 2rem;
 }
 
@@ -19,7 +19,7 @@
   height: 24rem;
   width: 100%;
   max-width: 50rem;
-  margin-bottom: 2rem;
+  margin: 0 2rem 2rem 2rem;
   border-radius: .4rem;
   display: flex;
   overflow: hidden;
@@ -50,7 +50,6 @@
 .results ul li .poster-img {
   height: 20rem;
   width: 13.3rem;
-  max-width: 154px;
   align-self: center;
   margin: 0 2rem;
   border-radius: .4rem;
@@ -69,4 +68,17 @@
   font-family: 'Montserrat', sans-serif;
   font-size: 2rem;
   font-weight: 500;
+}
+
+
+
+// MEDIA QUERIES
+@media(max-width: 630px) {
+  .results ul li {
+    margin: 0 0 2rem 0;
+  }
+  .results ul li .poster-img {
+    width: 10rem;
+    height: 16.7rem;
+  }
 }

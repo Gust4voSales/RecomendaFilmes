@@ -100,7 +100,7 @@ const Recommend = () => {
 				
 					<div className="filters-container">
 						<div className="filters-block-header">
-							<div onClick={handleToggleShowFilter}>
+							<div onClick={handleToggleShowFilter} title="Minimizar filtros">
 								Filtros 
 								{ showFilters ? <MdKeyboardArrowUp className="arrow" /> : <MdKeyboardArrowDown className="arrow" /> }
 							</div>
@@ -112,9 +112,19 @@ const Recommend = () => {
 							style={showFilters ? {} : { display: 'none' }}
 							ref={filtersBlockRef}
 						>
+						
 							<Genre shouldReload={refresherState}/>
-							<People shouldReload={refresherState}/>
-							<Certification shouldReload={refresherState}/>
+							{
+								selectedOptionResults==='tv'
+									? (<>
+											<People shouldReload={refresherState} style={{ display: 'none' }}/>
+											<Certification shouldReload={refresherState} style={{ display: 'none' }}/> 
+										</>)
+									: (<>
+											<People shouldReload={refresherState}/>
+											<Certification shouldReload={refresherState}/> 
+										</>)
+							}
 							<Year shouldReload={refresherState}/>
 						</div>
 						{ showFilters 

@@ -14,7 +14,7 @@ const certifications = [
   {color: '#1D1815', value: '18' },
 ];
 
-const Year: React.FC<Props> = ({ shouldReload }) => {
+const Year: React.FC<Props> = ({ shouldReload, style }) => {
   const { filter, changeFilter } = useFilter();
   const [certificationValue, setCertification] = useState('');
   const [option, setOption] = useState('equal');
@@ -64,7 +64,7 @@ const Year: React.FC<Props> = ({ shouldReload }) => {
   }
   
   return (
-    <div id="container">
+    <div id="container" style={style}>
       <strong>Classificação indicativa</strong>
       <span>
       Limite os resultados apenas à títulos  com classificação indicativa <span>{translateOption()}</span> à selecionada

@@ -24,7 +24,7 @@ interface peopleData {
   name: string;
 }
 
-const People: React.FC<Props> = ({ shouldReload }) => {
+const People: React.FC<Props> = ({ shouldReload, style }) => {
   const { filter, changeFilter } = useFilter();
   const [people, setPeople] = useState<peopleData[]>([]);
 
@@ -99,7 +99,7 @@ const People: React.FC<Props> = ({ shouldReload }) => {
   }
 
   return (
-    <div id="container">
+    <div id="container" style={style}>
       <strong>Elenco / equipe</strong>
       <span>
         Adicione os seus atores, diretores, escritores, compositores, entre outros, favoritos.

@@ -10,6 +10,7 @@ let cancel: any = undefined;
 interface recommendationsResponse {
   id: number;
 	title: string;
+	name: string; // title for TV shows
 	overview: string;
 	poster_path: string | null;
 	backdrop_path: string | null;
@@ -47,7 +48,7 @@ const RecommendationsResults: React.FC = () => {
 			params,
 		})
 			.then(res => {
-        // console.log(res.data.results[0]);
+        console.log(res.data.results[0]);
         setRecommendations(res.data.results);
 			})
 			.catch(err => {return;});
@@ -56,7 +57,7 @@ const RecommendationsResults: React.FC = () => {
   
   return (
     <div className="results">
-      Resultados
+      <span className="results-title">Resultados</span>
       <ul>
         {
           recommendations.map(recommendation => (
@@ -80,8 +81,8 @@ const RecommendationsResults: React.FC = () => {
                 : <div className="poster-img" />
               }
               <div className="info">
-                <h1>{recommendation.title}</h1>
-
+                <h1>{recommendation.title || recommendation.name}</h1>
+                <p>{recommendation.overview}</p>
               </div>
             </li>
           ))

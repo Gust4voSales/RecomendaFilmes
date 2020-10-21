@@ -1,5 +1,7 @@
 .results {
   margin-top: 2rem;
+}
+.results .results-title {
   font-size: 4rem;
   font-weight: 500;
 }
@@ -18,7 +20,7 @@
   // original background img height is 28rem 
   height: 24rem;
   width: 100%;
-  max-width: 50rem;
+  max-width: 55rem;
   margin: 0 2rem 2rem 2rem;
   border-radius: .4rem;
   display: flex;
@@ -38,7 +40,7 @@
   height: 24rem;
   max-height: 24rem;
   width: 100%;
-  max-width: 50rem;
+  max-width: 55rem;
   position: absolute;
   top: 0;
   border-radius: .4rem;
@@ -60,14 +62,32 @@
 
 .results ul li .info {
   flex: 3;
-  // background-color: blue;
+  display: flex;
+  flex-direction: column;
   z-index: 1;
+  margin-right: 2rem;
+  // justify-content: space-around;
+  // align-items: center;
+  margin-top: 2rem;// remove when more items get added
+  // background-color: blue;
 }
 
 .results ul li .info h1 {
   font-family: 'Montserrat', sans-serif;
   font-size: 2rem;
   font-weight: 500;
+}
+
+.results ul li .info p {
+  font-size: 1.2rem;
+  text-align: justify;
+  margin-top: 2rem;
+  overflow: hidden;
+  // width:100px;
+  display: -webkit-box;
+  -webkit-line-clamp: 5;
+  -webkit-box-orient: vertical;
+  // background-color: blue;
 }
 
 

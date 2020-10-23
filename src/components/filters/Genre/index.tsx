@@ -1,8 +1,7 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { MdCancel, MdClear } from 'react-icons/md';
 import Modal from 'react-modal';
 import { useFilter } from '../../../contexts/filtersContexts';
-import tmdbAPI from '../../../services/api';
 import { Props } from '../props';
 import './styles.scss';
 
@@ -19,12 +18,10 @@ interface selectedGenre {
 }
 
 const Genre: React.FC<Props> = ({ shouldReload }) => {
-  const { filter, changeFilter } = useFilter();
+  const { filter, changeFilter, movieGenres, tvGenres } = useFilter();
   
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [movieGenres, setMovieGenres] = useState<genreResponse[]>([]);
-  const [tvGenres, setTvGenres] = useState<genreResponse[]>([]);
-  const [genres, setGenres] = useState<genreResponse[]>([]);
+  const [genres, setGenres] = useState<genreResponse[]>(movieGenres);
   const [selectedGenres, setSelectedGenres] = useState<selectedGenre[]>([]);
 
   // When shouldReload changes then clear the filter 
@@ -45,22 +42,6 @@ const Genre: React.FC<Props> = ({ shouldReload }) => {
     }
     // eslint-disable-next-line
   }, [filter.option, tvGenres, movieGenres]);
-
-  // Fetch movie and tv genres only once.
-  const fetchGenresCallback = useCallback(() => {
-    async function fetchGenres() {
-      const movieResponse = await tmdbAPI.get('/genre/movie/list');
-      setMovieGenres(movieResponse.data.genres);
-
-      const tvResponse = await tmdbAPI.get('/genre/tv/list');
-      setTvGenres(tvResponse.data.genres);
-    }
-    
-    fetchGenres();
-  }, []);
-  useEffect(() => {
-    fetchGenresCallback();
-  }, [fetchGenresCallback]);
 
   function handleGenreSelection(genreId: number, name: string, include: boolean) {
     for(let selectedGenre of selectedGenres) {

@@ -1,4 +1,5 @@
-import React, { createContext, useContext, useState } from 'react';
+import React, { createContext, useCallback, useContext, useEffect, useState } from 'react';
+import tmdbAPI from '../services/api';
 
 interface Filter {
   option: string;
@@ -10,9 +11,16 @@ interface Filter {
   certification_lte: string;
 }
 
+interface genreResponse {
+  id: number;
+  name: string;
+}
+
 interface FilterContextData {
   filter: Filter;
   changeFilter(filter: Filter): void;
+  movieGenres: genreResponse[];
+  tvGenres: genreResponse[];
 }
 
 const filterInitialState = {
@@ -31,7 +39,25 @@ const FilterContext = createContext<FilterContextData>({} as FilterContextData);
 
 export const FilterProvider: React.FC = ({children}) => {
   const [filter, setFilter] = useState<Filter>(filterInitialState);
+  const [movieGenres, setMovieGenres] = useState<genreResponse[]>([]);
+  const [tvGenres, setTvGenres] = useState<genreResponse[]>([]);
 
+    // Fetch movie and tv genres only once.
+    const fetchGenresCallback = useCallback(() => {
+      async function fetchGenres() {
+        const movieResponse = await tmdbAPI.get('/genre/movie/list');
+        setMovieGenres(movieResponse.data.genres);
+  
+        const tvResponse = await tmdbAPI.get('/genre/tv/list');
+        setTvGenres(tvResponse.data.genres);
+      }
+      
+      fetchGenres();
+    }, []);
+    useEffect(() => {
+      fetchGenresCallback();
+    }, [fetchGenresCallback]);
+  
   function changeFilter(newFilter: Filter) {
     if (JSON.stringify(filter)!==JSON.stringify(newFilter)) {
       console.log(newFilter);
@@ -40,7 +66,7 @@ export const FilterProvider: React.FC = ({children}) => {
   }
 
   return (
-    <FilterContext.Provider value={{filter, changeFilter}}>
+    <FilterContext.Provider value={{filter, changeFilter, movieGenres, tvGenres, }}>
       {children}
     </FilterContext.Provider>
   );

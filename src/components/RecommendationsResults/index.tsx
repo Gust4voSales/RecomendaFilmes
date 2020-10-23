@@ -2,6 +2,7 @@ import Axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useFilter } from '../../contexts/filtersContexts';
 import tmdbAPI, { baseImgURL } from '../../services/api';
+import EvaluationCircle from '../EvaluationCircle';
 import './styles.scss';
 
 const CancelToken = Axios.CancelToken;
@@ -48,7 +49,7 @@ const RecommendationsResults: React.FC = () => {
 			params,
 		})
 			.then(res => {
-        console.log(res.data.results[0]);
+        console.log(res.data.results);
         setRecommendations(res.data.results);
 			})
 			.catch(err => {return;});
@@ -82,7 +83,10 @@ const RecommendationsResults: React.FC = () => {
               }
               <div className="info">
                 <h1>{recommendation.title || recommendation.name}</h1>
-                <p>{recommendation.overview}</p>
+                <p>{recommendation.overview || "Sem resumo"}</p>
+                <div>
+                  <EvaluationCircle vote_average={recommendation.vote_average} vote_count={recommendation.vote_count}/>
+                </div>
               </div>
             </li>
           ))

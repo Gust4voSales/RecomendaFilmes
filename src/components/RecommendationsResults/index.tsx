@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { useFilter } from '../../contexts/filtersContexts';
 import tmdbAPI, { baseImgURL } from '../../services/api';
 import EvaluationCircle from '../EvaluationCircle';
+import GenresTags from '../GenresTags';
 import './styles.scss';
 
 const CancelToken = Axios.CancelToken;
@@ -17,6 +18,7 @@ interface recommendationsResponse {
 	backdrop_path: string | null;
   vote_count: number;
   vote_average: number;
+  genre_ids: number[];
   // adult: boolean;
 }
 
@@ -59,38 +61,37 @@ const RecommendationsResults: React.FC = () => {
   return (
     <div className="results">
       <span className="results-title">Resultados</span>
-      <ul>
-        {
-          recommendations.map(recommendation => (
-            <li 
-              key={recommendation.id}
-            >
-              { recommendation.backdrop_path 
-                && <img 
-                    src={`${baseImgURL}w500${recommendation.backdrop_path}`} 
-                    alt="background"
-                    className="background-img"  
-                  />
-              }
-
-              { recommendation.poster_path 
-                ? <img 
-                    src={`${baseImgURL}w154${recommendation.poster_path}`} 
-                    alt={recommendation.title}
-                    className="poster-img"  
-                  />
-                : <div className="poster-img" />
-              }
-              <div className="info">
-                <h1>{recommendation.title || recommendation.name}</h1>
-                <p>{recommendation.overview || "Sem resumo"}</p>
-                <div>
-                  <EvaluationCircle vote_average={recommendation.vote_average} vote_count={recommendation.vote_count}/>
-                </div>
+      <ul className="card-list">
+        {recommendations.map(recommendation => (
+          <li 
+            className="card"
+            key={recommendation.id}
+          >
+            { recommendation.backdrop_path 
+              && <img 
+                  src={`${baseImgURL}w500${recommendation.backdrop_path}`} 
+                  alt="background"
+                  className="background-img"  
+                />
+            }
+            {recommendation.poster_path 
+              ? <img 
+                  src={`${baseImgURL}w154${recommendation.poster_path}`} 
+                  alt={recommendation.title}
+                  className="poster-img"  
+                />
+              : <div className="poster-img" />
+            }
+            <div className="info">
+              <h1>{recommendation.title || recommendation.name}</h1>
+              <p>{recommendation.overview || "Sem resumo"}</p>
+              <div>
+                <EvaluationCircle vote_average={recommendation.vote_average} vote_count={recommendation.vote_count}/>
+                <GenresTags genre_ids={recommendation.genre_ids}/>
               </div>
-            </li>
-          ))
-        }
+            </div>
+          </li>
+        ))}
       </ul>
     </div>
   ); 

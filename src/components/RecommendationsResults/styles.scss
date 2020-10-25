@@ -6,7 +6,7 @@
   font-weight: 500;
 }
 
-.results ul {
+.results .card-list {
   display: flex;
   // flex-direction: column;
   flex-wrap: wrap;
@@ -15,7 +15,7 @@
   padding-top: 2rem;
 }
 
-.results ul li {
+.results .card-list .card {
   position: relative;
   // original background img height is 28rem 
   height: 24rem;
@@ -35,7 +35,7 @@
   }
 }
 
-.results ul li .background-img { 
+.results .card-list .card .background-img { 
   image-rendering: optimizeSpeed;
   height: 24rem;
   max-height: 24rem;
@@ -49,7 +49,7 @@
   z-index: 1;
 }
 
-.results ul li .poster-img {
+.results .card-list .card .poster-img {
   height: 20rem;
   width: 13.3rem;
   align-self: center;
@@ -60,7 +60,7 @@
   z-index: 1;
 } 
 
-.results ul li .info {
+.results .card-list .card .info {
   flex: 3;
   display: flex;
   flex-direction: column;
@@ -72,13 +72,13 @@
   // background-color: blue;
 }
 
-.results ul li .info h1 {
+.results .card-list .card .info h1 {
   font-family: 'Montserrat', sans-serif;
   font-size: 2rem;
   font-weight: 500;
 }
 
-.results ul li .info p {
+.results .card-list .card .info p {
   font-size: 1.2rem;
   text-align: justify;
   margin-top: 2rem;
@@ -94,10 +94,10 @@
 
 // MEDIA QUERIES
 @media(max-width: 630px) {
-  .results ul li {
+  .results .card-list .card {
     margin: 0 0 2rem 0;
   }
-  .results ul li .poster-img {
+  .results .card-list .card .poster-img {
     width: 10rem;
     height: 16.7rem;
   }

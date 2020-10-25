@@ -28,7 +28,10 @@ const EvaluationCircle: React.FC<EvaluationProps> = ({ vote_count, vote_average 
 }, [setOffset, progress, offset]);
 
   return (
-    <div className="evaluation-container" style={vote_count===0 ? {opacity: 0} : {}}> 
+    <div 
+      className="evaluation-container" 
+      style={vote_count===0 ? { display: 'none' } : {}}
+    > 
     <svg
       className="svg"
       width={size}

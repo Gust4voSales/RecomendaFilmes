@@ -85,7 +85,7 @@ const RecommendationsResults: React.FC = () => {
             <div className="info">
               <h1>{recommendation.title || recommendation.name}</h1>
               <p>{recommendation.overview || "Sem resumo"}</p>
-              <div>
+              <div className="bottom">
                 <EvaluationCircle vote_average={recommendation.vote_average} vote_count={recommendation.vote_count}/>
                 <GenresTags genre_ids={recommendation.genre_ids}/>
               </div>

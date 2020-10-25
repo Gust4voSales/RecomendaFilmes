@@ -65,10 +65,10 @@
   display: flex;
   flex-direction: column;
   z-index: 1;
-  margin-right: 2rem;
-  // justify-content: space-around;
+  justify-content: space-around;
+  padding-top: 0;
   // align-items: center;
-  margin-top: 2rem;// remove when more items get added
+  margin: 1.5rem 2rem 1.5rem 0;// remove when more items get added
   // background-color: blue;
 }
 
@@ -76,18 +76,23 @@
   font-family: 'Montserrat', sans-serif;
   font-size: 2rem;
   font-weight: 500;
+  margin-top: 0;
 }
 
 .results .card-list .card .info p {
   font-size: 1.2rem;
   text-align: justify;
-  margin-top: 2rem;
   overflow: hidden;
   // width:100px;
   display: -webkit-box;
-  -webkit-line-clamp: 5;
+  -webkit-line-clamp: 4;
   -webkit-box-orient: vertical;
   // background-color: blue;
+}
+
+.results .card-list .card .info .bottom {
+  display: flex;
+  justify-content: space-between;
 }
 
 

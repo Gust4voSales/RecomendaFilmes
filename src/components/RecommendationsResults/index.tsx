@@ -2,6 +2,7 @@ import Axios from 'axios';
 import React, { MouseEventHandler, useEffect, useState } from 'react';
 import { useFilter } from '../../contexts/filtersContexts';
 import tmdbAPI, { baseImgURL } from '../../services/api';
+import CardResult from '../CardResult';
 import EvaluationCircle from '../EvaluationCircle';
 import GenresTags from '../GenresTags';
 import './styles.scss';
@@ -9,7 +10,7 @@ import './styles.scss';
 const CancelToken = Axios.CancelToken;
 let cancel: any = undefined;
 
-interface recommendationsResponse {
+export interface recommendationsResponse {
   id: number;
 	title: string;
 	name: string; // title for TV shows
@@ -56,56 +57,13 @@ const RecommendationsResults: React.FC = () => {
 			})
 			.catch(err => {return;});
 	}
-  
-  const stopClickPropagation: MouseEventHandler<HTMLDivElement> = (e) => {
-    e.stopPropagation();
-  }
 
   return (
     <div className="results">
       <span className="results-title">Resultados</span>
       <ul className="card-list">
         {recommendations.map(recommendation => (
-          <li 
-            className="card"
-            key={recommendation.id}
-            onClick={() => alert('Abrir detalhes')}
-          >
-            { recommendation.backdrop_path 
-              && <img 
-                  src={`${baseImgURL}w500${recommendation.backdrop_path}`} 
-                  alt="background"
-                  className="background-img"  
-                />
-            }
-            {recommendation.poster_path 
-              ? <img 
-                  src={`${baseImgURL}w154${recommendation.poster_path}`} 
-                  alt={recommendation.title}
-                  className="poster-img"  
-                />
-              : <div className="poster-img" />
-            }
-            <div className="info">
-              <h1>{recommendation.title || recommendation.name}</h1>
-              <div className="overview" onClick={stopClickPropagation}>
-                <p>
-                  {recommendation.overview.slice(0, 160) || "Sem resumo"}
-                  {recommendation.overview.length > 160 && <span className="dots">...</span> }
-                </p> 
-                {recommendation.overview.length > 160 
-                  && 
-                  <p className="dropdown-overview" >
-                    {recommendation.overview}
-                  </p>
-              }
-              </div>
-              <div className="bottom">
-                <EvaluationCircle vote_average={recommendation.vote_average} vote_count={recommendation.vote_count}/>
-                <GenresTags genre_ids={recommendation.genre_ids}/>
-              </div>
-            </div>
-          </li>
+          <CardResult data={recommendation} />
         ))}
       </ul>
     </div>

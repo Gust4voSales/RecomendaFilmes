@@ -1,5 +1,5 @@
 import Axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import React, { MouseEventHandler, useEffect, useState } from 'react';
 import { useFilter } from '../../contexts/filtersContexts';
 import tmdbAPI, { baseImgURL } from '../../services/api';
 import EvaluationCircle from '../EvaluationCircle';
@@ -57,7 +57,10 @@ const RecommendationsResults: React.FC = () => {
 			.catch(err => {return;});
 	}
   
-  
+  const stopClickPropagation: MouseEventHandler<HTMLDivElement> = (e) => {
+    e.stopPropagation();
+  }
+
   return (
     <div className="results">
       <span className="results-title">Resultados</span>
@@ -66,6 +69,7 @@ const RecommendationsResults: React.FC = () => {
           <li 
             className="card"
             key={recommendation.id}
+            onClick={() => alert('Abrir detalhes')}
           >
             { recommendation.backdrop_path 
               && <img 
@@ -84,7 +88,18 @@ const RecommendationsResults: React.FC = () => {
             }
             <div className="info">
               <h1>{recommendation.title || recommendation.name}</h1>
-              <p>{recommendation.overview || "Sem resumo"}</p>
+              <div className="overview" onClick={stopClickPropagation}>
+                <p>
+                  {recommendation.overview.slice(0, 160) || "Sem resumo"}
+                  {recommendation.overview.length > 160 && <span className="dots">...</span> }
+                </p> 
+                {recommendation.overview.length > 160 
+                  && 
+                  <p className="dropdown-overview" >
+                    {recommendation.overview}
+                  </p>
+              }
+              </div>
               <div className="bottom">
                 <EvaluationCircle vote_average={recommendation.vote_average} vote_count={recommendation.vote_count}/>
                 <GenresTags genre_ids={recommendation.genre_ids}/>

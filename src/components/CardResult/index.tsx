@@ -4,6 +4,7 @@ import { baseImgURL } from '../../services/api';
 import { recommendationsResponse } from '../RecommendationsResults/index';
 import EvaluationCircle from '../EvaluationCircle';
 import GenresTags from '../GenresTags';
+import { Link, useHistory } from 'react-router-dom';
 
 interface CardProps {
   data: recommendationsResponse;
@@ -11,18 +12,22 @@ interface CardProps {
 
 const CardResult: React.FC<CardProps> = ({ data }) => {
   const maxCharsOverview = 160;
-
+  const history = useHistory();
 
   const stopClickPropagation: MouseEventHandler<HTMLDivElement> = (e) => {
     if (data.overview.length > maxCharsOverview)
       e.stopPropagation();
   }
-  
+
+  function navigateToDetails() {
+    history.push('/detalhes/'+data.id);
+  }
+
   return (
     <li 
       className="card"
       key={data.id}
-      onClick={() => alert('Abrir detalhes')}
+      onClick={navigateToDetails}
     >
       { data.backdrop_path 
         && <img 

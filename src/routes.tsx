@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
 import { FilterProvider } from './contexts/filtersContexts';
+import Details from './pages/Details';
 import Landing from './pages/Landing';
 import Recommend from './pages/Recommend';
 
@@ -12,6 +13,7 @@ const Routes = () => {
                 component={() => (<FilterProvider> <Recommend /> </FilterProvider>)} 
                 path="/recomendar" 
             />
+            <Route component={Details} path="/detalhes/:id" />
         </BrowserRouter>
     );
 }

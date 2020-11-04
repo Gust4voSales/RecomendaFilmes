@@ -1,14 +1,13 @@
 import React, { useRef, useState } from 'react';
-import icon from '../../assets/icon.png';
-import { MdArrowBack, MdKeyboardArrowDown, MdKeyboardArrowUp, MdSearch } from "react-icons/md";
+import { MdKeyboardArrowDown, MdKeyboardArrowUp, MdSearch } from "react-icons/md";
 import './styles.scss';
-import { Link } from 'react-router-dom';
 import Genre from '../../components/filters/Genre';
 import { filterInitialState, useFilter } from '../../contexts/filtersContexts';
 import People from '../../components/filters/People';
 import Certification from '../../components/filters/Certification';
 import Year from '../../components/filters/Year';
 import RecommendationsResults from '../../components/RecommendationsResults';
+import Header from '../../components/Header';
 
 
 const Recommend = () => {
@@ -49,16 +48,8 @@ const Recommend = () => {
 
 	return(
 		<div id="recommend">   
-			<header>
-				<div className="logo">
-					<img src={icon} alt="Ícone"/>
-					<h1>Recomenda<span>Filmes</span></h1>
-				</div>
-				<Link to="/">
-					<MdArrowBack size={'6rem'} className="back"/>
-				</Link>
-			</header>			
-				
+				<Header backButtonRoute="/"/>
+
 				<section className="filters">
 					<div className="description-container">
 						<div className="top">

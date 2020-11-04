@@ -1,0 +1,44 @@
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  // background-color: red;
+  padding-top: 3.5rem;
+}
+
+header .logo {
+  display: flex;
+  align-items: center;
+}
+
+header .logo img {
+  height: 100px;
+  margin-right: 2rem;
+  margin-top: -20px;
+}
+
+header .logo h1 {
+  font-size: 4rem;
+  text-transform: uppercase;
+  background: linear-gradient(
+      to right, 
+      var(--red-theme) 22%, 
+      var(--purple-theme)
+  );
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+header .logo h1 span {
+  margin-left: .3rem;
+  font-size: 2.5rem;
+}
+
+header .back {
+  color: #fff;
+  transition: opacity .3s;
+}
+
+header .back:hover {
+  opacity: .6;
+}

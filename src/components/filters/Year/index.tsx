@@ -18,7 +18,11 @@ const Year: React.FC<Props> = ({ shouldReload }) => {
   useEffect(() => {
     // console.log(year);
     if (isYearValid()) {
-      changeFilter({ ...filter, primary_release_year: Number(year)});
+        changeFilter({ 
+          ...filter, 
+          primary_release_year: Number(year),
+          first_air_date_year: Number(year),
+        });
     }
 
     // eslint-disable-next-line

@@ -43,7 +43,7 @@ const Recommend = () => {
 	function handleClearFilters() {
 		setRefresherState(refresherState+1);
 		setTimeout(() => {
-			changeFilter(filterInitialState);
+			changeFilter({...filterInitialState, option: filter.option});
 		}, 600);
 	}
 

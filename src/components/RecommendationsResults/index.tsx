@@ -61,7 +61,7 @@ const RecommendationsResults: React.FC = () => {
       <span className="results-title">Resultados</span>
       <ul className="card-list">
         {recommendations.map(recommendation => (
-          <CardResult data={recommendation} />
+          <CardResult data={recommendation} key={recommendation.id}/>
         ))}
       </ul>
     </div>

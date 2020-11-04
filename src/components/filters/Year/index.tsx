@@ -34,7 +34,8 @@ const Year: React.FC<Props> = ({ shouldReload }) => {
     if (!year.length) 
       return true;
 
-    if ((Number(year) < 1900 )|| (Number(year) > currentYear+10)) {
+    const yearInt = Number(year);
+    if ((yearInt < 1900 )|| (yearInt > currentYear)) {
       return false;
     }
     return true;
@@ -54,7 +55,7 @@ const Year: React.FC<Props> = ({ shouldReload }) => {
           onChange={e => setYear(e.target.value)} 
           min={1900} 
           value={year}
-          max={currentYear+10}  
+          max={currentYear}  
           step={1} 
           onBlur={checkYear}
         />

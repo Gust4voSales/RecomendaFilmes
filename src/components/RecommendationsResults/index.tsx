@@ -1,10 +1,8 @@
 import Axios from 'axios';
-import React, { MouseEventHandler, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useFilter } from '../../contexts/filtersContexts';
-import tmdbAPI, { baseImgURL } from '../../services/api';
+import tmdbAPI from '../../services/api';
 import CardResult from '../CardResult';
-import EvaluationCircle from '../EvaluationCircle';
-import GenresTags from '../GenresTags';
 import './styles.scss';
 
 const CancelToken = Axios.CancelToken;

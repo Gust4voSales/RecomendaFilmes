@@ -27,7 +27,7 @@ const GenresTags: React.FC<GenresTagsProps> = ({ genre_ids }) => {
   return (
     <ul id="tag-list">
       {genre_ids.map(genre => (
-        <li className="tag">
+        <li className="tag" key={genre}>
           {filter.option === 'tv'
             ? getTvGenreName(genre)
             : getMovieGenreName(genre)

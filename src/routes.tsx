@@ -13,7 +13,8 @@ const Routes = () => {
                 component={() => (<FilterProvider> <Recommend /> </FilterProvider>)} 
                 path="/recomendar" 
             />
-            <Route component={Details} path="/detalhes/:id" />
+            <Route component={Details} path="/filme/:id" />
+            <Route component={Details} path="/serie/:id" />
         </BrowserRouter>
     );
 }

@@ -4,7 +4,8 @@ import { baseImgURL } from '../../services/api';
 import { recommendationsResponse } from '../RecommendationsResults/index';
 import EvaluationCircle from '../EvaluationCircle';
 import GenresTags from '../GenresTags';
-import { Link, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
+import { useFilter } from '../../contexts/filtersContexts';
 
 interface CardProps {
   data: recommendationsResponse;
@@ -13,6 +14,7 @@ interface CardProps {
 const CardResult: React.FC<CardProps> = ({ data }) => {
   const maxCharsOverview = 160;
   const history = useHistory();
+  const { filter } = useFilter();
 
   const stopClickPropagation: MouseEventHandler<HTMLDivElement> = (e) => {
     if (data.overview.length > maxCharsOverview)
@@ -20,7 +22,10 @@ const CardResult: React.FC<CardProps> = ({ data }) => {
   }
 
   function navigateToDetails() {
-    history.push('/detalhes/'+data.id);
+    if (filter.option==='tv')
+      history.push(`/serie/${data.id}`);
+    else 
+      history.push(`/filme/${data.id}`);
   }
 
   return (

@@ -50,7 +50,7 @@ const RecommendationsResults: React.FC = () => {
 			params,
 		})
 			.then(res => {
-        console.log(res.data.results);
+        // console.log(res.data.results);
         setRecommendations(res.data.results);
 			})
 			.catch(err => {return;});

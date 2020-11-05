@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { MdClear } from 'react-icons/md';
 import AsyncSelect from 'react-select/async';
 import tmdbAPI, { baseImgURL } from '../../../services/api';
-import { useFilter } from '../../../contexts/filtersContexts';
+import { PeopleData, useFilter } from '../../../contexts/filtersContexts';
 import axios from 'axios';
 import './styles.scss';
 import { Props } from '../props';
@@ -18,19 +18,14 @@ interface peopleResponse {
   profile_path: string | null;
 }
 
-interface peopleData {
-  value: number;
-  label: string;
-  name: string;
-}
-
 const People: React.FC<Props> = ({ shouldReload, style }) => {
-  const { filter, changeFilter } = useFilter();
-  const [people, setPeople] = useState<peopleData[]>([]);
+  const { filter, changeFilter, peopleState, setPeopleState } = useFilter();
+  const [people, setPeople] = useState<PeopleData[]>(peopleState);
 
   // When shouldReload changes then clear the filter 
   useEffect(() => {
-    setPeople([]);
+    if (shouldReload)
+      setPeople([]);  
   }, [shouldReload]);
 
   useEffect(() => {
@@ -41,7 +36,8 @@ const People: React.FC<Props> = ({ shouldReload, style }) => {
     }
     
     changeFilter({ ...filter, with_people, });
-    
+    setPeopleState(people);
+
     // eslint-disable-next-line
   }, [people,]);
 
@@ -83,7 +79,7 @@ const People: React.FC<Props> = ({ shouldReload, style }) => {
     }));
   }
 
-  function handleSelectPerson(selectedPeople: peopleData[]) {
+  function handleSelectPerson(selectedPeople: PeopleData[]) {
     // Label is an html with the person's image, so to remove the image from this list and display only the person's 
     // name, I overwrite the label.
     if (selectedPeople) {
@@ -109,7 +105,7 @@ const People: React.FC<Props> = ({ shouldReload, style }) => {
           controlShouldRenderValue={false}
           classNamePrefix="react-select"
           value={people}
-          onChange={(selectedPeople) => handleSelectPerson(selectedPeople as peopleData[])}
+          onChange={(selectedPeople) => handleSelectPerson(selectedPeople as PeopleData[])}
           placeholder={'Pesquisar'}
           loadOptions={fetchPeople}
           isClearable={false}

@@ -1,7 +1,7 @@
 import { StyleHTMLAttributes } from "react";
 
 type Props = {
-  shouldReload: number;
+  shouldReload: boolean;
   style?: StyleHTMLAttributes;
 }
 

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { MdCancel, MdClear } from 'react-icons/md';
 import Modal from 'react-modal';
-import { useFilter } from '../../../contexts/filtersContexts';
+import { SelectedGenre, useFilter } from '../../../contexts/filtersContexts';
 import { Props } from '../props';
 import './styles.scss';
 
@@ -11,23 +11,20 @@ interface genreResponse {
   name: string;
 }
 
-interface selectedGenre {
-  id: number;
-  name: string;
-  include: boolean;
-}
 
 const Genre: React.FC<Props> = ({ shouldReload }) => {
-  const { filter, changeFilter, movieGenres, tvGenres } = useFilter();
+  const { filter, changeFilter, movieGenres, tvGenres, genreState, setGenreState, } = useFilter();
   
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [genres, setGenres] = useState<genreResponse[]>(movieGenres);
-  const [selectedGenres, setSelectedGenres] = useState<selectedGenre[]>([]);
+  const [selectedGenres, setSelectedGenres] = useState<SelectedGenre[]>(genreState);
 
   // When shouldReload changes then clear the filter 
   useEffect(() => {
-    setSelectedGenres([]);
-    updateFilter([]);
+    if (shouldReload) {
+      setSelectedGenres([]);
+      updateFilter([]);
+    }
 
     // eslint-disable-next-line
   }, [shouldReload]);
@@ -67,7 +64,7 @@ const Genre: React.FC<Props> = ({ shouldReload }) => {
     return checkSelected(genreId, !include);
   }
 
-  function updateFilter(selectedGenres: selectedGenre[]) {
+  function updateFilter(selectedGenres: SelectedGenre[]) {
     // with_genres and without_genres are strings with the genres' ids separeted by commas
     let with_genres = '';
     let without_genres = '';
@@ -81,6 +78,7 @@ const Genre: React.FC<Props> = ({ shouldReload }) => {
     }
       
     changeFilter({ ...filter, with_genres, without_genres });
+    setGenreState(selectedGenres);
   }
 
   function handleRemoveGenre(genreId: number) {    

@@ -14,9 +14,9 @@ const Recommend = () => {
 	const { filter, changeFilter } = useFilter();
 
 	const filtersBlockRef = useRef<HTMLDivElement>(null);
-	const [selectedOptionResults, setSelectedOptionResults] = useState('movie');
+	const [selectedOptionResults, setSelectedOptionResults] = useState(filter.option);
 	const [showFilters, setShowFilters] = useState(true);
-	const [refresherState, setRefresherState] = useState(0);
+	const [refresherState, setRefresherState] = useState(false);
 
 	function handleOptionResultsSelection(option: string) {
 		setSelectedOptionResults(option);
@@ -40,9 +40,10 @@ const Recommend = () => {
 	}
 
 	function handleClearFilters() {
-		setRefresherState(refresherState+1);
+		setRefresherState(true);
 		setTimeout(() => {
 			changeFilter({...filterInitialState, option: filter.option});
+			setRefresherState(false);
 		}, 600);
 	}
 

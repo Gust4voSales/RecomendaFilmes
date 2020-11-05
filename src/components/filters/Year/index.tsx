@@ -6,13 +6,19 @@ import './styles.scss';
 
 const currentYear =  new Date().getFullYear();
 const Year: React.FC<Props> = ({ shouldReload }) => {
-  const [year, setYear] = useState('');
-  
   const { filter, changeFilter } = useFilter();
+
+  const [year, setYear] = useState(
+    filter.primary_release_year===0 
+    ? ''
+    : String(filter.primary_release_year)
+  );
   
   // When shouldReload changes then clear the filter 
   useEffect(() => {
-    setYear('');
+    if (shouldReload) {
+      setYear('');
+    }
   }, [shouldReload]);
 
   useEffect(() => {

@@ -15,14 +15,23 @@ const certifications = [
 ];
 
 const Year: React.FC<Props> = ({ shouldReload, style }) => {
-  const { filter, changeFilter } = useFilter();
-  const [certificationValue, setCertification] = useState('');
-  const [option, setOption] = useState('equal');
+  const { 
+    filter, 
+    changeFilter, 
+    certificationState, 
+    setCertificationState, 
+    certificationOptState, 
+    setCertificationOptState 
+  } = useFilter();
+  const [certificationValue, setCertification] = useState(certificationState);
+  const [option, setOption] = useState(certificationOptState);
 
   // When shouldReload changes then clear the filter 
   useEffect(() => {
-    setCertification('');
-    setOption('equal');
+    if (shouldReload) {
+      setCertification('');
+      setOption('equal');
+    }
   }, [shouldReload]);
 
   useEffect(() => {
@@ -31,6 +40,9 @@ const Year: React.FC<Props> = ({ shouldReload, style }) => {
         certification_lte: '', 
         certification: '', 
       });
+
+      setCertificationState(certificationValue);
+      setCertificationOptState(option);
       return;
     }
     
@@ -38,6 +50,9 @@ const Year: React.FC<Props> = ({ shouldReload, style }) => {
       changeFilter({ ...filter, certification_lte: '', certification: certificationValue, });
     else 
       changeFilter({ ...filter, certification: '', certification_lte: certificationValue, });
+    
+    setCertificationState(certificationValue);
+    setCertificationOptState(option);
 
     // eslint-disable-next-line
   }, [certificationValue, option]);
@@ -84,6 +99,7 @@ const Year: React.FC<Props> = ({ shouldReload, style }) => {
               onClick={() => handleCertificationSelection(certificationObj.value)}
               className={certificationObj.value===certificationValue ? 'selected' : 'not-selected'}
               style={{ backgroundColor: certificationObj.color, }} 
+              key={certificationObj.value}
             >
               {certificationObj.value}
             </div>

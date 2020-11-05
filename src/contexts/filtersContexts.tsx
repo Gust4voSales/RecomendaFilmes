@@ -1,4 +1,4 @@
-import React, { createContext, useCallback, useContext, useEffect, useState } from 'react';
+import React, { createContext, Dispatch, SetStateAction, useCallback, useContext, useEffect, useState } from 'react';
 import tmdbAPI from '../services/api';
 
 interface Filter {
@@ -17,11 +17,33 @@ interface genreResponse {
   name: string;
 }
 
+export interface PeopleData {
+  value: number;
+  label: string;
+  name: string;
+}
+
+export interface SelectedGenre {
+  id: number;
+  name: string;
+  include: boolean;
+}
+
 interface FilterContextData {
   filter: Filter;
   changeFilter(filter: Filter): void;
   movieGenres: genreResponse[];
   tvGenres: genreResponse[];
+
+  // These are required to persist the state from the filter interface
+  peopleState: PeopleData[];
+  setPeopleState(people: PeopleData[]): void;
+  genreState: SelectedGenre[];
+  setGenreState(genres: SelectedGenre[]): void;
+  certificationState: string;
+  setCertificationState(certification: string): void;
+  certificationOptState: string;
+  setCertificationOptState(option: string): void;
 }
 
 const filterInitialState = {
@@ -35,7 +57,7 @@ const filterInitialState = {
   certification_lte: '',
 }
 
-export { filterInitialState  }
+export { filterInitialState }
 
 const FilterContext = createContext<FilterContextData>({} as FilterContextData);
 
@@ -44,6 +66,11 @@ export const FilterProvider: React.FC = ({children}) => {
   const [movieGenres, setMovieGenres] = useState<genreResponse[]>([]);
   const [tvGenres, setTvGenres] = useState<genreResponse[]>([]);
 
+  const [peopleState, setPeopleState] = useState<PeopleData[]>([]);
+  const [genreState, setGenreState] = useState<SelectedGenre[]>([]);
+  const [certificationState, setCertificationState] = useState('');
+  const [certificationOptState, setCertificationOptState] = useState('equal');
+  
     // Fetch movie and tv genres only once.
     const fetchGenresCallback = useCallback(() => {
       async function fetchGenres() {
@@ -67,8 +94,27 @@ export const FilterProvider: React.FC = ({children}) => {
     }
   }
 
+  // function setPeopleState(people: PeopleData[]) {
+  //   setPeopleState(people);
+  // }
+
   return (
-    <FilterContext.Provider value={{filter, changeFilter, movieGenres, tvGenres, }}>
+    <FilterContext.Provider 
+      value={{
+        filter, 
+        changeFilter, 
+        movieGenres, 
+        tvGenres, 
+        peopleState, 
+        setPeopleState,
+        genreState,
+        setGenreState,
+        certificationState,
+        setCertificationState,
+        certificationOptState, 
+        setCertificationOptState,
+      }}
+    >
       {children}
     </FilterContext.Provider>
   );

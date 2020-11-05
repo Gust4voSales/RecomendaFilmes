@@ -1,4 +1,4 @@
-import React, { createContext, Dispatch, SetStateAction, useCallback, useContext, useEffect, useState } from 'react';
+import React, { createContext, useCallback, useContext, useEffect, useState } from 'react';
 import tmdbAPI from '../services/api';
 
 interface Filter {

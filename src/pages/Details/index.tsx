@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation, useParams } from 'react-router-dom';
 import Header from '../../components/Header';
-import { useFilter } from '../../contexts/filtersContexts';
 import tmdbAPI from '../../services/api';
 import './styles.scss';
 
@@ -17,7 +16,7 @@ interface DataResponse {
 const Details: React.FC = () => {
   const { id } = useParams<DetailsParams>();
   const { pathname } = useLocation();
-  const { filter } = useFilter();
+  // const { filter } = useFilter();
 
   const [data, setData] = useState<DataResponse>({} as DataResponse);
 

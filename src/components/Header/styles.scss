@@ -42,3 +42,10 @@ header .back {
 header .back:hover {
   opacity: .6;
 }
+
+
+@media (max-width: 600px) {
+  header .logo h1 {
+    display: none;
+  }
+}

@@ -25,3 +25,9 @@
 .vote-count {
   font-size: 1.2rem;
 }
+
+@media(max-width: 630px) {
+  .evaluation-container {
+    transform: scale(0.85);
+  }
+}

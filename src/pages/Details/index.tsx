@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation, useParams } from 'react-router-dom';
 import Header from '../../components/Header';
-import tmdbAPI from '../../services/api';
+import tmdbAPI, { baseImgURL } from '../../services/api';
 import './styles.scss';
 
 interface DetailsParams {
@@ -11,6 +11,9 @@ interface DetailsParams {
 interface DataResponse {
   title: string;
   name: string;
+  overview: string;
+  backdrop_path: string;
+  poster_path: string;
 }
 
 const Details: React.FC = () => {
@@ -48,13 +51,28 @@ const Details: React.FC = () => {
   }, [id, pathname]);
 
   return (
+    <>
+    <img 
+      src={`${baseImgURL}w1280${data.backdrop_path}`} 
+      className="background-img"
+      alt="background"
+    />
     <div id="details">
       <Header backButtonRoute="/recomendar" />
       
-      <div>
-        {data.name || data.title}
+      <div className="header-info">
+        <img 
+          src={`${baseImgURL}w185${data.poster_path}`} 
+          alt="poster"
+          className="poster"
+        />
+        <div className="info">
+          <h2>{data.name || data.title}</h2>
+          <p>{data.overview}</p>
+        </div>
       </div>
     </div>
+    </>
   );
 }
 

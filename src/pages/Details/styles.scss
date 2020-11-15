@@ -1,3 +1,42 @@
 #details {
   padding: 0 5%;
 }
+
+.background-img {
+  width: 100%;
+  max-width: 1500px;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  position: absolute;
+  z-index: -1;
+  filter: grayscale(40%) opacity(75%);
+  
+  // fade out 
+  mask-image: linear-gradient(
+    to bottom, rgba(0,0,0,1), rgba(0,0,0,0)
+  );
+}
+
+#details .header-info {
+  border: 1px solid white;
+  margin: 2rem auto;
+  display: flex;
+  align-items: center;
+  // min-height: 32rem;
+}
+
+#details .header-info .poster {
+  padding: 0 2rem;
+  // background-color: pink;
+}
+
+#details .header-info .info {
+  // background-color: gray;
+  margin-right: 2rem;
+  display: flex;
+  height: max-content;
+  // flex: 1;
+  flex-direction: column;
+  justify-content: space-between;
+}

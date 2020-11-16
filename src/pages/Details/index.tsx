@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation, useParams } from 'react-router-dom';
+import EvaluationCircle from '../../components/EvaluationCircle';
 import Header from '../../components/Header';
 import tmdbAPI, { baseImgURL } from '../../services/api';
 import './styles.scss';
@@ -14,6 +15,12 @@ interface DataResponse {
   overview: string;
   backdrop_path: string;
   poster_path: string;
+  genres: {
+    id: number;
+    name: string;
+  }[];
+  vote_average: number;
+  vote_count: number;
 }
 
 const Details: React.FC = () => {
@@ -22,6 +29,7 @@ const Details: React.FC = () => {
   // const { filter } = useFilter();
 
   const [data, setData] = useState<DataResponse>({} as DataResponse);
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     async function loadDetails() {
@@ -30,6 +38,7 @@ const Details: React.FC = () => {
           const { data } = await tmdbAPI.get(`movie/${id}`);
           console.log(data);
           setData(data);
+          setLoading(false);
         } catch (err) {
           console.log('redirect to 404');
         }
@@ -38,6 +47,7 @@ const Details: React.FC = () => {
           const { data } = await tmdbAPI.get(`tv/${id}`);
           console.log(data);
           setData(data);
+          setLoading(false);
         } catch (err) {
           console.log('redirect to 404');
         }
@@ -50,13 +60,22 @@ const Details: React.FC = () => {
     loadDetails();
   }, [id, pathname]);
 
+  if (loading) {
+    return (
+      <h1>LOADING</h1>
+    );
+  }
+
   return (
     <>
+    {data.backdrop_path && 
     <img 
       src={`${baseImgURL}w1280${data.backdrop_path}`} 
       className="background-img"
       alt="background"
     />
+    }
+    
     <div id="details">
       <Header backButtonRoute="/recomendar" />
       
@@ -69,6 +88,7 @@ const Details: React.FC = () => {
         <div className="info">
           <h2>{data.name || data.title}</h2>
           <p>{data.overview}</p>
+          <EvaluationCircle vote_average={data.vote_average} vote_count={data.vote_count} />
         </div>
       </div>
     </div>

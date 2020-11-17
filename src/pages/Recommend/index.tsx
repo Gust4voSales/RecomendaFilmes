@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { ReactNode, useRef, useState } from 'react';
 import { MdKeyboardArrowDown, MdKeyboardArrowUp, MdSearch } from "react-icons/md";
 import './styles.scss';
 import Genre from '../../components/filters/Genre';
@@ -19,6 +19,8 @@ const Recommend = () => {
   });
 
 	const filtersBlockRef = useRef<HTMLDivElement>(null);
+	const resultsRef = useRef<HTMLDivElement>(null);
+
 	const [selectedOptionResults, setSelectedOptionResults] = useState(filter.option);
 	const [showFilters, setShowFilters] = useState(true);
 	const [refresherState, setRefresherState] = useState(false);
@@ -50,6 +52,10 @@ const Recommend = () => {
 			changeFilter({...filterInitialState, option: filter.option});
 			setRefresherState(false);
 		}, 600);
+	}
+
+	function handleScrollToResults() {
+		resultsRef.current?.scrollIntoView();
 	}
 
 	return(
@@ -132,10 +138,11 @@ const Recommend = () => {
 				</section>
 				
 				<section className="results" ref={inViewRef}>
+					<div ref={resultsRef} />
 					<RecommendationsResults />
 				</section>
 
-				<ResultsIndicator showIndicator={!inView } />
+				<ResultsIndicator showIndicator={!inView} onScrollToResultsClick={handleScrollToResults}/>
 		</div>
 	);
 }

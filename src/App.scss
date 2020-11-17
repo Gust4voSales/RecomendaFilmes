@@ -19,6 +19,10 @@
 html, body, #root {
     height: 100vh;
 }
+
+html {
+    scroll-behavior: smooth;
+}
     
 body {
     background: var(--background-color);

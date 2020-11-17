@@ -5,13 +5,14 @@ import './styles.scss';
 
 interface ResultsIndicatorProps {
   showIndicator: boolean;
+  onScrollToResultsClick(): void;
 }
 
-const ResultsIndicator: React.FC<ResultsIndicatorProps> = ({ showIndicator }) => {
+const ResultsIndicator: React.FC<ResultsIndicatorProps> = ({ showIndicator, onScrollToResultsClick }) => {
   const { loadingResults } = useFilter();
 
   function handleSeeResults() {
-    console.log('scroll para ver resultados');
+    onScrollToResultsClick();
   }
   
   return (

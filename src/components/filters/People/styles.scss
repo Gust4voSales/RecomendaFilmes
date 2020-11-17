@@ -48,12 +48,18 @@
 
 #container .react-select__menu {
   font-size: 1.4rem;
+  background-color: #ddd;
 }
 #container .react-select__option {
   font-size: 1.4rem;
   color: rgb(100, 100, 100);
   font-weight: 500;
   cursor: pointer;
+  background-color: #ddd;
+  transition: opacity .3s ;
+  &:hover {
+    opacity: .8;
+  }
 }
 
 #container article {

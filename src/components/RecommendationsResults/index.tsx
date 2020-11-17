@@ -22,7 +22,7 @@ export interface recommendationsResponse {
 }
 
 const RecommendationsResults: React.FC = () => {
-  const {filter, } = useFilter();
+  const {filter, setLoadingResults } = useFilter();
 	const [recommendations, setRecommendations] = useState<recommendationsResponse[]>([]);
   
   useEffect(() => {
@@ -43,6 +43,8 @@ const RecommendationsResults: React.FC = () => {
 			option: null, 
 		};
 		
+		setLoadingResults(true);
+
 		tmdbAPI.get(`/discover/${filter.option}`, {
 			cancelToken: new CancelToken(function executor(c) {
 				cancel = c;
@@ -51,9 +53,13 @@ const RecommendationsResults: React.FC = () => {
 		})
 			.then(res => {
         // console.log(res.data.results);
-        setRecommendations(res.data.results);
+				setRecommendations(res.data.results);
+				setLoadingResults(false);
 			})
-			.catch(err => {return;});
+			.catch(err => {
+				setLoadingResults(false);
+				return;
+			});
 	}
 
   return (

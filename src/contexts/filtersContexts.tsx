@@ -36,6 +36,9 @@ interface FilterContextData {
   tvGenres: genreResponse[];
 
   // These are required to persist the state from the filter interface
+  loadingResults: boolean;
+  setLoadingResults(value: boolean): void;
+  
   peopleState: PeopleData[];
   setPeopleState(people: PeopleData[]): void;
   genreState: SelectedGenre[];
@@ -66,6 +69,8 @@ export const FilterProvider: React.FC = ({children}) => {
   const [movieGenres, setMovieGenres] = useState<genreResponse[]>([]);
   const [tvGenres, setTvGenres] = useState<genreResponse[]>([]);
 
+  // These are required to persist the state from the filter interface
+  const [loadingResults, setLoadingResults] = useState(false);
   const [peopleState, setPeopleState] = useState<PeopleData[]>([]);
   const [genreState, setGenreState] = useState<SelectedGenre[]>([]);
   const [certificationState, setCertificationState] = useState('');
@@ -94,10 +99,6 @@ export const FilterProvider: React.FC = ({children}) => {
     }
   }
 
-  // function setPeopleState(people: PeopleData[]) {
-  //   setPeopleState(people);
-  // }
-
   return (
     <FilterContext.Provider 
       value={{
@@ -105,6 +106,8 @@ export const FilterProvider: React.FC = ({children}) => {
         changeFilter, 
         movieGenres, 
         tvGenres, 
+        loadingResults,
+        setLoadingResults,
         peopleState, 
         setPeopleState,
         genreState,

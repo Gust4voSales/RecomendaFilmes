@@ -8,10 +8,15 @@ import Certification from '../../components/filters/Certification';
 import Year from '../../components/filters/Year';
 import RecommendationsResults from '../../components/RecommendationsResults';
 import Header from '../../components/Header';
+import { useInView } from 'react-intersection-observer';
+import ResultsIndicator from '../../components/ResultsIndicator';
 
 
 const Recommend = () => {
 	const { filter, changeFilter } = useFilter();
+	const [inViewRef, inView, entry] = useInView({
+    threshold: 0.02,
+  });
 
 	const filtersBlockRef = useRef<HTMLDivElement>(null);
 	const [selectedOptionResults, setSelectedOptionResults] = useState(filter.option);
@@ -126,9 +131,11 @@ const Recommend = () => {
 					</div>
 				</section>
 				
-				<section className="results">
+				<section className="results" ref={inViewRef}>
 					<RecommendationsResults />
 				</section>
+
+				<ResultsIndicator showIndicator={!inView } />
 		</div>
 	);
 }

@@ -70,7 +70,8 @@ const Details: React.FC = () => {
     <>
     {data.backdrop_path && 
     <img 
-      src={`${baseImgURL}w1280${data.backdrop_path}`} 
+      // src={`${baseImgURL}w1280${data.backdrop_path}`} 
+      src={`${baseImgURL}original${data.backdrop_path}`} 
       className="background-img"
       alt="background"
     />
@@ -87,10 +88,24 @@ const Details: React.FC = () => {
         />
         <div className="info">
           <h2>{data.name || data.title}</h2>
-          <p>{data.overview}</p>
-          <EvaluationCircle vote_average={data.vote_average} vote_count={data.vote_count} />
+          <p>{data.overview}</p>    
+        {/* When the poster gets smaller add max-height
+          with overflow bar to overview
+        */}
+          <div className="info-bottom">
+            <EvaluationCircle vote_average={data.vote_average} vote_count={data.vote_count} />
+            <ul style={{ display: 'flex' }}>
+              <li>Sei la la la</li>
+              <li>Sei la la la</li>
+              <li>Sei la la la</li>
+              <li>Sei la la la</li>
+              <li>Sei la la la</li>
+            </ul>
+          </div>     
         </div>
+        
       </div>
+      
     </div>
     </>
   );

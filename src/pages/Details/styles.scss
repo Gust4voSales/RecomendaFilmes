@@ -4,7 +4,7 @@
 
 .background-img {
   width: 100%;
-  max-width: 1500px;
+  max-width: 2000px;
   left: 0;
   right: 0;
   margin: 0 auto;
@@ -52,6 +52,12 @@
   font-size: 1.4rem;
   text-align: justify;
   margin-bottom: 2rem;
+}
+
+#details .header-info .info .info-bottom {
+  display: flex;
+  // background-color: blueviolet;
+  width: 100%;
 }
 
 

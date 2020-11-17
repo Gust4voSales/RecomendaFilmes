@@ -1,0 +1,40 @@
+#indicator {
+  position: sticky;
+  bottom: 4px;
+  align-self: center;
+  z-index: 100000;
+
+  transition: opacity .5s;
+}
+#indicator .results-indicator {
+  display: flex;
+  // background-color: blue;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 7rem;
+  transition: all 0.3s;
+  &:hover {
+    transform: scale(1.05);
+    filter: brightness(85%);
+  }
+}
+
+#indicator .results-indicator .arrow-icon {
+  width: 10rem;
+  height: 7rem;
+  // background-color: brown;
+  color: white;
+  padding: 0;
+  cursor: pointer;
+}
+
+#indicator .results-indicator span {
+  font-size: 1.2rem;
+  margin-top: -1.5rem;
+  background-color: #eee;
+  color: black;
+  padding: .3rem .8rem;
+  border-radius: .8rem;
+  cursor: pointer;
+}

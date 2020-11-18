@@ -79,6 +79,13 @@
   }
 }
 
+@media (max-width: 630px) {
+  #details .header-info .info p {
+    max-height: 15rem;
+    overflow-x: auto;
+  }
+}
+
 @media(max-width: 600px) {
   .background-img {
     height: 50vh;

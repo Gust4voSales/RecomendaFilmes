@@ -166,6 +166,12 @@
     }
 }
 
+@media (max-width: 360px) {
+    #recommend .filters-container .filters-block {
+        padding: .1rem;
+    }
+}
+
 
 // animations 
 @keyframes swing-show {

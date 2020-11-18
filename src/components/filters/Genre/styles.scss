@@ -195,5 +195,10 @@
   #container .selected-genres-list::-webkit-scrollbar {
     height: .5rem;
   }
-  
+}
+
+@media (max-width: 360px) {
+  #container {
+    margin: .5rem;
+  }
 }

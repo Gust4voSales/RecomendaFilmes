@@ -6,6 +6,7 @@ interface GenresTagsProps {
   genre_ids: number[];
 }
 
+// Genres tags list from the results card
 const GenresTags: React.FC<GenresTagsProps> = ({ genre_ids }) => {
   const { filter, movieGenres, tvGenres } = useFilter();
 

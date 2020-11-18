@@ -19,16 +19,17 @@
 }
 
 #details .header-info {
-  // border: 1px solid white;
-  margin: 2rem auto;
+  margin: 2rem 0;
   display: flex;
   padding: 4rem;
+  // width: 100%;
 }
 
 #details .header-info .poster {
   // width: 40%;
   max-width: 185px;
   // min-width: 80px;
+  max-height: 30rem;
   margin-right: 4rem;
   border-radius: 2rem;
   background-color: #ccc;
@@ -37,33 +38,32 @@
 #details .header-info .info {
   // background-color: gray;
   display: flex;  
-  height: max-content;
-  // flex: 1;
   flex-direction: column;
-  justify-content: space-between;
 }
 
 #details .header-info .info h2 {
   margin-top: .2rem;
   margin-bottom: 2rem;
-  font-size: 3rem;
+  // font-size: 2rem;
 }
 
 #details .header-info .info p {
-  font-size: 1.6rem;
+  font-size: 1.4rem;
   text-align: justify;
   margin-bottom: 2rem;
 }
 
 #details .header-info .info .info-bottom {
   display: flex;
-  // background-color: blueviolet;
-  width: 100%;
+  // width: 100%;
 }
 
 #details .header-info .info .info-bottom .genres-list {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
+  // background-color: red;
+  width: 70%;
 }
 
 

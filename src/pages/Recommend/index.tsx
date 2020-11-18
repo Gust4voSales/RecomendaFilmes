@@ -1,4 +1,4 @@
-import React, { ReactNode, useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { MdKeyboardArrowDown, MdKeyboardArrowUp, MdSearch } from "react-icons/md";
 import './styles.scss';
 import Genre from '../../components/filters/Genre';
@@ -14,7 +14,7 @@ import ResultsIndicator from '../../components/ResultsIndicator';
 
 const Recommend = () => {
 	const { filter, changeFilter } = useFilter();
-	const [inViewRef, inView, entry] = useInView({
+	const [inViewRef, inView, ] = useInView({
     threshold: 0.02,
   });
 

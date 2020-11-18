@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation, useParams } from 'react-router-dom';
 import EvaluationCircle from '../../components/EvaluationCircle';
+import GenreTag from '../../components/GenreTag';
 import Header from '../../components/Header';
 import tmdbAPI, { baseImgURL } from '../../services/api';
 import './styles.scss';
@@ -94,12 +95,12 @@ const Details: React.FC = () => {
         */}
           <div className="info-bottom">
             <EvaluationCircle vote_average={data.vote_average} vote_count={data.vote_count} />
-            <ul style={{ display: 'flex' }}>
-              <li>Sei la la la</li>
-              <li>Sei la la la</li>
-              <li>Sei la la la</li>
-              <li>Sei la la la</li>
-              <li>Sei la la la</li>
+            <ul className="genres-list">
+              {
+                data.genres.map(genre => {
+                  return (<GenreTag name={genre.name} id={genre.id} />)
+                })
+              }
             </ul>
           </div>     
         </div>

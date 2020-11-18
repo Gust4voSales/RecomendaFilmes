@@ -46,10 +46,11 @@
 #details .header-info .info h2 {
   margin-top: .2rem;
   margin-bottom: 2rem;
+  font-size: 3rem;
 }
 
 #details .header-info .info p {
-  font-size: 1.4rem;
+  font-size: 1.6rem;
   text-align: justify;
   margin-bottom: 2rem;
 }
@@ -60,6 +61,10 @@
   width: 100%;
 }
 
+#details .header-info .info .info-bottom .genres-list {
+  display: flex;
+  align-items: center;
+}
 
 
 // MEDIA QUERIES

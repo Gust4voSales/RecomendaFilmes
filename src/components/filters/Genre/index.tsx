@@ -92,6 +92,8 @@ const Genre: React.FC<Props> = ({ shouldReload }) => {
   function onModalClose() {
     setIsModalOpen(false);
     updateFilter(selectedGenres);
+
+    document.body.style.overflow = 'auto';
   }
 
   // When the user switches between "Filmes" e "Séries" some genres are not available in the other, so this function
@@ -115,6 +117,10 @@ const Genre: React.FC<Props> = ({ shouldReload }) => {
 
     setSelectedGenres(allowedGenres);
     updateFilter(allowedGenres);
+  }
+
+  function disableScroll() {
+    document.body.style.overflow = 'hidden';
   }
 
   Modal.setAppElement('#root');
@@ -144,11 +150,12 @@ const Genre: React.FC<Props> = ({ shouldReload }) => {
       </ul>
 
       <Modal
-          isOpen={isModalOpen}
-          className="modal"
-          overlayClassName="overlay"
-          onRequestClose={onModalClose}
-          contentLabel="Selecionar Gêneros"
+        isOpen={isModalOpen}
+        className="modal"
+        overlayClassName="overlay"
+        onRequestClose={onModalClose}
+        contentLabel="Selecionar Gêneros"
+        onAfterOpen={disableScroll}
       >
         <button className="exit" onClick={onModalClose}> 
           <MdCancel size={'4.5rem'} />

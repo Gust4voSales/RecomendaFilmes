@@ -90,9 +90,7 @@ const Details: React.FC = () => {
         <div className="info">
           <h2>{data.name || data.title}</h2>
           <p>{data.overview}</p>    
-        {/* When the poster gets smaller add max-height
-          with overflow bar to overview
-        */}
+
           <div className="info-bottom">
             <EvaluationCircle vote_average={data.vote_average} vote_count={data.vote_count} />
             <ul className="genres-list">
@@ -107,6 +105,15 @@ const Details: React.FC = () => {
         
       </div>
       
+      <div className="menu-container">
+        <ul className="menu-options-container">
+          <li className={'selected'}>DETALHES</li>
+          <li>GALERIA</li>
+          <li>VER SIMILARES</li>
+        </ul>
+      
+        <h5>CONTENT</h5>
+      </div>
     </div>
     </>
   );

@@ -42,8 +42,7 @@
   display: flex;
   align-items: center;
   margin-bottom: 1rem;
-  padding-right: 2rem;
-  // background-color: gray;
+  padding-right: 1rem;
   // max-width: 2rem;
 }
 
@@ -62,6 +61,23 @@
   min-height: 5rem;
 }
 
+// Selected-genres-list scrollbar styling
+.details-container .info-box ul::-webkit-scrollbar {
+  // height: .85rem;
+  width: 1rem;
+}
+
+.details-container .info-box ul::-webkit-scrollbar-track {
+  background-color: #B9B9B9;
+  border-radius: 1rem;
+}
+.details-container .info-box ul::-webkit-scrollbar-thumb {
+  background-color: white;
+  border-radius: 1rem;
+  height: 70%;
+}
+
+// END Selected-genres-list scrollbar styling
 
 // MEDIA QUERIES 
 @media (max-width: 850px) {

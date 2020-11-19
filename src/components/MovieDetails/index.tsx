@@ -1,4 +1,3 @@
-import { AxiosResponse } from 'axios';
 import React, { useEffect, useState } from 'react';
 import { MovieDetailsData } from '../../pages/Details';
 import tmdbAPI, { baseImgURL } from '../../services/api';
@@ -10,9 +9,7 @@ interface MovieDetailsProps {
 
 interface CreditsResponse {
   cast: {
-    name: string;
-    profile_path: string;
-    character: string;
+   
   }[];
   crew: {
     name: string;
@@ -20,6 +17,13 @@ interface CreditsResponse {
     job: string;
   }[];
 }
+
+interface ActorInfo {
+  name: string;
+  profile_path: string;
+  character: string;
+}
+
 interface DirectorInfo {
   name: string;
   profile_path: string | null;
@@ -27,7 +31,7 @@ interface DirectorInfo {
 }
 
 const MovieDetails: React.FC<MovieDetailsProps> = ({ details }) => {
-  const [actors, setActors] = useState({} as CreditsResponse);
+  const [actors, setActors] = useState<ActorInfo[]>([]);
   const [directors, setDirectors] = useState<DirectorInfo[]>([]);
 
   useEffect(() => {
@@ -41,9 +45,10 @@ const MovieDetails: React.FC<MovieDetailsProps> = ({ details }) => {
             movieDirectors.push(crewMember);
           }
         }
-        setDirectors(movieDirectors);
 
-        console.log(data);
+        setDirectors(movieDirectors);
+        setActors(data.cast.slice(0, 10)); // top 10 actors
+
       } catch (err) {
         console.log(err);
       }
@@ -105,6 +110,20 @@ const MovieDetails: React.FC<MovieDetailsProps> = ({ details }) => {
                   && <img src={`${baseImgURL}w185${director.profile_path}`} alt="Diretor"/>
                 }
                 <p>{director.name}</p>
+              </li>    
+            ))}
+          </ul>
+        </div>
+
+        <div className="info-box">
+          <span>Elenco:</span>
+          <ul>
+            {actors.map(actor => (
+              <li>
+                {actor.profile_path 
+                  && <img src={`${baseImgURL}w185${actor.profile_path}`} alt="Ator"/>
+                }
+                <p>{actor.name}</p>
               </li>    
             ))}
           </ul>

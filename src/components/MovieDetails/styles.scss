@@ -5,6 +5,10 @@
   // align-items: center;
 }
 
+.details-container .left {
+  margin-right: 2rem;
+}
+
 .details-container .info-box {
   display: flex;
   flex-direction: column;
@@ -24,9 +28,8 @@
   margin-top: .5rem;
   display: flex;
   flex-direction: column;
-  max-height: 12rem;
+  max-height: 13.5rem;
   width: min-content;
-  // background-color: gray;
   overflow-y: auto;
 }
 
@@ -48,6 +51,3 @@
   margin-right: 2rem;
 }
 
-.details-container .info-box ul li p {
-  // white-space: nowrap;
-}

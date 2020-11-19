@@ -67,7 +67,7 @@ const People: React.FC<Props> = ({ shouldReload, style }) => {
         label: (
           <article>
             {person.profile_path 
-              ? <img src={`${baseImgURL}w45/${person.profile_path}`} alt="img"/>
+              ? <img src={`${baseImgURL}w185/${person.profile_path}`} alt="img"/>
               : <div className="dummy-img" />
             }
             {person.name} 

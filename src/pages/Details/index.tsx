@@ -30,7 +30,8 @@ const Details: React.FC = () => {
   // const { filter } = useFilter();
 
   const [data, setData] = useState<DataResponse>({} as DataResponse);
-  const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState(true);
+  const [option, setOption] = useState(0);
 
   useEffect(() => {
     async function loadDetails() {
@@ -60,6 +61,25 @@ const Details: React.FC = () => {
 
     loadDetails();
   }, [id, pathname]);
+
+  function handleSelectOption(option: number) {
+    if (option===0) {
+      setOption(0);
+    } else if (option===1) {
+      setOption(1);
+    } else {
+      setOption(2);
+    }
+  }
+
+  function renderContentBasedOnOption() {
+    if (option===0) {
+      return (<h5>DETALHES</h5>);
+    } else if (option===1) {
+      return (<h5>GALERIA</h5>);
+    }
+    return (<h5>VER SIMILARES</h5>);
+  }
 
   if (loading) {
     return (
@@ -107,12 +127,25 @@ const Details: React.FC = () => {
       
       <div className="menu-container">
         <ul className="menu-options-container">
-          <li className={'selected'}>DETALHES</li>
-          <li>GALERIA</li>
-          <li>VER SIMILARES</li>
+          {/* 
+            0 - DETAILS
+            1 - GALLERY
+            2 - SIMILAR TITLES
+          */}
+          <li onClick={() => handleSelectOption(0)} className={option===0 ? 'selected' : ''}>
+            DETALHES
+          </li>
+          <li onClick={() => handleSelectOption(1)} className={option===1 ? 'selected' : ''}>
+            GALERIA
+          </li>
+          <li onClick={() => handleSelectOption(2)} className={option===2 ? 'selected' : ''}>
+            VER SIMILARES
+          </li>
         </ul>
       
-        <h5>CONTENT</h5>
+        <>
+          {renderContentBasedOnOption()}
+        </>
       </div>
     </div>
     </>

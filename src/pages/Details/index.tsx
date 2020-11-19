@@ -3,6 +3,7 @@ import { useLocation, useParams } from 'react-router-dom';
 import EvaluationCircle from '../../components/EvaluationCircle';
 import GenreTag from '../../components/GenreTag';
 import Header from '../../components/Header';
+import MovieDetails from '../../components/MovieDetails';
 import tmdbAPI, { baseImgURL } from '../../services/api';
 import './styles.scss';
 
@@ -10,7 +11,20 @@ interface DetailsParams {
   id: string;
 }
 
-interface DataResponse {
+// Data only used in Movies
+export interface MovieDetailsData {
+  runtime: number | null;
+  budget: number;
+  release_date: string;
+  status: string;
+}
+
+// Data only used in TV
+export interface TvDetailsData {
+  
+}
+
+interface DataResponse extends MovieDetailsData, TvDetailsData {
   title: string;
   name: string;
   overview: string;
@@ -30,12 +44,13 @@ const Details: React.FC = () => {
   // const { filter } = useFilter();
 
   const [data, setData] = useState<DataResponse>({} as DataResponse);
+  const [detailsType, ] = useState(pathname.slice(1, 6));
   const [loading, setLoading] = useState(true);
   const [option, setOption] = useState(0);
 
   useEffect(() => {
     async function loadDetails() {
-      if (pathname.slice(1, 6)==='filme') {
+      if (detailsType==='filme') {
         try {
           const { data } = await tmdbAPI.get(`movie/${id}`);
           console.log(data);
@@ -44,7 +59,7 @@ const Details: React.FC = () => {
         } catch (err) {
           console.log('redirect to 404');
         }
-      } else if (pathname.slice(1, 6)==='serie') {
+      } else if (detailsType==='serie') {
         try {
           const { data } = await tmdbAPI.get(`tv/${id}`);
           console.log(data);
@@ -60,7 +75,7 @@ const Details: React.FC = () => {
     }
 
     loadDetails();
-  }, [id, pathname]);
+  }, [id, detailsType]);
 
   function handleSelectOption(option: number) {
     if (option===0) {
@@ -74,7 +89,9 @@ const Details: React.FC = () => {
 
   function renderContentBasedOnOption() {
     if (option===0) {
-      return (<h5>DETALHES</h5>);
+      if (detailsType==='filme')
+        return <MovieDetails details={data}/>;
+      return <h5>DETALHES SÈRIE</h5>
     } else if (option===1) {
       return (<h5>GALERIA</h5>);
     }

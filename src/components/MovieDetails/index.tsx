@@ -83,12 +83,33 @@ const MovieDetails: React.FC<MovieDetailsProps> = ({ details }) => {
     return '';
   }
 
+  function parseRuntime() {
+    if (!details.runtime) {
+      return '';
+    }
+
+    const hours = (details.runtime / 60);
+    const rhours = Math.floor(hours);
+    const minutes = (hours - rhours) * 60;
+    const rminutes = Math.round(minutes);
+
+    const hourObj = new Date;
+    hourObj.setHours(rhours, rminutes);
+    const stringHourObj = hourObj.toLocaleTimeString();
+    
+    const parsedTime = `
+      ${stringHourObj.slice(0,1)==='0' ? stringHourObj.slice(1,2) : stringHourObj.slice(0,2) }h ${stringHourObj.slice(3,5)}m
+    `;
+
+    return parsedTime;
+  }
+
   return (
     <div className="details-container">
       <section className="left">
         <div className="info-box">
           <span>Duração:</span>
-          <p>{details.runtime} min</p>
+          <p>{parseRuntime()}</p>
         </div>
         <div className="info-box">
           <span>Data de lançamento:</span>

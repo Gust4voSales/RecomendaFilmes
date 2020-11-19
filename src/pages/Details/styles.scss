@@ -18,14 +18,14 @@
   );
 }
 
-#details .header-info {
+#details .header-info-container {
   margin: 2rem 0;
   display: flex;
   padding: 4rem;
   // width: 100%;
 }
 
-#details .header-info .poster {
+#details .header-info-container .poster {
   // width: 40%;
   max-width: 185px;
   // min-width: 80px;
@@ -37,30 +37,31 @@
   box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.35);
 }
 
-#details .header-info .info {
+#details .header-info-container .info {
   // background-color: gray;
   display: flex;  
   flex-direction: column;
 }
 
-#details .header-info .info h2 {
+#details .header-info-container .info h2 {
   margin-top: .2rem;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
   // font-size: 2rem;
+  // font-family: 'Montserrat', sans-serif;
 }
 
-#details .header-info .info p {
+#details .header-info-container .info p {
   font-size: 1.4rem;
   text-align: justify;
   margin-bottom: 2rem;
 }
 
-#details .header-info .info .info-bottom {
+#details .header-info-container .info .info-bottom {
   display: flex;
   // width: 100%;
 }
 
-#details .header-info .info .info-bottom .genres-list {
+#details .header-info-container .info .info-bottom .genres-list {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -72,19 +73,12 @@
 // MEDIA QUERIES
 
 @media(max-width: 720px) {
-  #details .header-info {
+  #details .header-info-container {
     padding: 2rem;
   }
 
-  #details .header-info .poster {
+  #details .header-info-container .poster {
     margin-right: 2rem;
-  }
-}
-
-@media (max-width: 630px) {
-  #details .header-info .info p {
-    max-height: 15rem;
-    overflow-x: auto;
   }
 }
 
@@ -93,14 +87,33 @@
     height: 50vh;
   }
 
-  #details .header-info {
+  #details .header-info-container {
     padding: 0;
+  }
+
+  #details .header-info-container .info p {
+    height: 15rem;
+    // max-height: 15rem;
+    padding-right: .5rem;
+    overflow-x: auto;
   }
 }
 
 @media(max-width: 500px) {
-  #details .header-info .poster {
+  #details .header-info-container .poster {
     width: 13.2rem;
     height: 19.8rem;
+  }
+
+  #details .header-info-container .info .info-bottom {
+    // background-color: gray;
+    justify-content: center;
+    width: calc(100% + 15.2rem); 
+    margin-left: -15rem; // width of the poster + margin
+  }
+
+  #details .header-info-container .info .info-bottom .genres-list {
+    width: 60%;
+    justify-content: center;
   }
 }

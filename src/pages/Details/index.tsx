@@ -81,7 +81,7 @@ const Details: React.FC = () => {
     <div id="details">
       <Header backButtonRoute="/recomendar" />
       
-      <div className="header-info">
+      <div className="header-info-container">
         <img 
           src={`${baseImgURL}w185${data.poster_path}`} 
           alt="poster"

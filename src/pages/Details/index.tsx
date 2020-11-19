@@ -13,6 +13,7 @@ interface DetailsParams {
 
 // Data only used in Movies
 export interface MovieDetailsData {
+  id: number;
   runtime: number | null;
   budget: number;
   release_date: string;

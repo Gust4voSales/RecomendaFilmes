@@ -1,12 +1,57 @@
-import React from 'react';
+import { AxiosResponse } from 'axios';
+import React, { useEffect, useState } from 'react';
 import { MovieDetailsData } from '../../pages/Details';
+import tmdbAPI, { baseImgURL } from '../../services/api';
 import './styles.scss';
 
 interface MovieDetailsProps {
   details: MovieDetailsData;
 }
 
+interface CreditsResponse {
+  cast: {
+    name: string;
+    profile_path: string;
+    character: string;
+  }[];
+  crew: {
+    name: string;
+    profile_path: string;
+    job: string;
+  }[];
+}
+interface DirectorInfo {
+  name: string;
+  profile_path: string | null;
+  job: string;
+}
+
 const MovieDetails: React.FC<MovieDetailsProps> = ({ details }) => {
+  const [actors, setActors] = useState({} as CreditsResponse);
+  const [directors, setDirectors] = useState<DirectorInfo[]>([]);
+
+  useEffect(() => {
+    async function loadCredits() {
+      try {
+        const { data } = await tmdbAPI.get(`/movie/${details.id}/credits`);
+
+        let movieDirectors = [];
+        for (let crewMember of data.crew) {
+          if (crewMember.job==="Director") {
+            movieDirectors.push(crewMember);
+          }
+        }
+        setDirectors(movieDirectors);
+
+        console.log(data);
+      } catch (err) {
+        console.log(err);
+      }
+    }
+
+    loadCredits();
+  }, []);
+  
   function parseData() {
     const stringDataUS = details.release_date;
 
@@ -35,18 +80,36 @@ const MovieDetails: React.FC<MovieDetailsProps> = ({ details }) => {
 
   return (
     <div className="details-container">
-      <div className="info-box">
-        <span>Duração:</span>
-        <p>{details.runtime} min</p>
-      </div>
-      <div className="info-box">
-        <span>Data de lançamento:</span>
-        <p>{parseData()}</p>
-      </div>
-      <div className="info-box">
-        <span>Status:</span>
-        <p>{translateStatus()}</p>
-      </div>
+      <section className="left">
+        <div className="info-box">
+          <span>Duração:</span>
+          <p>{details.runtime} min</p>
+        </div>
+        <div className="info-box">
+          <span>Data de lançamento:</span>
+          <p>{parseData()}</p>
+        </div>
+        <div className="info-box">
+          <span>Status:</span>
+          <p>{translateStatus()}</p>
+        </div>
+      </section>
+
+      <section className="right">
+        <div className="info-box">
+          <span>Direção:</span>
+          <ul>
+            {directors.map(director => (
+              <li>
+                {director.profile_path 
+                  && <img src={`${baseImgURL}w185${director.profile_path}`} alt="Diretor"/>
+                }
+                <p>{director.name}</p>
+              </li>    
+            ))}
+          </ul>
+        </div>
+      </section>
     </div>
   );
 }

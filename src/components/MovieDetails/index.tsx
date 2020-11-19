@@ -100,6 +100,23 @@ const MovieDetails: React.FC<MovieDetailsProps> = ({ details }) => {
         </div>
       </section>
 
+      <section className="center">
+        <div className="info-box">
+          <span>Elenco:</span>
+          <ul>
+            {actors.map(actor => (
+              <li>
+                {actor.profile_path 
+                  ? <img src={`${baseImgURL}w185${actor.profile_path}`} alt="Ator"/>
+                  : <div className="img-placeholder"/>
+                }
+                <p>{actor.name}</p>
+              </li>    
+            ))}
+          </ul>
+        </div>
+      </section>
+
       <section className="right">
         <div className="info-box">
           <span>Direção:</span>
@@ -110,20 +127,6 @@ const MovieDetails: React.FC<MovieDetailsProps> = ({ details }) => {
                   && <img src={`${baseImgURL}w185${director.profile_path}`} alt="Diretor"/>
                 }
                 <p>{director.name}</p>
-              </li>    
-            ))}
-          </ul>
-        </div>
-
-        <div className="info-box">
-          <span>Elenco:</span>
-          <ul>
-            {actors.map(actor => (
-              <li>
-                {actor.profile_path 
-                  && <img src={`${baseImgURL}w185${actor.profile_path}`} alt="Ator"/>
-                }
-                <p>{actor.name}</p>
               </li>    
             ))}
           </ul>

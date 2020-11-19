@@ -98,6 +98,14 @@ const MovieDetails: React.FC<MovieDetailsProps> = ({ details }) => {
           <span>Status:</span>
           <p>{translateStatus()}</p>
         </div>
+        <div className="info-box">
+          <span>Orçamento:</span>
+          <p>
+            {new Intl.NumberFormat('us', 
+              { style: 'currency', currency: 'USD'}).format(details.budget)
+            }
+          </p>
+        </div>
       </section>
 
       <section className="center">

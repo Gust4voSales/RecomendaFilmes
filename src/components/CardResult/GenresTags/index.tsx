@@ -1,5 +1,5 @@
 import React from 'react';
-import { useFilter } from '../../contexts/filtersContexts';
+import { useFilter } from '../../../contexts/filtersContexts';
 import './styles.scss';
 
 interface GenresTagsProps {

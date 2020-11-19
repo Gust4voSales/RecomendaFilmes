@@ -3,7 +3,7 @@ import './styles.scss';
 import { baseImgURL } from '../../services/api';
 import { recommendationsResponse } from '../RecommendationsResults/index';
 import EvaluationCircle from '../EvaluationCircle';
-import GenresTags from '../GenresTags';
+import GenresTags from './GenresTags';
 import { useHistory } from 'react-router-dom';
 import { useFilter } from '../../contexts/filtersContexts';
 

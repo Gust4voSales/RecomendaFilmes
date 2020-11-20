@@ -19,12 +19,14 @@ interface CreditsResponse {
 }
 
 interface ActorInfo {
+  id: number;
   name: string;
   profile_path: string;
   character: string;
 }
 
 interface DirectorInfo {
+  id: number;
   name: string;
   profile_path: string | null;
   job: string;
@@ -134,7 +136,7 @@ const MovieDetails: React.FC<MovieDetailsProps> = ({ details }) => {
           <span>Elenco:</span>
           <ul>
             {actors.map(actor => (
-              <li>
+              <li key={actor.id}>
                 {actor.profile_path 
                   ? <img src={`${baseImgURL}w185${actor.profile_path}`} alt="Ator"/>
                   : <div className="img-placeholder"/>
@@ -151,7 +153,7 @@ const MovieDetails: React.FC<MovieDetailsProps> = ({ details }) => {
           <span>Direção:</span>
           <ul>
             {directors.map(director => (
-              <li>
+              <li key={director.id}>
                 {director.profile_path 
                   && <img src={`${baseImgURL}w185${director.profile_path}`} alt="Diretor"/>
                 }

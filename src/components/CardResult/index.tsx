@@ -1,10 +1,10 @@
-import React, { MouseEventHandler } from 'react';
+import React, { MouseEventHandler, useState } from 'react';
 import './styles.scss';
 import { baseImgURL } from '../../services/api';
 import { recommendationsResponse } from '../RecommendationsResults/index';
 import EvaluationCircle from '../EvaluationCircle';
 import GenresTags from './GenresTags';
-import { useHistory } from 'react-router-dom';
+import { Link, } from 'react-router-dom';
 import { useFilter } from '../../contexts/filtersContexts';
 
 interface CardProps {
@@ -13,26 +13,27 @@ interface CardProps {
 
 const CardResult: React.FC<CardProps> = ({ data }) => {
   const maxCharsOverview = 160;
-  const history = useHistory();
   const { filter } = useFilter();
 
-  const stopClickPropagation: MouseEventHandler<HTMLDivElement> = (e) => {
-    if (data.overview.length > maxCharsOverview)
-      e.stopPropagation();
+  const [hoveredOverview, setHoveredOverview] = useState(false);
+
+  const navigateToDetails: MouseEventHandler<HTMLAnchorElement> = (e) => {
+    // If it is a hoverable overview check if the user is currently hovering it
+    // if the user isn't hovering, then the link will behave as expected
+    // otherwise, it won't navigate to the new screen
+    if ((data.overview.length > maxCharsOverview) && hoveredOverview) {
+      e.preventDefault();
+    } 
   }
 
-  function navigateToDetails() {
-    if (filter.option==='tv')
-      history.push(`/serie/${data.id}`);
-    else 
-      history.push(`/filme/${data.id}`);
-  }
-
-  return (
+  return ( 
+    <Link 
+      to={filter.option==='tv' ? `/serie/${data.id}` : `/filme/${data.id}`} 
+      onClick={(e) => navigateToDetails(e)}
+    >
     <li 
       className="card"
       key={data.id}
-      onClick={navigateToDetails}
     >
       { data.backdrop_path 
         && <img 
@@ -53,7 +54,8 @@ const CardResult: React.FC<CardProps> = ({ data }) => {
         <h1>{data.title || data.name}</h1>
         <div 
           className="overview" 
-          onClick={stopClickPropagation} 
+          onMouseEnter={() => setHoveredOverview(true)}
+          onMouseLeave={() => setHoveredOverview(false)}
           style={data.overview.length>maxCharsOverview ? { cursor: 'text' } : {}} 
         >
           <p>
@@ -73,6 +75,7 @@ const CardResult: React.FC<CardProps> = ({ data }) => {
         </div>
       </div>
     </li>
+    </Link>
   );
 }
 

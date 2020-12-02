@@ -1,21 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { MovieDetailsData } from '../../pages/Details';
 import tmdbAPI, { baseImgURL } from '../../services/api';
+import timeParser from '../../utils/timeParser';
 import './styles.scss';
 
 interface MovieDetailsProps {
   details: MovieDetailsData;
-}
-
-interface CreditsResponse {
-  cast: {
-   
-  }[];
-  crew: {
-    name: string;
-    profile_path: string;
-    job: string;
-  }[];
 }
 
 interface ActorInfo {
@@ -57,7 +47,7 @@ const MovieDetails: React.FC<MovieDetailsProps> = ({ details }) => {
     }
 
     loadCredits();
-  }, []);
+  }, [details.id]);
   
   function parseData() {
     const stringDataUS = details.release_date;
@@ -90,20 +80,7 @@ const MovieDetails: React.FC<MovieDetailsProps> = ({ details }) => {
       return '';
     }
 
-    const hours = (details.runtime / 60);
-    const rhours = Math.floor(hours);
-    const minutes = (hours - rhours) * 60;
-    const rminutes = Math.round(minutes);
-
-    const hourObj = new Date;
-    hourObj.setHours(rhours, rminutes);
-    const stringHourObj = hourObj.toLocaleTimeString();
-    
-    const parsedTime = `
-      ${stringHourObj.slice(0,1)==='0' ? stringHourObj.slice(1,2) : stringHourObj.slice(0,2) }h ${stringHourObj.slice(3,5)}m
-    `;
-
-    return parsedTime;
+    return timeParser(details.runtime);
   }
 
   return (
@@ -155,7 +132,8 @@ const MovieDetails: React.FC<MovieDetailsProps> = ({ details }) => {
             {directors.map(director => (
               <li key={director.id}>
                 {director.profile_path 
-                  && <img src={`${baseImgURL}w185${director.profile_path}`} alt="Diretor"/>
+                  ? <img src={`${baseImgURL}w185${director.profile_path}`} alt="Diretor"/>
+                  : <div className="img-placeholder"/>
                 }
                 <p>{director.name}</p>
               </li>    

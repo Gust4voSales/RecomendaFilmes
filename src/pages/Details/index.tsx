@@ -4,6 +4,7 @@ import EvaluationCircle from '../../components/EvaluationCircle';
 import GenreTag from '../../components/GenreTag';
 import Header from '../../components/Header';
 import MovieDetails from '../../components/MovieDetails';
+import TvDetails from '../../components/TvDetails';
 import tmdbAPI, { baseImgURL } from '../../services/api';
 import './styles.scss';
 
@@ -22,7 +23,17 @@ export interface MovieDetailsData {
 
 // Data only used in TV
 export interface TvDetailsData {
-  
+  id: number;
+  first_air_date: string;
+  episode_run_time: number[] | null;
+  number_of_seasons: number;
+  number_of_episodes: number;
+  in_production: boolean;
+  networks: {
+    name: string;
+    id: number;
+    logo_path: string;
+  }[];
 }
 
 interface DataResponse extends MovieDetailsData, TvDetailsData {
@@ -92,7 +103,7 @@ const Details: React.FC = () => {
     if (option===0) {
       if (detailsType==='filme')
         return <MovieDetails details={data}/>;
-      return <h5>DETALHES SÈRIE</h5>
+      return <TvDetails details={data}/>;
     } else if (option===1) {
       return (<h5>GALERIA</h5>);
     }

@@ -46,10 +46,23 @@ const TvDetails: React.FC<TvDetailsProps> = ({ details }) => {
 
   return (
     <div className="details-container">
-      {/* {actors.map(actor => (<p>{actor.name}</p>))} */}
-      <div className="info-box">
-        <span>Duração:</span>
-        <p>{parseEpisodeRunTimes()}</p>
+      <div className="top">
+        <div className="info-box-tv">
+          <span>Duração dos episódios:</span>
+          <p>{parseEpisodeRunTimes()}</p>
+        </div>
+        <div className="info-box-tv">
+          <span>Temporadas:</span>
+          <p>{details.number_of_seasons}</p>
+        </div>
+        <div className="info-box-tv">
+          <span>Total de episódios:</span>
+          <p>{details.number_of_episodes}</p>
+        </div>
+        <div className="info-box-tv">
+          <span>Em produção:</span>
+          <p>{details.in_production ? 'Sim' : 'Não'}</p>
+        </div>
       </div>
     </div>  
   );

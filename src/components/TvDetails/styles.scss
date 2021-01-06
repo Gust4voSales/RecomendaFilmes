@@ -1,26 +1,15 @@
-.details-container .top {
+.details-container {
+  margin: 3rem 0;
   display: flex;
-  width: 100%;
+  flex-direction: column;
   justify-content: space-between;
   flex-wrap: wrap;
-}
-.details-container .info-box-tv {
-  // width: 15rem;
-  margin: 0 2rem 4rem 2rem;
-}
+};
 
-.details-container .info-box-tv span{
-  color: #aaa;
-  margin-bottom: .75rem;
-}
-
-.details-container .info-box-tv p {
-  margin-left: 0.1rem;
-}
-
-
-@media (max-width: 600px) {
-  .details-container .info-box-tv {
-    width: 15rem;
+@media(max-width: 520px) {
+  .info-top-tv {
+    margin: 0 auto;
+    flex-direction: column;
   }
 }
+

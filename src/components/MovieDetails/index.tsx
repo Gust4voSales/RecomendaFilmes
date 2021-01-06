@@ -85,7 +85,7 @@ const MovieDetails: React.FC<MovieDetailsProps> = ({ details }) => {
 
   return (
     <div className="details-container">
-      <section className="left">
+      <section className="info-top">
         <div className="info-box">
           <span>Duração:</span>
           <p>{parseRuntime()}</p>
@@ -108,7 +108,7 @@ const MovieDetails: React.FC<MovieDetailsProps> = ({ details }) => {
         </div>
       </section>
 
-      <section className="center">
+      <section className="info-bottom">
         <div className="info-box">
           <span>Elenco:</span>
           <ul>
@@ -123,9 +123,7 @@ const MovieDetails: React.FC<MovieDetailsProps> = ({ details }) => {
             ))}
           </ul>
         </div>
-      </section>
 
-      <section className="right">
         <div className="info-box">
           <span>Direção:</span>
           <ul>

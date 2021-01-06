@@ -1,11 +1,15 @@
-.details-container {
-  margin: 3rem 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  flex-wrap: wrap;
-};
+.details-container .info-bottom .network-list {
+  flex-direction: row;
+  width: max-content;
+}
 
+.details-container .info-bottom ul li .network-img {
+  max-width: 12rem;
+  width: auto;
+  height: auto;
+  border-radius: 0;
+  background-color: transparent;
+}
 @media(max-width: 520px) {
   .info-top-tv {
     margin: 0 auto;

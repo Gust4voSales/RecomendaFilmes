@@ -82,33 +82,33 @@ const TvDetails: React.FC<TvDetailsProps> = ({ details }) => {
         </div>
 
         <div className="info-box">
-          <span>Elenco:</span>
+          <span>Criado por:</span>
           <ul>
-            {actors.map(actor => (
-              <li key={actor.id}>
-                {actor.profile_path 
-                  ? <img src={`${baseImgURL}w185${actor.profile_path}`} alt="Ator"/>
+            {details.created_by.map(creator => (
+              <li key={creator.id}>
+                {creator.profile_path 
+                  ? <img src={`${baseImgURL}w185${creator.profile_path}`} alt="Criador"/>
                   : <div className="img-placeholder"/>
                 }
-                <p>{actor.name}</p>
+                <p>{creator.name}</p>
               </li>    
             ))}
           </ul>
         </div>
-        {/* <div className="info-box">
-          <span>Direção:</span>
-          <ul>
-            {directors.map(director => (
-              <li key={director.id}>
-                {director.profile_path 
-                  ? <img src={`${baseImgURL}w185${director.profile_path}`} alt="Diretor"/>
+
+        <div className="info-box">
+          <span>Networks:</span>
+          <ul className="network-list">
+            {details.networks.map(network => (
+              <li key={network.id}>
+                {network.logo_path 
+                  ? <img className="network-img" src={`${baseImgURL}w185${network.logo_path}`} alt="Network"/>
                   : <div className="img-placeholder"/>
                 }
-                <p>{director.name}</p>
               </li>    
             ))}
           </ul>
-        </div> */}
+        </div>
       </section>
     </div>  
   );

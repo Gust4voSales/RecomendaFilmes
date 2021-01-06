@@ -29,10 +29,17 @@ export interface TvDetailsData {
   number_of_seasons: number;
   number_of_episodes: number;
   in_production: boolean;
+  created_by: [
+    {
+      id: number;
+      name: string;
+      profile_path: string | null;
+    }
+  ];
   networks: {
     name: string;
     id: number;
-    logo_path: string;
+    logo_path: string | null;
   }[];
 }
 

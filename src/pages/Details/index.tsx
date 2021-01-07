@@ -5,6 +5,7 @@ import Gallery from '../../components/Gallery';
 import GenreTag from '../../components/GenreTag';
 import Header from '../../components/Header';
 import MovieDetails from '../../components/MovieDetails';
+import SimilarTitles from '../../components/SimilarTitles';
 import TvDetails from '../../components/TvDetails';
 import tmdbAPI, { baseImgURL } from '../../services/api';
 import './styles.scss';
@@ -16,6 +17,7 @@ interface DetailsParams {
 // Data only used in Movies
 export interface MovieDetailsData {
   id: number;
+  title: string;
   runtime: number | null;
   budget: number;
   release_date: string;
@@ -25,6 +27,7 @@ export interface MovieDetailsData {
 // Data only used in TV
 export interface TvDetailsData {
   id: number;
+  name: string;
   first_air_date: string;
   episode_run_time: number[] | null;
   number_of_seasons: number;
@@ -49,9 +52,18 @@ export interface GalleryData {
    }[] };
 }
 
-interface DataResponse extends MovieDetailsData, TvDetailsData, GalleryData {
-  title: string;
-  name: string;
+export interface SimilarTitlesData {
+  similar: {
+    results: {
+      title: string;
+      name: string;
+      id: number;
+      poster_path: string | null;
+    }[];
+  }
+}
+
+interface DataResponse extends MovieDetailsData, TvDetailsData, GalleryData, SimilarTitlesData {
   overview: string;
   backdrop_path: string;
   poster_path: string;
@@ -77,7 +89,9 @@ const Details: React.FC = () => {
     async function loadDetails() {
       if (detailsType==='filme') {
         try {
-          const { data } = await tmdbAPI.get(`movie/${id}`, { params: { append_to_response: 'videos' } });
+          const { data } = await tmdbAPI.get(`movie/${id}`, 
+            { params: { append_to_response: 'videos,similar' }
+          });
           console.log(data);
           setData(data);
           setLoading(false);
@@ -86,7 +100,9 @@ const Details: React.FC = () => {
         }
       } else if (detailsType==='serie') {
         try {
-          const { data } = await tmdbAPI.get(`tv/${id}`, { params: { append_to_response: 'videos' } });
+          const { data } = await tmdbAPI.get(`tv/${id}`, 
+            { params: { append_to_response: 'videos,similar' } 
+          });
           console.log(data);
           setData(data);
           setLoading(false);
@@ -98,6 +114,10 @@ const Details: React.FC = () => {
         // redirect to 404
       }
     }
+
+    // RESETING
+    setLoading(true);
+    setOption(0);
 
     loadDetails();
   }, [id, detailsType]);
@@ -120,7 +140,7 @@ const Details: React.FC = () => {
     } else if (option===1) {
       return <Gallery videos={data.videos} />;
     }
-    return (<h5>VER SIMILARES</h5>);
+    return <SimilarTitles similar={data.similar} />;
   }
 
   if (loading) {

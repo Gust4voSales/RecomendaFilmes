@@ -1,0 +1,27 @@
+.small-title-container {
+  height: auto;
+  width: 18rem;
+  margin: .5rem .5rem;
+
+  transition: transform .3s;
+  &:hover {
+    transform: scale(1.02);
+    box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.35);
+  }
+}
+
+.small-title-container img {
+  width: 100%;
+}
+
+@media (max-width: 1420px) {
+  .small-title-container {
+    width: 16rem;
+  }
+}
+
+@media (max-width: 1270px) {
+  .small-title-container {
+    width: 10rem;
+  }
+}

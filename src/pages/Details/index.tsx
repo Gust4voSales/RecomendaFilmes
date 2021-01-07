@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation, useParams } from 'react-router-dom';
 import EvaluationCircle from '../../components/EvaluationCircle';
+import Gallery from '../../components/Gallery';
 import GenreTag from '../../components/GenreTag';
 import Header from '../../components/Header';
 import MovieDetails from '../../components/MovieDetails';
@@ -29,13 +30,11 @@ export interface TvDetailsData {
   number_of_seasons: number;
   number_of_episodes: number;
   in_production: boolean;
-  created_by: [
-    {
+  created_by: {
       id: number;
       name: string;
       profile_path: string | null;
-    }
-  ];
+    }[];
   networks: {
     name: string;
     id: number;
@@ -43,7 +42,14 @@ export interface TvDetailsData {
   }[];
 }
 
-interface DataResponse extends MovieDetailsData, TvDetailsData {
+export interface GalleryData {
+  videos: { results: {
+    key: string;
+    type: string;
+   }[] };
+}
+
+interface DataResponse extends MovieDetailsData, TvDetailsData, GalleryData {
   title: string;
   name: string;
   overview: string;
@@ -71,7 +77,7 @@ const Details: React.FC = () => {
     async function loadDetails() {
       if (detailsType==='filme') {
         try {
-          const { data } = await tmdbAPI.get(`movie/${id}`);
+          const { data } = await tmdbAPI.get(`movie/${id}`, { params: { append_to_response: 'videos' } });
           console.log(data);
           setData(data);
           setLoading(false);
@@ -80,7 +86,7 @@ const Details: React.FC = () => {
         }
       } else if (detailsType==='serie') {
         try {
-          const { data } = await tmdbAPI.get(`tv/${id}`);
+          const { data } = await tmdbAPI.get(`tv/${id}`, { params: { append_to_response: 'videos' } });
           console.log(data);
           setData(data);
           setLoading(false);
@@ -112,7 +118,7 @@ const Details: React.FC = () => {
         return <MovieDetails details={data}/>;
       return <TvDetails details={data}/>;
     } else if (option===1) {
-      return (<h5>GALERIA</h5>);
+      return <Gallery videos={data.videos} />;
     }
     return (<h5>VER SIMILARES</h5>);
   }
@@ -152,7 +158,7 @@ const Details: React.FC = () => {
             <ul className="genres-list">
               {
                 data.genres.map(genre => {
-                  return (<GenreTag name={genre.name} id={genre.id} />)
+                  return (<GenreTag name={genre.name} id={genre.id} key={genre.id}/>)
                 })
               }
             </ul>
@@ -163,11 +169,6 @@ const Details: React.FC = () => {
       
       <div className="menu-container">
         <ul className="menu-options-container">
-          {/* 
-            0 - DETAILS
-            1 - GALLERY
-            2 - SIMILAR TITLES
-          */}
           <li onClick={() => handleSelectOption(0)} className={option===0 ? 'selected' : ''}>
             DETALHES
           </li>

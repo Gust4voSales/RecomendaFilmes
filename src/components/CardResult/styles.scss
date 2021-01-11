@@ -7,8 +7,8 @@ a {
   position: relative;
   // original background img height is 28rem 
   height: 24rem;
-  width: 100%;
-  max-width: 55rem;
+  width: 55rem;
+  // max-width: 55rem;
   margin: 0 2rem 2rem 2rem;
   border-radius: .8rem;
   display: flex;
@@ -51,7 +51,7 @@ a {
 
 .card .info {
   flex: 3;
-  // width: 100%;
+  width: 100%;
   display: flex;
   flex-direction: column;
   z-index: 1;
@@ -64,7 +64,7 @@ a {
 }
 
 .card .info h1 {
-  display: inline-block;
+  // display: inline-block;
   font-family: 'Montserrat', sans-serif;
   font-size: 2rem;
   font-weight: 500;
@@ -133,5 +133,31 @@ a {
   .card .poster-img {
     width: 10rem;
     height: 16rem;
+  }
+}
+@media(max-width: 540px) {
+  .card {
+    width: 100% !important;
+    min-width: 50rem; 
+  }
+}
+@media(max-width: 500px) {
+  .card {
+    min-width: 40rem; 
+  }
+}
+@media(max-width: 400px) {
+  .card {
+    min-width: 38rem; 
+  }
+}
+@media(max-width: 370px) {
+  .card {
+    min-width: 34rem; 
+  }
+}
+@media(max-width: 320px) {
+  .card {
+    min-width: none; 
   }
 }

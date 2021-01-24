@@ -2,15 +2,17 @@
   height: auto;
   width: 18rem;
   margin: .5rem .5rem;
-
   transition: transform .3s;
+
   &:hover {
     transform: scale(1.02);
-    box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.35);
+    box-shadow: 0 0 10px 0px rgba(63, 63, 63, 0.35);
   }
 }
 
 .small-title-container img {
+  max-height: 270px;
+  min-height: 270px;
   width: 100%;
 }
 
@@ -18,10 +20,20 @@
   .small-title-container {
     width: 16rem;
   }
+  .small-title-container img {
+    min-height: 238px;
+    max-height: 240px;
+    // width: 100%;
+  }
 }
 
 @media (max-width: 1270px) {
   .small-title-container {
     width: 10rem;
+  }
+
+  .small-title-container img {
+    min-height: 150px;
+    max-height: 150px;
   }
 }

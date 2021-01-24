@@ -4,6 +4,7 @@ import { FilterProvider } from './contexts/filtersContexts';
 import Details from './pages/Details';
 import Landing from './pages/Landing';
 import Recommend from './pages/Recommend';
+import SearchResults from './pages/SearchResults';
 
 const Routes = () => {
     return(
@@ -17,6 +18,7 @@ const Routes = () => {
             />
             <Route component={Details} path="/filme/:id" />
             <Route component={Details} path="/serie/:id" />
+            <Route component={SearchResults} path="/pesquisar" />
         </BrowserRouter>
         </FilterProvider>
     );

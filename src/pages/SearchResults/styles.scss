@@ -1,0 +1,9 @@
+.search-results {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+.search-results li {
+  list-style: none;
+}

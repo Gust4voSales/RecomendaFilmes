@@ -15,7 +15,7 @@ interface TitleProps {
 const SmallTitleCard: React.FC<TitleProps> = ({ data }) => {
   return (
     <Link to={data.name ? `/serie/${data.id}` : `/filme/${data.id}`}>
-      <div className="small-title-container">
+      <div className="small-title-container" style={data.poster_path ? {} : { backgroundColor: 'rgb(34, 34, 34)', }}>
         <img 
           src={`${baseImgURL}w185${data.poster_path}`} 
           alt={data.title || data.name}

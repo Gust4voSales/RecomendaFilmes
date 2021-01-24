@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react';
-import { MdKeyboardArrowDown, MdKeyboardArrowUp, MdSearch } from "react-icons/md";
+import { MdKeyboardArrowDown, MdKeyboardArrowUp, MdSearch, } from "react-icons/md";
 import './styles.scss';
 import Genre from '../../components/filters/Genre';
 import { filterInitialState, useFilter } from '../../contexts/filtersContexts';
@@ -10,9 +10,13 @@ import RecommendationsResults from '../../components/RecommendationsResults';
 import Header from '../../components/Header';
 import { useInView } from 'react-intersection-observer';
 import ResultsIndicator from '../../components/ResultsIndicator';
+import { useHistory } from 'react-router-dom';
+import '../../components/SearchInput.scss';
 
 
 const Recommend = () => {
+	const history = useHistory();
+
 	const { filter, changeFilter } = useFilter();
 	const [inViewRef, inView, ] = useInView({
     threshold: 0.02,
@@ -89,15 +93,19 @@ const Recommend = () => {
 								</button>
 							</div>
 						</div>
-						<div className="input">
+						
+						<div className="search-input">
 							<MdSearch size={'4rem'} className="search-icon"/>
 							<input 
-								type="search" 
-								name="search" 
-								id="search" 
-								placeholder={"Nome d"+(selectedOptionResults==='movie'? 'o filme' : 'a série')}
+								name="fake-search" 
+								id="fake-search" 
+								type="search"
+								autoComplete="off"
+								onChange={e => history.push(`/pesquisar?q=${e.target.value}`)}
+								placeholder={"Nome d"+(filter.option==='movie'? 'o filme' : 'a série')}
 							/>
 						</div>
+
 						<span>Ou utilize quantos filtros quiser e com certeza irá encontrar algo que lhe agrade</span>
 					</div>
 				

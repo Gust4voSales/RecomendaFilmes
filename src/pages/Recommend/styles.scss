@@ -8,9 +8,10 @@
 #recommend .description-container {
     display: flex;
     flex-direction: column;
-    min-height: 30rem;
-    justify-content: space-evenly;
+    // min-height: 30rem;
+    // justify-content: space-evenly;
     margin-top: 1rem;
+    margin-bottom: 1rem;
 }
 
 #recommend .description-container span {
@@ -22,6 +23,8 @@
 #recommend .description-container .top {
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
 }
 
 #recommend .description-container .top .radio-container {
@@ -45,36 +48,6 @@
     border-top-right-radius: 1rem;
     border-bottom-right-radius: 1rem;
     margin-left: -0.2rem;
-}
-
-#recommend .description-container .input .search-icon {
-    position: absolute;
-    margin-top: .5rem;
-    margin-left: 1rem;
-}
-
-#recommend .description-container .input input {
-    height: 5rem;
-    width: 100%;    
-    border-radius: 1rem;
-    background: linear-gradient(
-        to right, 
-        var(--red-theme) 22%, 
-        var(--purple-theme)
-    );
-    border: none;
-    color: white;
-    font-size: 2.4rem;
-    padding-left: 6rem;
-}
-#recommend .description-container .input input::placeholder {
-    color: #CCCCCC;
-}
-#recommend .description-container input:focus {
-    outline: none;
-}
-.description-container .input input::-webkit-search-cancel-button {
-    -webkit-appearance: none;
 }
 
 #recommend .filters-container .filters-block-header {
@@ -149,12 +122,9 @@
     }
 }
 @media (max-width: 920px) {
-    #recommend .description-container {
-        min-height: 40rem;
-    }
-
     #recommend .description-container .top {
         flex-direction: column;
+        align-items: unset;
     }
     #recommend .description-container .top .radio-container {
         align-self: center;

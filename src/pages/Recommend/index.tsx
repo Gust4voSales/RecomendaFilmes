@@ -40,7 +40,8 @@ const Recommend = () => {
 			const { returningFromSearch } = location.state as LocationState
 			
 			if (returningFromSearch === true) {
-				fakeInputRef?.current?.focus();
+				fakeInputRef.current?.focus();
+			 	location.state = undefined;
 			}
 		}
 		

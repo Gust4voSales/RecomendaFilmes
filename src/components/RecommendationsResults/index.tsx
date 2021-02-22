@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { useFilter } from '../../contexts/filtersContexts';
 import tmdbAPI from '../../services/api';
 import CardResult from '../CardResult';
+import ErrorMessage from '../ErrorMessage';
 import Loading from '../Loading';
 import './styles.scss';
 
@@ -25,6 +26,7 @@ export interface recommendationsResponse {
 const RecommendationsResults: React.FC = () => {
   const {filter, loadingResults, setLoadingResults } = useFilter();
 	const [recommendations, setRecommendations] = useState<recommendationsResponse[]>([]);
+	const [error, setError] = useState(false);
   
   useEffect(() => {
 		// Call function in the api to make request with the filter
@@ -46,6 +48,7 @@ const RecommendationsResults: React.FC = () => {
 		
 		setLoadingResults(true);
 		setRecommendations([]);
+		setError(false);
 
 		tmdbAPI.get(`/discover/${filter.option}`, {
 			cancelToken: new CancelToken(function executor(c) {
@@ -60,6 +63,8 @@ const RecommendationsResults: React.FC = () => {
 			})
 			.catch(err => {
 				setLoadingResults(false);
+				setRecommendations([]);
+				setError(true);
 				return;
 			});
 	}
@@ -73,7 +78,13 @@ const RecommendationsResults: React.FC = () => {
         ))}
       </ul>
 			{
+				recommendations.length===0 ? <span>Nenhum resultado encontrado. Tente alterar alguns filtros</span> : null
+			}
+			{
 				loadingResults ? <Loading /> : null
+			}
+			{
+				error ? <ErrorMessage message={`😕 Erro ao buscar ${filter.option==='movie' ? 'filmes' : 'séries'}`}/> : null
 			}
     </div>
   ); 

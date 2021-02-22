@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { useFilter } from '../../contexts/filtersContexts';
 import tmdbAPI from '../../services/api';
 import CardResult from '../CardResult';
+import Loading from '../Loading';
 import './styles.scss';
 
 const CancelToken = Axios.CancelToken;
@@ -22,7 +23,7 @@ export interface recommendationsResponse {
 }
 
 const RecommendationsResults: React.FC = () => {
-  const {filter, setLoadingResults } = useFilter();
+  const {filter, loadingResults, setLoadingResults } = useFilter();
 	const [recommendations, setRecommendations] = useState<recommendationsResponse[]>([]);
   
   useEffect(() => {
@@ -44,6 +45,7 @@ const RecommendationsResults: React.FC = () => {
 		};
 		
 		setLoadingResults(true);
+		setRecommendations([]);
 
 		tmdbAPI.get(`/discover/${filter.option}`, {
 			cancelToken: new CancelToken(function executor(c) {
@@ -70,6 +72,9 @@ const RecommendationsResults: React.FC = () => {
           <CardResult data={recommendation} key={recommendation.id}/>
         ))}
       </ul>
+			{
+				loadingResults ? <Loading /> : null
+			}
     </div>
   ); 
 }

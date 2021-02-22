@@ -27,8 +27,10 @@
 
 #details .header-info-container .poster {
   // width: 40%;
+  min-width: 160px;
+  min-height: 25rem;
+
   max-width: 185px;
-  // min-width: 80px;
   max-height: 30rem;
   margin-right: 4rem;
   border-radius: 2rem;

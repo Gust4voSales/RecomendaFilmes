@@ -10,6 +10,7 @@ import Axios from 'axios';
 import { recommendationsResponse } from '../../components/RecommendationsResults';
 import SmallTitleCard from '../../components/SmallTitleCard';
 import './styles.scss';
+import ErrorMessage from '../../components/ErrorMessage';
 
 
 const CancelToken = Axios.CancelToken;
@@ -38,6 +39,7 @@ const SearchResults: React.FC = () => {
       if (cancel!==undefined) {
         cancel();
       }
+      
       try {
         const { data } = await tmdbAPI.get(`search/${filter.option}`, { 
           cancelToken: new CancelToken(function executor(c) {
@@ -49,9 +51,9 @@ const SearchResults: React.FC = () => {
         });
         
         setResults(data.results);
-        console.log(searchText, ': ', data.results[0]);
+        // console.log(searchText, ': ', data.results[0]);
       } catch (err) {
-        console.log('erro search: ', err,);
+        // console.log('erro search: ', err,);
       }
     }
 
@@ -128,6 +130,9 @@ const SearchResults: React.FC = () => {
               <SmallTitleCard data={result} />
             </li>
           ))
+        }
+        {
+          results.length===0 ? <span>Nenhum resultado encontrado para: {searchText}</span>  : null 
         }
       </ul>
 

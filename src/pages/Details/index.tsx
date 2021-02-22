@@ -4,6 +4,7 @@ import EvaluationCircle from '../../components/EvaluationCircle';
 import Gallery from '../../components/Gallery';
 import GenreTag from '../../components/GenreTag';
 import Header from '../../components/Header';
+import Loading from '../../components/Loading';
 import MovieDetails from '../../components/MovieDetails';
 import SimilarTitles from '../../components/SimilarTitles';
 import TvDetails from '../../components/TvDetails';
@@ -145,7 +146,14 @@ const Details: React.FC = () => {
 
   if (loading) {
     return (
-      <h1>LOADING</h1>
+      <div 
+        style={
+          { height: '50vh', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', padding: '0 5%' }
+        }
+      >
+        <Header backButtonRoute="/recomendar" />
+        <Loading />
+      </div>
     );
   }
 

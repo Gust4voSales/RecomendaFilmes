@@ -136,6 +136,7 @@
   }
 
   #details .header-info-container .info p {
+    // background-color: aqua;
     height: 15rem;
     padding-right: .5rem;
     overflow-y: auto;
@@ -154,7 +155,7 @@
 
   #details .header-info-container .info .info-bottom {
     // background-color: gray;
-    margin-top: .5rem;
+    margin-top: 4rem;
     justify-content: center;
     width: calc(100% + 15.2rem); 
     margin-left: -15rem; // width of the poster + margin

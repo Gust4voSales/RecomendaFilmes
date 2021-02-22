@@ -78,13 +78,13 @@ const RecommendationsResults: React.FC = () => {
         ))}
       </ul>
 			{
-				recommendations.length===0 ? <span>Nenhum resultado encontrado. Tente alterar alguns filtros</span> : null
+				recommendations.length===0 && !loadingResults ? <span>Nenhum resultado encontrado. Tente alterar alguns filtros</span> : null
 			}
 			{
 				loadingResults ? <Loading /> : null
 			}
 			{
-				error ? <ErrorMessage message={`😕 Erro ao buscar ${filter.option==='movie' ? 'filmes' : 'séries'}`}/> : null
+				error && !loadingResults ? <ErrorMessage message={`😕 Erro ao buscar ${filter.option==='movie' ? 'filmes' : 'séries'}`}/> : null
 			}
     </div>
   ); 

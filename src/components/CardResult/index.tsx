@@ -18,7 +18,7 @@ const CardResult: React.FC<CardProps> = ({ data }) => {
   const [hoveredOverview, setHoveredOverview] = useState(false);
 
   const navigateToDetails: MouseEventHandler<HTMLAnchorElement> = (e) => {
-    // If it is a hoverable overview check if the user is currently hovering it
+    // If it is a hoverable overview then check if the user is currently hovering it
     // if the user isn't hovering, then the link will behave as expected
     // otherwise, it won't navigate to the new screen
     if ((data.overview.length > maxCharsOverview) && hoveredOverview) {

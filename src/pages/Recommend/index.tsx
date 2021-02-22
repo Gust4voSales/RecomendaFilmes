@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { MdKeyboardArrowDown, MdKeyboardArrowUp, MdSearch, } from "react-icons/md";
 import './styles.scss';
 import Genre from '../../components/filters/Genre';
@@ -10,17 +10,23 @@ import RecommendationsResults from '../../components/RecommendationsResults';
 import Header from '../../components/Header';
 import { useInView } from 'react-intersection-observer';
 import ResultsIndicator from '../../components/ResultsIndicator';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
 import '../../components/SearchInput.scss';
 
+interface LocationState {
+	returningFromSearch: boolean | undefined;
+}
 
 const Recommend = () => {
 	const history = useHistory();
+	const location = useLocation();
 
 	const { filter, changeFilter } = useFilter();
 	const [inViewRef, inView, ] = useInView({
     threshold: 0.02,
   });
+	
+	const fakeInputRef = useRef<HTMLInputElement>(null);
 
 	const filtersBlockRef = useRef<HTMLDivElement>(null);
 	const resultsRef = useRef<HTMLDivElement>(null);
@@ -28,6 +34,17 @@ const Recommend = () => {
 	const [selectedOptionResults, setSelectedOptionResults] = useState(filter.option);
 	const [showFilters, setShowFilters] = useState(true);
 	const [refresherState, setRefresherState] = useState(false);
+
+	useEffect(() => {
+		if (location.state) {
+			const { returningFromSearch } = location.state as LocationState
+			
+			if (returningFromSearch === true) {
+				fakeInputRef?.current?.focus();
+			}
+		}
+		
+	}, [location]);
 
 	function handleOptionResultsSelection(option: string) {
 		setSelectedOptionResults(option);
@@ -100,6 +117,7 @@ const Recommend = () => {
 								name="fake-search" 
 								id="fake-search" 
 								type="search"
+								ref={fakeInputRef}
 								autoComplete="off"
 								onChange={e => history.push(`/pesquisar?q=${e.target.value}`)}
 								placeholder={"Nome d"+(filter.option==='movie'? 'o filme' : 'a série')}

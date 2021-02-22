@@ -24,7 +24,10 @@ const SearchResults: React.FC = () => {
 
   useEffect(() => {
     if (searchText.length===0)
-      history.push(`/recomendar`);
+      history.push({
+        pathname: `/recomendar`,
+        state: { returningFromSearch: true },
+      });
     else {
       history.push(`/pesquisar?q=${searchText}`);
     }

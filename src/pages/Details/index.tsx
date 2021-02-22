@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation, useParams } from 'react-router-dom';
+import ErrorMessage from '../../components/ErrorMessage';
 import EvaluationCircle from '../../components/EvaluationCircle';
 import Gallery from '../../components/Gallery';
 import GenreTag from '../../components/GenreTag';
@@ -85,6 +86,7 @@ const Details: React.FC = () => {
   const [detailsType, ] = useState(pathname.slice(1, 6));
   const [loading, setLoading] = useState(true);
   const [option, setOption] = useState(0);
+  const [error, setError] = useState(false);
 
   useEffect(() => {
     async function loadDetails() {
@@ -93,32 +95,43 @@ const Details: React.FC = () => {
           const { data } = await tmdbAPI.get(`movie/${id}`, 
             { params: { append_to_response: 'videos,similar' }
           });
-          console.log(data);
+          // console.log(data);
           setData(data);
           setLoading(false);
         } catch (err) {
-          console.log('redirect to 404');
+          if (err.response?.status==404) {
+            console.log('redirect to 404');
+          } else {
+            setError(true);
+            setLoading(false);
+          }
         }
       } else if (detailsType==='serie') {
         try {
           const { data } = await tmdbAPI.get(`tv/${id}`, 
             { params: { append_to_response: 'videos,similar' } 
           });
-          console.log(data);
+          // console.log(data);
           setData(data);
           setLoading(false);
         } catch (err) {
-          console.log('redirect to 404');
+          if (err.response?.status==404) {
+            console.log('redirect to 404');
+          } else {
+            setError(true);
+            setLoading(false);
+          }
         }
       }
       else {
-        // redirect to 404
+        console.log('redirect to 404');
       }
     }
 
     // RESETING
     setLoading(true);
     setOption(0);
+    setError(false);
 
     loadDetails();
   }, [id, detailsType]);
@@ -153,6 +166,19 @@ const Details: React.FC = () => {
       >
         <Header backButtonRoute="/recomendar" />
         <Loading />
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div 
+        style={
+          { height: '50vh', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', padding: '0 5%' }
+        }
+      >
+        <Header backButtonRoute="/recomendar" />
+        <ErrorMessage message={"Erro ao buscar " + detailsType} />
       </div>
     );
   }

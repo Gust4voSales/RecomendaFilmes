@@ -1,6 +1,7 @@
 import React from 'react';
 import { IoIosArrowDown } from 'react-icons/io';
 import { useFilter } from '../../contexts/filtersContexts';
+import Loading from '../Loading';
 import './styles.scss';
 
 interface ResultsIndicatorProps {
@@ -22,9 +23,7 @@ const ResultsIndicator: React.FC<ResultsIndicatorProps> = ({ showIndicator, onSc
     >
       {
         loadingResults
-        ? (<div>
-            <h2>Carregando</h2>
-          </div>)
+        ? <Loading />
         : (<div className="results-indicator" onClick={handleSeeResults}>
             <IoIosArrowDown className="arrow-icon"/>
             <span>Ver resultados</span>

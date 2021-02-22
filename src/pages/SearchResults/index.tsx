@@ -28,7 +28,7 @@ const SearchResults: React.FC = () => {
     else {
       history.push(`/pesquisar?q=${searchText}`);
     }
-  }, [searchText]);
+  }, [searchText, history]);
 
   useEffect(() => {
     async function searchTitles() {

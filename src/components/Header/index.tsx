@@ -6,15 +6,17 @@ import './styles.scss';
 
 interface HeaderProps {
   backButtonRoute: string;
+  goBack?: boolean;
 }
 
-const Header: React.FC<HeaderProps> = ({ backButtonRoute }) => {
+const Header: React.FC<HeaderProps> = ({ backButtonRoute, goBack=false }) => {
   const history = useHistory();
 
   function handleBackClick(e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) {
-    if (backButtonRoute.length === 0) {
+    if (goBack) {
       e.preventDefault();
       history.goBack();
+      history.push(backButtonRoute);
     }
   }
 

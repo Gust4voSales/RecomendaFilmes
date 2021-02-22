@@ -169,7 +169,7 @@ const Details: React.FC = () => {
     }
      
     <div id="details">
-      <Header backButtonRoute="/recomendar" />
+      <Header backButtonRoute="" />
       
       <div className="header-info-container">
         <img 

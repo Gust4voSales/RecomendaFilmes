@@ -78,7 +78,7 @@ const SimilarTitles: React.FC<SimilarTitlesData> = ({ similar: similarTitles }) 
       </Slider>
       {
         similarTitles.results.length===0 
-        ? <span>Nenhum título similar cadastrado</span>
+        ? <span style={{marginLeft: '1.5rem'}}>Nenhum título similar cadastrado</span>
         : null
       } 
     </section>  

@@ -10,7 +10,6 @@ import Axios from 'axios';
 import { recommendationsResponse } from '../../components/RecommendationsResults';
 import SmallTitleCard from '../../components/SmallTitleCard';
 import './styles.scss';
-import ErrorMessage from '../../components/ErrorMessage';
 
 
 const CancelToken = Axios.CancelToken;

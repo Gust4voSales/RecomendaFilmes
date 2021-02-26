@@ -99,7 +99,7 @@ const Details: React.FC = () => {
           setData(data);
           setLoading(false);
         } catch (err) {
-          if (err.response?.status==404) {
+          if (err.response?.status===404) {
             console.log('redirect to 404');
           } else {
             setError(true);
@@ -115,7 +115,7 @@ const Details: React.FC = () => {
           setData(data);
           setLoading(false);
         } catch (err) {
-          if (err.response?.status==404) {
+          if (err.response?.status===404) {
             console.log('redirect to 404');
           } else {
             setError(true);

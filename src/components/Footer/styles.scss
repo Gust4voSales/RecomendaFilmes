@@ -1,0 +1,119 @@
+footer {
+  display: flex;
+  justify-content: space-between;  
+  border-top: .2rem solid #444;
+  padding: 1.5rem 5%;
+  width: 100%;
+}
+
+footer .contact-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+footer .contact-container h4 {
+  font-family: 'Montserrat', sans-serif;
+}
+
+footer .contact-container .icons {
+  margin-top: -5rem;
+  width: 15rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+footer .contact-container .icons a {
+  filter: grayscale(60%) contrast(85%) opacity(.8);
+  transition: all .3s;
+
+  &:hover {
+    filter: none;
+  }
+}
+
+footer .contact-container .icons a img {
+  width: 3rem;
+  border-radius: 1.5rem;
+  // margin-right: 3rem;
+  margin-top: 1rem;
+}
+
+footer .contact-container .span-credit {
+  font-size: 1.2rem;
+}
+
+footer .contact-container .span-credit a {
+  text-decoration: underline;
+}
+
+footer .central-logo {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+footer .central-logo img {
+  width: 10rem;
+  height: 10rem;
+}
+
+footer .tmdb-credits-container {
+  flex: 1;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+footer .tmdb-credits-container img {
+  width: 70%;
+  max-width: 20rem;
+  margin-bottom: 2.4rem;
+}
+
+footer .tmdb-credits-container span {
+  font-size: 1rem;
+  text-align: right;
+}
+
+// MEDIA QUERIES
+
+@media(max-width: 1030px) {
+  footer {
+    flex-direction: column;
+  }
+
+  footer .central-logo {
+    order: 1;
+  }
+
+  footer .contact-container {
+    order: 2;
+    align-items: center;
+    margin-top: 5rem;
+  }
+  footer .contact-container .icons {
+    margin-top: 0;
+    margin-bottom: 2rem;
+  }
+  footer .contact-container .span-credit {
+    text-align: center;
+  }
+
+  footer .tmdb-credits-container {
+    order: 3;
+    align-items: center;
+    margin-top: 5rem;
+  }
+  footer .tmdb-credits-container span {
+    font-size: 1rem;
+    text-align: center;
+  }
+}
+// footer div {
+//   background-color: aqua;
+//   margin: 0 .2rem;
+// }

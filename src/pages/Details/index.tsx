@@ -161,11 +161,13 @@ const Details: React.FC = () => {
     return (
       <div 
         style={
-          { height: '50vh', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', padding: '0 5%' }
+          { height: '100vh', display: 'flex', flexDirection: 'column', padding: '0 5%' }
         }
       >
         <Header backButtonRoute="/recomendar" />
-        <Loading />
+        <div style={{ marginTop: '20%' }}>
+          <Loading />
+        </div>
       </div>
     );
   }
@@ -174,11 +176,14 @@ const Details: React.FC = () => {
     return (
       <div 
         style={
-          { height: '50vh', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', padding: '0 5%' }
+          { height: '100vh', display: 'flex', flexDirection: 'column', padding: '0 5%' }
         }
       >
         <Header backButtonRoute="/recomendar" />
-        <ErrorMessage message={"Erro ao buscar " + detailsType} />
+        <div style={{ marginTop: '20%' }}>
+          <ErrorMessage message={"Erro ao buscar " + detailsType} />
+
+        </div>
       </div>
     );
   }

@@ -96,19 +96,23 @@ const RecommendationsResults: React.FC = () => {
       </ul>
 			<div className="footer">
 				{
+					// If there are no results and errors and it's not loading then show this message 
 					recommendations.length===0 && !loadingResults && !error 
 						? <span>Nenhum resultado encontrado. Tente alterar alguns filtros</span> 
 						: null
 				}
 				{
+					// If it's loading, show Loader
 					loadingResults ? <Loading /> : null
 				}
 				{
+					// If there are results, no errors and it's not loading then show LoadMoreButton
 					!loadingResults && !error && recommendations.length>0 && page<totalPages
 						? <LoadMoreButton onClick={handleLoadMore} /> 
 						: null
 				}
 				{
+					// If it's not loading and there is an error then show Error message
 					error && !loadingResults 
 						? <ErrorMessage message={`😕 Erro ao buscar ${filter.option==='movie' ? 'filmes' : 'séries'}`}/> 
 						: null

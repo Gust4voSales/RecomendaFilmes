@@ -165,7 +165,14 @@ const Genre: React.FC<Props> = ({ shouldReload }) => {
           <ul>
             {
               genres.map(genre => (
-                <li key={genre.id}>
+                <li 
+                  key={genre.id} 
+                  onClick={
+                    !checkDisableSelect(genre.id, true)
+                    ? () => handleGenreSelection(genre.id, genre.name, true)
+                    : undefined
+                  }
+                >
                   <span style={checkDisableSelect(genre.id, true) ? { color: '#B7B7B7' } : {}}>
                     {genre.name}
                   </span>
@@ -191,7 +198,14 @@ const Genre: React.FC<Props> = ({ shouldReload }) => {
           <ul>
             {
               genres.map(genre => (
-                <li key={genre.id}>
+                <li 
+                  key={genre.id}
+                  onClick={
+                    !checkDisableSelect(genre.id, false)
+                    ? () => handleGenreSelection(genre.id, genre.name, false)
+                    : undefined
+                  }  
+                >
                   <span style={checkDisableSelect(genre.id, false) ? { color: '#B7B7B7' } : {}}>
                     {genre.name}
                   </span>

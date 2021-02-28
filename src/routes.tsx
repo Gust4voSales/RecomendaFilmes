@@ -3,6 +3,7 @@ import { BrowserRouter, Route } from 'react-router-dom';
 import { FilterProvider } from './contexts/filtersContexts';
 import Details from './pages/Details';
 import Landing from './pages/Landing';
+import PageNotFound from './pages/PageNotFound';
 import Recommend from './pages/Recommend';
 import SearchResults from './pages/SearchResults';
 
@@ -19,6 +20,7 @@ const Routes = () => {
             <Route component={Details} path="/filme/:id" />
             <Route component={Details} path="/serie/:id" />
             <Route component={SearchResults} path="/pesquisar" />
+            <Route component={PageNotFound} />
         </BrowserRouter>
         </FilterProvider>
     );

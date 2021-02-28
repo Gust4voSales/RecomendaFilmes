@@ -1,0 +1,36 @@
+#not-found {
+  display: flex;
+  flex-direction: column;
+  padding: 0 5% 0 5%;
+  min-height: 100vh;
+}
+
+#not-found .main {
+  display: flex;
+  margin: auto auto;
+  align-items: center;
+  // background-color: aqua;
+}
+
+#not-found .main .error {
+  display: flex;
+  flex-direction: column;
+  margin-right: 10rem;
+}
+
+#not-found .main .error .oops-text {
+  font-size: 7.2rem;
+  text-align: center;
+}
+#not-found .main .error .status-text {
+  font-size: 28.8rem;
+}
+#not-found .main .error .error-text {
+  font-size: 4.8rem;
+  text-align: center;
+}
+
+#not-found .main img {
+  width: 20rem;
+  height: 20rem;
+}

@@ -105,6 +105,7 @@ const Details: React.FC = () => {
         } catch (err) {
           if (err.response?.status===404) {
             console.log('redirect to 404');
+            // history.();
           } else {
             setError(true);
             setLoading(false);

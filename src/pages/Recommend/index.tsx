@@ -36,6 +36,10 @@ const Recommend = () => {
 	const [refresherState, setRefresherState] = useState(false);
 
 	useEffect(() => {
+		window.scrollTo(0, 0)
+	}, []);
+
+	useEffect(() => {
 		if (location.state) {
 			const { returningFromSearch } = location.state as LocationState
 			

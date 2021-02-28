@@ -23,6 +23,10 @@ const SearchResults: React.FC = () => {
   const [results, setResults] = useState<recommendationsResponse[]>([]);
 
   useEffect(() => {
+		window.scrollTo(0, 0)
+	}, []);
+
+  useEffect(() => {
     if (searchText.length===0)
       history.push({
         pathname: `/recomendar`,

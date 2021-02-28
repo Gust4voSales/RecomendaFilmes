@@ -1,9 +1,13 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import icon from '../../assets/icon.png';
 import './styles.scss';
 import { Link } from 'react-router-dom';
 
 const Landing = () => {
+    useEffect(() => {
+		window.scrollTo(0, 0)
+	}, []);
+
     return(
         <div id="landing">
             <header className="header">

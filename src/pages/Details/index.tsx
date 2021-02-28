@@ -89,6 +89,10 @@ const Details: React.FC = () => {
   const [error, setError] = useState(false);
 
   useEffect(() => {
+		window.scrollTo(0, 0)
+	}, [data]);
+
+  useEffect(() => {
     async function loadDetails() {
       if (detailsType==='filme') {
         try {

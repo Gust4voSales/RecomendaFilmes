@@ -5,6 +5,7 @@ import tmdbAPI, { baseImgURL } from '../../../services/api';
 import { PeopleData, useFilter } from '../../../contexts/filtersContexts';
 import axios from 'axios';
 import './styles.scss';
+import { MdPersonOutline } from 'react-icons/md';
 import { Props } from '../props';
 
 const CancelToken = axios.CancelToken;
@@ -68,7 +69,7 @@ const People: React.FC<Props> = ({ shouldReload, style }) => {
           <article>
             {person.profile_path 
               ? <img src={`${baseImgURL}w185/${person.profile_path}`} alt="img"/>
-              : <div className="dummy-img" />
+              : <MdPersonOutline size={'4rem'}/> 
             }
             {person.name} 
           </article>

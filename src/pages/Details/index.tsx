@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useLocation, useParams } from 'react-router-dom';
+import { useHistory, useLocation, useParams } from 'react-router-dom';
 import ErrorMessage from '../../components/ErrorMessage';
 import EvaluationCircle from '../../components/EvaluationCircle';
 import Gallery from '../../components/Gallery';
@@ -80,6 +80,7 @@ interface DataResponse extends MovieDetailsData, TvDetailsData, GalleryData, Sim
 const Details: React.FC = () => {
   const { id } = useParams<DetailsParams>();
   const { pathname } = useLocation();
+  const history = useHistory();
   // const { filter } = useFilter();
 
   const [data, setData] = useState<DataResponse>({} as DataResponse);
@@ -104,8 +105,8 @@ const Details: React.FC = () => {
           setLoading(false);
         } catch (err) {
           if (err.response?.status===404) {
-            console.log('redirect to 404');
-            // history.();
+            console.log('redirect to 404 sssss');
+            history.push('/page-not-found');
           } else {
             setError(true);
             setLoading(false);
@@ -121,7 +122,7 @@ const Details: React.FC = () => {
           setLoading(false);
         } catch (err) {
           if (err.response?.status===404) {
-            console.log('redirect to 404');
+            history.push('/page-not-found');
           } else {
             setError(true);
             setLoading(false);
@@ -129,7 +130,7 @@ const Details: React.FC = () => {
         }
       }
       else {
-        console.log('redirect to 404');
+        history.push('/page-not-found');
       }
     }
 

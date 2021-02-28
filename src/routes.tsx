@@ -21,6 +21,8 @@ const Routes = () => {
 			<Route component={Details} path="/filme/:id" />
 			<Route component={Details} path="/serie/:id" />
 			<Route component={SearchResults} path="/pesquisar" />
+			
+			<Route path="page-not-found" component={PageNotFound} />
 			<Route component={PageNotFound} />
 		</Switch>
 		</BrowserRouter>

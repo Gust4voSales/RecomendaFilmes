@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { MovieDetailsData } from '../../pages/Details';
 import tmdbAPI, { baseImgURL } from '../../services/api';
 import timeParser from '../../utils/timeParser';
+import { MdPersonOutline } from 'react-icons/md';
 import './styles.scss';
 
 interface MovieDetailsProps {
@@ -116,7 +117,8 @@ const MovieDetails: React.FC<MovieDetailsProps> = ({ details }) => {
               <li key={actor.id}>
                 {actor.profile_path 
                   ? <img src={`${baseImgURL}w185${actor.profile_path}`} alt="Ator"/>
-                  : <div className="img-placeholder"/>
+                  // : <div className="img-placeholder"/>
+                  : <MdPersonOutline size={'5rem'} style={{ marginRight: '2rem' }} />
                 }
                 <p>{actor.name}</p>
               </li>    
@@ -131,7 +133,7 @@ const MovieDetails: React.FC<MovieDetailsProps> = ({ details }) => {
               <li key={director.id}>
                 {director.profile_path 
                   ? <img src={`${baseImgURL}w185${director.profile_path}`} alt="Diretor"/>
-                  : <div className="img-placeholder"/>
+                  : <MdPersonOutline size={'5rem'} style={{ marginRight: '2rem' }} />
                 }
                 <p>{director.name}</p>
               </li>    

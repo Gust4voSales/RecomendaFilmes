@@ -11,10 +11,13 @@ interface HeaderProps {
 const Header: React.FC<HeaderProps> = ({ backButtonRoute }) => {
   return (
     <header>
-      <div className="logo">
-        <img src={icon} alt="Ícone"/>
-        <h1>Recomenda<span>Filmes</span></h1>
-      </div>
+      <Link to="/">
+        <div className="logo">
+          <img src={icon} alt="Ícone"/>
+          <h1>Recomenda<span>Filmes</span></h1>
+        </div>
+      </Link>
+
       <Link to={backButtonRoute} >
         <MdArrowBack size={'6rem'} className="back"/>
       </Link>

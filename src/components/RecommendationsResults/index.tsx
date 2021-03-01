@@ -72,7 +72,9 @@ const RecommendationsResults: React.FC = () => {
 			.catch(err => {
 				setLoadingResults(false);
 				setError(true);
-				return;
+				if (page===1) {
+					setRecommendations([]);
+				}
 			});
 	}
 

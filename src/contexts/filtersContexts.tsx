@@ -9,7 +9,6 @@ interface Filter {
   primary_release_year: number;
   first_air_date_year: number;
   certification: string;
-  certification_lte: string;
 }
 
 interface genreResponse {
@@ -45,8 +44,6 @@ interface FilterContextData {
   setGenreState(genres: SelectedGenre[]): void;
   certificationState: string;
   setCertificationState(certification: string): void;
-  certificationOptState: string;
-  setCertificationOptState(option: string): void;
 }
 
 const filterInitialState = {
@@ -57,7 +54,6 @@ const filterInitialState = {
   primary_release_year: 0,
   first_air_date_year: 0,
   certification: '',
-  certification_lte: '',
 }
 
 export { filterInitialState }
@@ -74,7 +70,6 @@ export const FilterProvider: React.FC = ({children}) => {
   const [peopleState, setPeopleState] = useState<PeopleData[]>([]);
   const [genreState, setGenreState] = useState<SelectedGenre[]>([]);
   const [certificationState, setCertificationState] = useState('');
-  const [certificationOptState, setCertificationOptState] = useState('equal');
   
     // Fetch movie and tv genres only once.
     const fetchGenresCallback = useCallback(() => {
@@ -114,8 +109,6 @@ export const FilterProvider: React.FC = ({children}) => {
         setGenreState,
         certificationState,
         setCertificationState,
-        certificationOptState, 
-        setCertificationOptState,
       }}
     >
       {children}

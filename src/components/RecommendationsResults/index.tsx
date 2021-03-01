@@ -45,9 +45,6 @@ const RecommendationsResults: React.FC = () => {
     }
 		const params = { 
 			...filter, 
-			"certification.lte": filter.certification_lte,
-			certification_lte: null,
-			option: null, 
 			page,
 		};
 		

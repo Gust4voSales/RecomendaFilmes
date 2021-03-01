@@ -1,5 +1,4 @@
 import React, { useEffect, useState,} from 'react';
-import { FaEquals, FaLessThanEqual, } from 'react-icons/fa';
 import { useFilter } from '../../../contexts/filtersContexts';
 import { Props } from '../props';
 import './styles.scss';
@@ -20,42 +19,22 @@ const Year: React.FC<Props> = ({ shouldReload, style }) => {
     changeFilter, 
     certificationState, 
     setCertificationState, 
-    certificationOptState, 
-    setCertificationOptState 
   } = useFilter();
   const [certificationValue, setCertification] = useState(certificationState);
-  const [option, setOption] = useState(certificationOptState);
 
   // When shouldReload changes then clear the filter 
   useEffect(() => {
     if (shouldReload) {
       setCertification('');
-      setOption('equal');
     }
   }, [shouldReload]);
 
   useEffect(() => {
-    if (!certificationValue.length) {
-      changeFilter({ ...filter, 
-        certification_lte: '', 
-        certification: '', 
-      });
-
-      setCertificationState(certificationValue);
-      setCertificationOptState(option);
-      return;
-    }
-    
-    if (option==='equal') 
-      changeFilter({ ...filter, certification_lte: '', certification: certificationValue, });
-    else 
-      changeFilter({ ...filter, certification: '', certification_lte: certificationValue, });
+    changeFilter({ ...filter, certification: certificationValue, });
     
     setCertificationState(certificationValue);
-    setCertificationOptState(option);
-
     // eslint-disable-next-line
-  }, [certificationValue, option]);
+  }, [certificationValue]);
 
   function handleCertificationSelection(newCertification: string) {
     if (certificationValue===newCertification) {
@@ -65,33 +44,13 @@ const Year: React.FC<Props> = ({ shouldReload, style }) => {
     }
   }
 
-  function handleSelectLessEqualGreater(optionSelected: string) {
-    if (option === optionSelected) 
-      return;
-
-    setOption(optionSelected);
-  }
-
-  function translateOption() {
-    if (option==='equal') return 'igual';
-    
-    return 'menor ou igual';
-  }
-  
   return (
     <div id="container" style={style}>
       <strong>Classificação indicativa</strong>
       <span>
-      Limite os resultados apenas à títulos  com classificação indicativa <span>{translateOption()}</span> à selecionada
+      Limite os resultados apenas à títulos  com classificação indicativa <span>igual</span> à selecionada
       </span>
-      <div className="radio-buttons" >
-        <button onClick={() => handleSelectLessEqualGreater('less')} className={option==='less' ? 'selected' : ''}>
-          <FaLessThanEqual />
-        </button>
-        <button onClick={() => handleSelectLessEqualGreater('equal')} className={option==='equal' ? 'selected' : ''}>
-          <FaEquals />
-        </button>
-      </div>
+  
       <div className="certifications-container">
         {
           certifications.map(certificationObj => (
@@ -106,6 +65,10 @@ const Year: React.FC<Props> = ({ shouldReload, style }) => {
           ))
         }
       </div>
+      
+      {/* Placeholder DIV to fix spacing */}
+      <div />
+      
     </div>
   );
 }

@@ -79,8 +79,22 @@ footer .tmdb-credits-container span {
   text-align: right;
 }
 
-// MEDIA QUERIES
+.scroll-top-container {
+  display: flex;
+  align-items: center;
+  color: white;
+  cursor: pointer;
+  float: right;
+  margin-right: 5%;
+  background: none;
+}
 
+.scroll-top-container .scroll-top-icon {
+  height: 2rem;
+  width: 2rem;
+}
+
+// MEDIA QUERIES
 @media(max-width: 1030px) {
   footer {
     flex-direction: column;
@@ -112,8 +126,9 @@ footer .tmdb-credits-container span {
     font-size: 1rem;
     text-align: center;
   }
+
+  .scroll-top-container {
+    float: none;
+    margin: 0 auto;
+  }
 }
-// footer div {
-//   background-color: aqua;
-//   margin: 0 .2rem;
-// }

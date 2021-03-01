@@ -36,7 +36,7 @@ const Recommend = () => {
 	const [refresherState, setRefresherState] = useState(false);
 
 	useEffect(() => {
-		window.scrollTo(0, 0)
+		window.scrollTo(0, 0);
 	}, []);
 
 	useEffect(() => {
@@ -86,94 +86,94 @@ const Recommend = () => {
 
 	return(
 		<div id="recommend">   
-				<Header backButtonRoute="/"/>
+			<Header backButtonRoute="/"/>
 
-				<section className="filters">
-					<div className="description-container">
-						<div className="top">
-							<span>Pesquise por um{selectedOptionResults==='movie' ? ' filme' : 'a série'}</span>
-							<div className="radio-container">
-								<button 
-									style={
-											selectedOptionResults==='movie' 
-											? { backgroundColor: '#575757' } 
-											: {backgroundColor: 'transparent' } 
-									}
-									onClick={() => handleOptionResultsSelection('movie')}
-								>
-									Filmes
-								</button>
-								<button
-									style={
-											selectedOptionResults==='tv' 
-											? { backgroundColor: '#575757' } 
-											: { backgroundColor: 'transparent' } 
-									}
-									onClick={() => handleOptionResultsSelection('tv')}
-								>
-									Séries
-								</button>
-							</div>
+			<section className="filters">
+				<div className="description-container">
+					<div className="top">
+						<span>Pesquise por um{selectedOptionResults==='movie' ? ' filme' : 'a série'}</span>
+						<div className="radio-container">
+							<button 
+								style={
+										selectedOptionResults==='movie' 
+										? { backgroundColor: '#575757' } 
+										: {backgroundColor: 'transparent' } 
+								}
+								onClick={() => handleOptionResultsSelection('movie')}
+							>
+								Filmes
+							</button>
+							<button
+								style={
+										selectedOptionResults==='tv' 
+										? { backgroundColor: '#575757' } 
+										: { backgroundColor: 'transparent' } 
+								}
+								onClick={() => handleOptionResultsSelection('tv')}
+							>
+								Séries
+							</button>
 						</div>
-						
-						<div className="search-input">
-							<MdSearch size={'4rem'} className="search-icon"/>
-							<input 
-								name="fake-search" 
-								id="fake-search" 
-								type="search"
-								ref={fakeInputRef}
-								autoComplete="off"
-								onChange={e => history.push(`/pesquisar?q=${e.target.value}`)}
-								placeholder={"Nome d"+(filter.option==='movie'? 'o filme' : 'a série')}
-							/>
-						</div>
-
-						<span>Ou utilize quantos filtros quiser e com certeza irá encontrar algo que lhe agrade</span>
 					</div>
-				
-					<div className="filters-container">
-						<div className="filters-block-header">
-							<div onClick={handleToggleShowFilter} title="Minimizar filtros">
-								Filtros 
-								{ showFilters ? <MdKeyboardArrowUp className="arrow" /> : <MdKeyboardArrowDown className="arrow" /> }
-							</div>
-							<div onClick={handleClearFilters} className="clear-filters-btn">Limpar todos os filtros</div>
-						</div>
+					
+					<div className="search-input">
+						<MdSearch size={'4rem'} className="search-icon"/>
+						<input 
+							name="fake-search" 
+							id="fake-search" 
+							type="search"
+							ref={fakeInputRef}
+							autoComplete="off"
+							onChange={e => history.push(`/pesquisar?q=${e.target.value}`)}
+							placeholder={"Nome d"+(filter.option==='movie'? 'o filme' : 'a série')}
+						/>
+					</div>
 
-						<div
-						  className="filters-block"
-							style={showFilters ? {} : { display: 'none' }}
-							ref={filtersBlockRef}
-						>
-						
-							<Genre shouldReload={refresherState}/>
-							{
-								selectedOptionResults==='tv'
-									? (<>
-											<People shouldReload={refresherState} style={{ display: 'none' }}/>
-											<Certification shouldReload={refresherState} style={{ display: 'none' }}/> 
-										</>)
-									: (<>
-											<People shouldReload={refresherState}/>
-											<Certification shouldReload={refresherState}/> 
-										</>)
-							}
-							<Year shouldReload={refresherState}/>
+					<span>Ou utilize quantos filtros quiser e com certeza irá encontrar algo que lhe agrade</span>
+				</div>
+			
+				<div className="filters-container">
+					<div className="filters-block-header">
+						<div onClick={handleToggleShowFilter} title="Minimizar filtros">
+							Filtros 
+							{ showFilters ? <MdKeyboardArrowUp className="arrow" /> : <MdKeyboardArrowDown className="arrow" /> }
 						</div>
-						{ showFilters 
-							? null
-							: <div style={{ width: '99%', height: '.2rem', backgroundColor: 'white', alignSelf: 'center' }}/>
+						<div onClick={handleClearFilters} className="clear-filters-btn">Limpar todos os filtros</div>
+					</div>
+
+					<div
+						className="filters-block"
+						style={showFilters ? {} : { display: 'none' }}
+						ref={filtersBlockRef}
+					>
+					
+						<Genre shouldReload={refresherState}/>
+						{
+							selectedOptionResults==='tv'
+								? (<>
+										<People shouldReload={refresherState} style={{ display: 'none' }}/>
+										<Certification shouldReload={refresherState} style={{ display: 'none' }}/> 
+									</>)
+								: (<>
+										<People shouldReload={refresherState}/>
+										<Certification shouldReload={refresherState}/> 
+									</>)
 						}
+						<Year shouldReload={refresherState}/>
 					</div>
-				</section>
-				
-				<section className="results" ref={inViewRef}>
-					<div ref={resultsRef} />
-					<RecommendationsResults />
-				</section>
+					{ showFilters 
+						? null
+						: <div style={{ width: '99%', height: '.2rem', backgroundColor: 'white', alignSelf: 'center' }}/>
+					}
+				</div>
+			</section>
+			
+			<section className="results" ref={inViewRef}>
+				<div ref={resultsRef} />
+				<RecommendationsResults />
+			</section>
 
-				<ResultsIndicator showIndicator={!inView} onScrollToResultsClick={handleScrollToResults}/>
+			<ResultsIndicator showIndicator={!inView} onScrollToResultsClick={handleScrollToResults}/>
 		</div>
 	);
 }

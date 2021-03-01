@@ -140,7 +140,7 @@ const Details: React.FC = () => {
     setError(false);
 
     loadDetails();
-  }, [id, detailsType]);
+  }, [id, detailsType, history]);
 
   function handleSelectOption(option: number) {
     if (option===0) {

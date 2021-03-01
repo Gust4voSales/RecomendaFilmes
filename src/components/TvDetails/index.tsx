@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { MdPersonOutline } from 'react-icons/md';
 import { TvDetailsData } from '../../pages/Details';
 import tmdbAPI, { baseImgURL } from '../../services/api';
 import timeParser from '../../utils/timeParser';
@@ -73,7 +74,7 @@ const TvDetails: React.FC<TvDetailsProps> = ({ details }) => {
               <li key={actor.id}>
                 {actor.profile_path 
                   ? <img src={`${baseImgURL}w185${actor.profile_path}`} alt="Ator"/>
-                  : <div className="img-placeholder"/>
+                  : <MdPersonOutline size={'5rem'} style={{ marginRight: '2rem' }} />
                 }
                 <p>{actor.name}</p>
               </li>    
@@ -88,7 +89,7 @@ const TvDetails: React.FC<TvDetailsProps> = ({ details }) => {
               <li key={creator.id}>
                 {creator.profile_path 
                   ? <img src={`${baseImgURL}w185${creator.profile_path}`} alt="Criador"/>
-                  : <div className="img-placeholder"/>
+                  : <MdPersonOutline size={'5rem'} style={{ marginRight: '2rem' }} />
                 }
                 <p>{creator.name}</p>
               </li>    

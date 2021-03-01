@@ -117,7 +117,6 @@ const MovieDetails: React.FC<MovieDetailsProps> = ({ details }) => {
               <li key={actor.id}>
                 {actor.profile_path 
                   ? <img src={`${baseImgURL}w185${actor.profile_path}`} alt="Ator"/>
-                  // : <div className="img-placeholder"/>
                   : <MdPersonOutline size={'5rem'} style={{ marginRight: '2rem' }} />
                 }
                 <p>{actor.name}</p>

@@ -9,7 +9,7 @@
   display: flex;
   margin: auto auto;
   align-items: center;
-  // background-color: aqua;
+  justify-content: space-between;
 }
 
 #not-found .main .error {
@@ -31,6 +31,70 @@
 }
 
 #not-found .main img {
-  width: 20rem;
-  height: 20rem;
+  max-width: 20rem;
+  max-height: 20rem;
+  width: 20%;
+  height: 20%;
+  // background-color: aquamarine;
+}
+
+// MEDIA QUERIES
+@media (max-width: 950px) { 
+  #not-found .main .error .oops-text {
+    font-size: 4.2rem;
+    text-align: center;
+  }
+  #not-found .main .error .status-text {
+    font-size: 16.8rem;
+  }
+  #not-found .main .error .error-text {
+    font-size: 1.8rem;
+    text-align: center;
+  }
+}
+
+@media (max-width: 700px) {
+  #not-found .main .error {
+    margin-right: 6rem;
+  }
+
+  #not-found .main .error .oops-text {
+    margin: 3rem 0;
+  }
+  #not-found .main .error .status-text {
+    margin: 3rem 0;
+  }
+  #not-found .main .error .error-text {
+    margin: 3rem 0;
+  }
+}
+
+@media (max-width: 510px) {
+  #not-found .main {
+    flex-direction: column;
+  }
+
+  #not-found .main .error {
+    margin-right: 0;
+    order: 2;
+  }
+
+  #not-found .main img {
+    order: 1;
+    width: 30%;
+    height: 30%;
+  }
+}
+
+@media (max-width: 360px) {
+  #not-found .main .error .oops-text {
+    margin: 3rem 0;
+  }
+  #not-found .main .error .status-text {
+    font-size: 12.8rem;
+    margin: 3rem 0;
+  }
+  #not-found .main .error .error-text {
+    margin: 3rem 0;
+  }
 }

@@ -48,7 +48,7 @@ const SimilarTitles: React.FC<SimilarTitlesData> = ({ similar: similarTitles }) 
         breakpoint: 540,
         settings: {
           slidesToShow: 4,
-          slidesToScroll: 2,
+          slidesToScroll: 1,
           swipe: true,
           arrows: false,
           swipeToSlide: true,
@@ -58,7 +58,7 @@ const SimilarTitles: React.FC<SimilarTitlesData> = ({ similar: similarTitles }) 
         breakpoint: 430,
         settings: {
           slidesToShow: 3,
-          slidesToScroll: 2,
+          slidesToScroll: 1,
           swipe: true,
           arrows: false,
           swipeToSlide: true,

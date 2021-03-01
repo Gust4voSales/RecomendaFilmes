@@ -1,6 +1,9 @@
 .details-container .info-bottom .network-list {
   flex-direction: row;
   width: max-content;
+  flex-wrap: wrap;
+  max-width: 80vw;
+  justify-content: center;
 }
 
 .details-container .info-bottom ul li .network-img {

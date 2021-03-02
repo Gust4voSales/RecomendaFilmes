@@ -1,11 +1,10 @@
 import axios from 'axios';
-import config from './env-vars.json';
 
 const tmdbAPI = axios.create({
   baseURL: 'https://api.themoviedb.org/3/',
 });
 
-tmdbAPI.defaults.headers.common['Authorization'] = 'Bearer ' + config.tmdbApiToken;
+tmdbAPI.defaults.headers.common['Authorization'] = 'Bearer ' + process.env.REACT_APP_TMDB_API_TOKEN;
 tmdbAPI.defaults.params = {
   language: 'pt-BR',
   certification_country: 'BR',

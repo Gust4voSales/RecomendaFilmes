@@ -1,174 +1,203 @@
 #landing {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-    background: url('../../assets/background-joker.png') no-repeat right;
-    background-color: #030200;
-    
-    padding-left: 5%;
-    padding-top: 2rem;
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+	background: url('../../assets/background-joker.png') no-repeat right;
+	background-color: #030200;
+	
+	padding-left: 5%;
+	padding-top: 2rem;
 }
 
 #landing .header {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    height: 10vh;
-    // background-color: red;
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+	height: 10vh;
+	// background-color: red;
 }
 
 #landing .header img {
-    height: 100px;
-    margin-right: 2rem;
+	height: 100px;
+	margin-right: 2rem;
 }
 
 #landing .header h1 {
-    margin-top: 20px;
-    font-size: 4rem;
-    text-transform: uppercase;
-    background: linear-gradient(
-        to right, 
-        var(--red-theme) 22%, 
-        var(--purple-theme)
-    );
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
+	margin-top: 20px;
+	font-size: 4rem;
+	text-transform: uppercase;
+	background: linear-gradient(
+	to right, 
+	var(--red-theme) 22%, 
+	var(--purple-theme)
+	);
+	background-clip: text;
+	-webkit-text-fill-color: transparent;
 }
 
 #landing .header h1 span {
-    margin-left: .3rem;
-    font-size: 2.5rem;
+	margin-left: .3rem;
+	font-size: 2.5rem;
 }
 
 #landing .content {
-    margin-top: 12vh;
-    display: flex;
-    // background-color: red;
-    flex: 1;
-    flex-direction: column;
-    justify-content: space-around;
+	margin-top: 12vh;
+	display: flex;
+	// background-color: red;
+	flex: 1;
+	flex-direction: column;
+	justify-content: space-around;
 }
 
 #landing .content p {
-    width: 45vw;
-    color: #f2f2f2;
-    font-size: 1.8rem;
-    text-align: justify;
-    line-height: 3.2rem;
+	width: 45vw;
+	color: #f2f2f2;
+	font-size: 1.8rem;
+	text-align: justify;
+	line-height: 3.2rem;
 }
 
 #landing .content .buttonsContainer {
-    display: flex;
-    flex-direction: column;
+	display: flex;
+	flex-direction: column;
 }
 
-#landing .content .buttonsContainer a {
-    display: flex;
-    width: 35rem;
-    height: 8rem;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 5rem;
-    text-decoration: none;
-    color: #fff;
-    font-weight: 500;
-    font-size: 2.5rem;
-    user-select: none;
+#landing .content .buttonsContainer a, #landing .content .buttonsContainer button {
+	display: flex;
+	width: 35rem;
+	height: 8rem;
+	justify-content: center;
+	align-items: center;
+	margin-bottom: 5rem;
+	text-decoration: none;
+	color: #fff;
+	font-weight: 500;
+	font-size: 2.5rem;
+	user-select: none;
 }
 
 #landing .content .buttonsContainer .primaryButton {
-    position: relative;
-    background: linear-gradient(
-        to right, 
-        var(--red-theme) 22%,
-        var(--purple-theme), 
-    );
-    z-index: 1; 
+	position: relative;
+	background: linear-gradient(
+	to right, 
+	var(--red-theme) 22%,
+	var(--purple-theme), 
+	);
+	z-index: 1; 
 }
 
 .buttonsContainer .primaryButton:before {
-    content: '';
-    position: absolute;
-    top: -5px;
-    bottom: -5px;
-    right: -5px;
-    left: -5px;
-    z-index: -1;
-    background: linear-gradient(
-        to right,
-        var(--red-theme) 22%,
-        var(--purple-theme),
-    );
-    opacity: 0;
-    transition: 0.5s;
+	content: '';
+	position: absolute;
+	top: -5px;
+	bottom: -5px;
+	right: -5px;
+	left: -5px;
+	z-index: -1;
+	background: linear-gradient(
+	to right,
+	var(--red-theme) 22%,
+	var(--purple-theme),
+	);
+	opacity: 0;
+	transition: 0.5s;
 }
 
 .buttonsContainer .primaryButton:hover:before {
-    filter: blur(20px);
-    opacity: 1;
-  
+	filter: blur(20px);
+	opacity: 1;
+	
 }
 
-#landing .content .buttonsContainer a:last-child {  
-    background: transparent;
-    border: 2px solid;
-    border-image-source: linear-gradient(
-        to right, 
-        var(--red-theme) 22%,
-        var(--purple-theme),
-    );
-    border-image-slice: 1;
-    transition: text-shadow 0.5s;
+#landing .content .buttonsContainer button {  
+	background: transparent;
+	border: 2px solid;
+	border-image-source: linear-gradient(
+	to right, 
+	var(--red-theme) 22%,
+	var(--purple-theme),
+	);
+	border-image-slice: 1;
+	transition: text-shadow 0.5s;
 }
 
-#landing .content .buttonsContainer a:hover:last-child {  
-    text-shadow: 
-        0 0 10px rgba(255,255,255, 1),
-        0 0 50px rgba(255, 255, 255, .8),
-        0 0 75px rgba(255, 255, 255, .4),
-        0 0 80px rgba(255, 255, 255, .2),
+#landing .content .buttonsContainer button:hover:last-child {  
+	text-shadow: 
+	0 0 10px rgba(255,255,255, 1),
+	0 0 50px rgba(255, 255, 255, .8),
+	0 0 75px rgba(255, 255, 255, .4),
+	0 0 80px rgba(255, 255, 255, .2),
 }
 
+.landing-modal {
+	position: absolute;
+	top: 0;
+	right: 0;
+	left: 0;
+	bottom: 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin: auto;
+	width: min-content;
+	height: min-content;
+  background-color: #333;
+}
+
+// MEDIA QUERIES
+@media (max-width: 900px) {
+	.landing-modal iframe {
+		width: 80vw;
+		height: auto;
+		min-height: 40rem;
+	}
+}
 
 @media(max-width: 860px) {
-    #landing {
-        padding-left: 0;
-        align-items: center;
-        background-position: -700px;
-    }
-    
-    #landing .content p {
-        color: #fff;
-        width: 60vw;
-    }
-
-    #landing .content .buttonsContainer {
-        align-items: center;
-    }
+	#landing {
+		padding-left: 0;
+		align-items: center;
+		background-position: -700px;
+	}
+	
+	#landing .content p {
+		color: #fff;
+		width: 60vw;
+	}
+	
+	#landing .content .buttonsContainer {
+		align-items: center;
+	}
 }
 
 @media(max-width: 464px) {
-    #landing {
-        // background: none;
-        padding: 0;
-    }
+	#landing {
+		// background: none;
+		padding: 0;
+	}
+	
+	#landing .header {
+		flex-direction: column;
+		margin-bottom: 5rem;
+	}
+	
+	#landing .header h1{
+		order: -1;
+		margin-top: 0;
+	}
+	
+	#landing .content p {
+		margin: 0 auto;
+		width: 80%;
+	}
+	
+	#landing .content .buttonsContainer a, #landing .content .buttonsContainer button {
+		width: 80%;
+	}
 
-    #landing .header {
-        flex-direction: column;
-        margin-bottom: 5rem;
-    }
-
-    #landing .header h1{
-        order: -1;
-        margin-top: 0;
-    }
-
-    #landing .content p {
-        margin: 0 auto;
-        width: 80%;
-    }
-
-    #landing .content .buttonsContainer a {
-        width: 80%;
-    }
+	.landing-modal iframe {
+		width: 85vw;
+		height: auto;
+		min-height: 25rem;
+	}
 }

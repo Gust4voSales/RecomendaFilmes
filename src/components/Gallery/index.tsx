@@ -12,7 +12,13 @@ const Gallery: React.FC<GalleryData> = ({ videos }) => {
           videos.results.map(video => (
             <li className="video-container" key={video.key}>
               <span>{video.type}</span>            
-              <iframe width="420" height="315" title={video.type} src={`https://www.youtube.com/embed/${video.key}`} />
+              <iframe 
+                width="420" 
+                height="315" 
+                title={video.type} 
+                src={`https://www.youtube.com/embed/${video.key}`} 
+						    allowFullScreen
+              />
             </li>
           ))
         }
